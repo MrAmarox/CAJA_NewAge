@@ -1,0 +1,207 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Cherry+Bomb+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Titan+One&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.divEnvio {
+    background-color: black;
+    text-align: center;
+    padding: 0.5rem;
+    font-family: "Cherry Bomb One", system-ui;
+}
+
+.divEnvio p {
+    color: #fccaca;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
+    padding: 0.5rem;
+}
+
+.logo {
+    max-width: 10rem;
+}
+.busqueda{
+        display: flex;
+        align-items: center;
+        border: 2px solid #fccaca;
+        border-radius: 5px;
+        padding: 0.2rem;
+}
+.buscador {
+    padding: 0.5rem;
+  border: 2px solid #fccaca;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #fccaca;
+  outline: none;
+  font-family: "Cherry Bomb One", system-ui;
+}
+
+.buscador::placeholder {
+    color: #fccaca;
+  }
+
+.buscar {
+margin-left: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: #fccaca;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.carrito{
+    margin-left: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: #fccaca;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.user{
+    margin-left: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: #fccaca;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.menuhori {
+    background-color: #000000;
+    width: 100%;
+}
+.menuhamburguesa {
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+}
+
+.hamburguesa-list {
+    font-family: "Cherry Bomb One", system-ui;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 2rem;
+    list-style: none;
+    font-size: 1.5rem;
+    color: #fccaca;
+}
+
+.hamburguesa-list li{
+    margin: 0 1rem;
+}
+
+.hamburguesa-list li a {
+    text-decoration: none;
+    color: #fccaca;
+}
+
+.menuvertical {
+    display: none;
+    position: absolute;
+    background-color: black;
+    padding: 0.5rem;
+    list-style: none;
+}
+
+.itemdemenu {
+    position: relative;
+}
+
+.itemdemenu:hover .menuvertical {
+    display: block;
+}
+
+.menuvertical li a {
+    color: #fccaca;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+}
+
+.menuvertical li a:hover {
+    background-color: #e79797;
+}
+
+.abrirhamburguesa, .cerrarhamburguesa {
+    display: none;
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    color: #fccaca;
+    cursor: pointer;
+}
+
+.novisi{
+    display: none;
+}
+
+@media screen and (max-width: 550px) {
+    .abrirhamburguesa {
+        display: block;
+    }
+
+    .buscador, .buscar {
+        display: none;
+    }
+
+    .menuhamburguesa {
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: black;
+        padding: 2rem;
+        width: 70%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .menuhamburguesa.visible {
+        transform: translateX(0);
+    }
+
+    .menuhamburguesa .novisi{
+        display:block;
+    }
+    .hamburguesa-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .Cuenta, .Emprendimiento {
+        display: block;
+    }
+
+    .cerrarhamburguesa {
+        display: block;
+    }
+}
+
+/* fondo */
+body {
+    background-color: hsla(324.2105263157895, 46%, 75%, 1);
+    background-image: radial-gradient(circle at 40% 20%, hsla(357, 100%, 74%, 0) 0%, transparent 50%), radial-gradient(circle at 80% 0%, hsla(324.2105263157895, 46%, 75%, 1) 0%, transparent 50%), radial-gradient(circle at 0% 50%, hsla(324, 100%, 93%, 1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsla(336.42857142857144, 16%, 66%, 1) 0%, transparent 50%), radial-gradient(circle at 0% 100%, hsla(324.2105263157895, 46%, 75%, 1) 0%, transparent 50%), radial-gradient(circle at 80% 100%, hsla(324.2105263157895, 46%, 75%, 1) 0%, transparent 50%), radial-gradient(circle at 0% 0%, hsla(7.346938775510213, 55%, 82%, 1) 0%, transparent 50%);
+    background-blend-mode: normal, normal, normal, normal, normal, normal, normal;
+}
