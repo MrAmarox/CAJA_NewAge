@@ -15,7 +15,7 @@
     </div>
 
     <header>
-        <img class="logo" src="../Proyecto/imagenes etc/logo.png" alt="logo">
+        <img class="logo" src="../CAJA_NewAge/Img/logo.png" alt="logo">
 
         <button id="abrir" class="abrirhamburguesa">
             <i class="bi bi-list"></i>
