@@ -38,38 +38,27 @@
 
 <?php
 
+    $cates = array(
+        "Mujer"=> array("URL" => "merca", "Calzas" => "rvs", "Pantalones" => "vsd", "Canguros y buzos" => "ar", "Remeras" => "", "Conjuntos" => ""),
+        "Hombre"=> array("URL" => "mama", "Pantalones" => "vs<d", "Canguros"=> ""),
+        "Accesorios"=> array("URL" => "mame", "Medias" => "sv<es", "Vasos y Botellas" => "", "Accesorios de cabello" => "", "Bolsos" => "")
+    );
     echo '<nav id="menuhamburguesa" class="menuhamburguesa">
             <ul class="hamburguesa-list"> ';
             echo '
                 <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
             ';
-            echo '
-                <li class="itemdemenu"><a href="#">Mujer</a>
-                    <ul class="menuvertical">
-                      <li><a href="#">Calzas</a></li>
-                      <li><a href="#">Pantalones</a></li>
-                      <li><a href="#">Canguros y buzos</a></li>
-                      <li><a href="#">Remeras</a></li>
-                     <li><a href="#">Conjuntos</a></li>
-                 </ul>
-                </li>
-
-                <li class="itemdemenu"><a href="#">Hombre</a>
-                    <ul class="menuvertical">
-                        <li><a href="#">Pantalones</a></li>
-                        <li><a href="#">Canguros y buzos</a></li>
-                    </ul>
-                </li>
-
-                <li class="itemdemenu"><a href="#">Accesorios</a>
-                    <ul class="menuvertical">
-                        <li><a href="#">Medias</a></li>
-                        <li><a href="#">Vasos y botellas</a></li>
-                        <li><a href="#">Accesorios de cabello</a></li>
-                        <li><a href="#">Bolsos</a></li>
-                    </ul>
-                </li>
-
+            foreach ($cates as $cat => $tipo) {
+                $ul = array_shift($tipo);
+                echo '<li class="itemdemenu"><a href="'.$ul.'">'.$cat.'</a>
+                         <ul class="menuvertical">';
+                foreach ($tipo as $tipo => $url){
+                    echo '<li><a href="'.$url.'">'.$tipo.'</a></li>';
+                }
+                echo '</ul>
+                </li>';
+            }
+                echo '
                 <li><a href="#">Ofertas</a></li>
                 <li class="novisi"><a href="#">Cuenta</a></li>
                 <li class="novisi"><a href="#">Emprendimiento</a></li>
