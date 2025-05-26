@@ -30,42 +30,51 @@
 
     </header>
 
-    <nav id="menuhamburguesa" class="menuhamburguesa">
-        <ul class="hamburguesa-list">
-            <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
-
-            <li class="itemdemenu"><a href="#">Mujer</a>
-                <ul class="menuvertical">
-                    <li><a href="#">Calzas</a></li>
-                    <li><a href="#">Pantalones</a></li>
-                    <li><a href="#">Canguros y buzos</a></li>
-                    <li><a href="#">Remeras</a></li>
-                    <li><a href="#">Conjuntos</a></li>
-                </ul>
-            </li>
-
-            <li class="itemdemenu"><a href="#">Hombre</a>
-                <ul class="menuvertical">
-                    <li><a href="#">Pantalones</a></li>
-                    <li><a href="#">Canguros y buzos</a></li>
-                </ul>
-            </li>
-
-            <li class="itemdemenu"><a href="#">Accesorios</a>
-                <ul class="menuvertical">
-                    <li><a href="#">Medias</a></li>
-                    <li><a href="#">Vasos y botellas</a></li>
-                    <li><a href="#">Accesorios de cabello</a></li>
-                    <li><a href="#">Bolsos</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#">Ofertas</a></li>
-            <li class="novisi"><a href="#">Cuenta</a></li>
-            <li class="novisi"><a href="#">Emprendimiento</a></li>
-        </ul>
-    </nav>
+    
 
     <script src="Script.js"></script>
 </body>
 </html>
+
+<?php
+
+    echo '<nav id="menuhamburguesa" class="menuhamburguesa">
+            <ul class="hamburguesa-list"> ';
+            echo '
+                <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
+            ';
+            echo '
+                <li class="itemdemenu"><a href="#">Mujer</a>
+                    <ul class="menuvertical">
+                      <li><a href="#">Calzas</a></li>
+                      <li><a href="#">Pantalones</a></li>
+                      <li><a href="#">Canguros y buzos</a></li>
+                      <li><a href="#">Remeras</a></li>
+                     <li><a href="#">Conjuntos</a></li>
+                 </ul>
+                </li>
+
+                <li class="itemdemenu"><a href="#">Hombre</a>
+                    <ul class="menuvertical">
+                        <li><a href="#">Pantalones</a></li>
+                        <li><a href="#">Canguros y buzos</a></li>
+                    </ul>
+                </li>
+
+                <li class="itemdemenu"><a href="#">Accesorios</a>
+                    <ul class="menuvertical">
+                        <li><a href="#">Medias</a></li>
+                        <li><a href="#">Vasos y botellas</a></li>
+                        <li><a href="#">Accesorios de cabello</a></li>
+                        <li><a href="#">Bolsos</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Ofertas</a></li>
+                <li class="novisi"><a href="#">Cuenta</a></li>
+                <li class="novisi"><a href="#">Emprendimiento</a></li>
+    ';
+    echo '
+        </ul>
+    </nav>';
+?>
