@@ -1,5 +1,5 @@
 <?php
-    include 'Metodos.php';
+    include '../Logica/Metodos.php';
     echo oheader();
     echo menuhamburguesa();
 ?>

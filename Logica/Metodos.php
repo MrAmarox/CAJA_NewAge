@@ -1,32 +1,33 @@
 <?php
+    $cates = array(
+        "Mujer"=> array("Calzas", "Pantalones", "Canguros y buzos", "Remeras", "Conjuntos"),
+        "Hombre"=> array("Pantalones", "Canguros"),
+        "Accesorios"=> array("Medias", "Vasos y Botellas", "Accesorios de cabello", "Bolsos")
+    );
     function menuhamburguesa(){
-        $cates = array(
-            "Mujer"=> array("Calzas", "Pantalones", "Canguros y buzos", "Remeras", "Conjuntos"),
-            "Hombre"=> array("Pantalones", "Canguros"),
-            "Accesorios"=> array("Medias", "Vasos y Botellas", "Accesorios de cabello", "Bolsos")
-        );
+        global $cates; 
         $html = '<nav id="menuhamburguesa" class="menuhamburguesa">
-                <ul class="hamburguesa-list"> ';
-                $html .= '
+                <ul class="hamburguesa-list">
                     <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
                 ';
                 foreach ($cates as $cat => $scat) {
-                    $html .= '<li class="itemdemenu"><a href="Categoria.php?categoria='.$cat.'">'.$cat.'</a>
+                    $html .= '<li class="itemdemenu"><a href="../Front/Categoria.php?categoria='.$cat.'">'.$cat.'</a>
                              <ul class="menuvertical">';
                     foreach ($scat as $nscat){
-                        $html .= '<li><a href="'.$nscat.'">'.$nscat.'</a></li>';
+                        $html .= '<li><a href="../Front/Categoria.php?categoria='.$cat.'&subcat='.$nscat.'">'.$nscat.'</a></li>';
                     }
                     $html .= '</ul>
                     </li>';
                 }
                     $html .= '
-                    <li><a href="Categoria.php?categoria=Ofertas">Ofertas</a></li>
+                    <li><a href="../Front/Categoria.php?categoria=Ofertas">Ofertas</a></li>
                     <li class="novisi"><a href="#">Cuenta</a></li>
                     <li class="novisi"><a href="#">Emprendimiento</a></li>
         ';
         $html .= '
             </ul>
-        </nav>';
+        </nav>
+        <script src="../Front/Script.js"></script>';
         return $html;
     }
     function oheader(){
@@ -38,14 +39,14 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Molsy Store</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
-            <link rel="stylesheet" href="DiseñoMolsy.css">
+            <link rel="stylesheet" href="../Front/DiseñoMolsy.css">
         </head>
         <body>
             <div class="divEnvio">
                 <p>Envíos gratis en Durazno</p>
             </div>
             <header>
-                <img class="logo" src="../CAJA_NewAge/Img/logo.png" alt="logo">
+                <a href="IndexMolsy.php"><img class="logo" src="../Img/logo.png" alt="logo"></a>
                 <button id="abrir" class="abrirhamburguesa">
                     <i class="bi bi-list"></i>
                 </button>
@@ -56,13 +57,30 @@
                 <button class="user"> <i class="bi bi-person-heart"></i></button>
                 <button class="carrito"> <i class="bi bi-bag-heart"></i></button>
             </header>
-            <script src="Script.js"></script>
         </body>
         </html>
         ';
         return $html;
     }
-    function productos($categoria, $subcategoría){
-        
+    function mosprod($categoria, $subcategoria){
+        $bol =false;
+        $bol2 =false;
+        foreach ($cates as $cat => $scat) {
+            
+            foreach ($scat as $nscat){
+                if($categoria == $cat){
+                    if($subcategoria == $nscat){
+                        $bol2=true;
+                    }
+                    $bol=true;
+                }
+            }
+        }
+        if($bol=true){
+            
+            if($bol2=true){
+                    
+            }
+        }
     }
 ?>

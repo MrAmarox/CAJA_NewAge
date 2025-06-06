@@ -115,7 +115,7 @@ margin-left: 0.5rem;
 
 .menuvertical {
     display: none;
-    position: absolute;
+    position: relative;
     background-color: black;
     padding: 0.5rem;
     list-style: none;
@@ -165,7 +165,7 @@ margin-left: 0.5rem;
     .menuhamburguesa {
         flex-direction: column;
         align-items: flex-start;
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         bottom: 0;
@@ -181,7 +181,7 @@ margin-left: 0.5rem;
         transform: translateX(0);
     }
 
-    .menuhamburguesa .novisi{
+    .menuhamburguesa.novisi{
         display:block;
     }
     .hamburguesa-list {
