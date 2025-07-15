@@ -5,9 +5,5 @@
     $cat = 'Mujer';
     $incat = $_GET['categoria'] ?? 'Desconocida';
     $insubcat = $_GET['subcat'];
-    if($incat != null){
-        if ($incat == $cat){
-            echo $incat;
-        }
-    }
+    mosprod($incat,$insubcat);
 ?>

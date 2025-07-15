@@ -62,25 +62,41 @@
         ';
         return $html;
     }
-    function mosprod($categoria, $subcategoria){
-        $bol =false;
-        $bol2 =false;
+    function catExis($categoria,$subcategoria){
+        $case=0;
         foreach ($cates as $cat => $scat) {
-            
+            echo "merca";
             foreach ($scat as $nscat){
+                echo "merquea2";
                 if($categoria == $cat){
                     if($subcategoria == $nscat){
-                        $bol2=true;
+                        $case=1;
+                        exit();
+                    }else{
+                    $case=2;
+                    exit();
                     }
-                    $bol=true;
                 }
             }
         }
-        if($bol=true){
+        return $case;
+    }
+    function mosprod($categoria, $subcategoria){
+        switch (catExis($categoria, $subcategoría)){
             
-            if($bol2=true){
-                    
-            }
+            case 0:
+                echo '<h1 style="text-align:center;">UPS... ESTA CATEGORÍA NO EXISTE</h1>';
+                break;
+            case 1:
+                echo '<h1 style="text-align:center;">mostrar productos</h1>';
+                break;
+            case 2:
+                echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
+                
+                break;
+            default:
+                echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1>';
+                break;
         }
     }
 ?>
