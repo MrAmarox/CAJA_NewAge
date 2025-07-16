@@ -8,6 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Presentacion/DiseñoLogin.css">
     <title>Login</title>
 </head>
 <body>
@@ -16,12 +17,13 @@ session_start();
         <br>
         <label for=""> Contraseña </label><input type="text" name="pass">
         <br>
-        <input type="submit" value="Login" name="Login">
-        <input type="submit" value="Register" name="Register">
+        <input type="submit" value="Iniciar Sesion" name="Login">
+        <input type="submit" value="Registrarse" name="Register">
     </form>
     <?php
+
     if(isset($_POST['Register'])){
-        header("Location:register.php");
+        header("Location:Registro.php");
     }
     $encontrado=false;
     if(isset($_POST["login"])) {
@@ -31,7 +33,7 @@ session_start();
                 if($usuario->gettipo()== 'admin'){
                     header('');//panel de admin
                 }else{
-                    header('location: indexmolsy.php');
+                    header('location:IndexMolsy.php');
                 }
         }
     }
