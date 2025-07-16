@@ -3,6 +3,7 @@
 class usuario
 {
     private $nombre;
+    private $celular;
     private $correo;
     private $pass;
     private $tipo;
@@ -15,6 +16,13 @@ class usuario
     public function setNombre($value) {
       $this->nombre = $value;
     }
+
+    public function getCelular() {
+        return $this->celular;
+      }
+      public function setCelular($value) {
+        $this->celular = $value;
+      }
 
     public function getCorreo() {
       return $this->correo;
