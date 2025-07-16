@@ -5,14 +5,14 @@
         "Accesorios"=> array("Medias", "Vasos y Botellas", "Accesorios de cabello", "Bolsos")
     );
     function menuhamburguesa(){
-        global $cates; 
+        global $cates;
         $html = '<nav id="menuhamburguesa" class="menuhamburguesa">
                 <ul class="hamburguesa-list">
                     <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
                 ';
                 foreach ($cates as $cat => $scat) {
                     $html .= '<li class="itemdemenu"><a href="../Front/Categoria.php?categoria='.$cat.'">'.$cat.'</a>
-                             <ul class="menuvertical">';
+                            <ul class="menuvertical">';
                     foreach ($scat as $nscat){
                         $html .= '<li><a href="../Front/Categoria.php?categoria='.$cat.'&subcat='.$nscat.'">'.$nscat.'</a></li>';
                     }
@@ -50,7 +50,7 @@
                 <button id="abrir" class="abrirhamburguesa">
                     <i class="bi bi-list"></i>
                 </button>
-                <div class="busqueda">    
+                <div class="busqueda">
                     <input type="text" class="buscador" placeholder="Buscar...">
                     <button class="buscar"><i class="bi bi-search-heart"></i></button>
                 </div>
@@ -82,8 +82,7 @@
         return $case;
     }
     function mosprod($categoria, $subcategoria){
-        switch (catExis($categoria, $subcategoría)){
-            
+        switch (catExis($categoria, $subcategoria)){
             case 0:
                 echo '<h1 style="text-align:center;">UPS... ESTA CATEGORÍA NO EXISTE</h1>';
                 break;
@@ -92,7 +91,6 @@
                 break;
             case 2:
                 echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
-                
                 break;
             default:
                 echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1>';
