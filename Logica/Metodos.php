@@ -1,30 +1,25 @@
 <?php
-    $cates = array(
-        "Mujer"=> array("Calzas", "Pantalones", "Canguros y buzos", "Remeras", "Conjuntos"),
-        "Hombre"=> array("Pantalones", "Canguros"),
-        "Accesorios"=> array("Medias", "Vasos y Botellas", "Accesorios de cabello", "Bolsos")
-    );
+    include_once "Cat.php";
+    $cates= [
+        new cat("Mujer",["Calzas", "Pantalones", "Canguros y Buzos", "Remeras", "Conjuntos"], true),
+        new cat("Hombre",["Pantalones", "Canguros"], true),
+        new cat("Accesorios",["Medias", "Vasos y botellas", "Acccesorios de cabello", "Bolsos"], true)
+    ];
     function menuhamburguesa(){
         global $cates;
         $html = '<nav id="menuhamburguesa" class="menuhamburguesa">
                 <ul class="hamburguesa-list">
                     <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
                 ';
-                foreach ($cates as $cat => $scat) {
-                    $html .= '<li class="itemdemenu"><a href="../Front/Categoria.php?categoria='.$cat.'">'.$cat.'</a>
-                            <ul class="menuvertical">';
-                    foreach ($scat as $nscat){
-                        $html .= '<li><a href="../Front/Categoria.php?categoria='.$cat.'&subcat='.$nscat.'">'.$nscat.'</a></li>';
-                    }
-                    $html .= '</ul>
-                    </li>';
+                foreach ($cates as $cate) {
+                    $html .= $cate->html(); 
                 }
                     $html .= '
                     <li><a href="../Front/Categoria.php?categoria=Ofertas">Ofertas</a></li>
                     <li class="novisi"><a href="#">Cuenta</a></li>
                     <li class="novisi"><a href="#">Emprendimiento</a></li>
         ';
-        $html .= '
+        $html .= '  
             </ul>
         </nav>
         <script src="../Front/Script.js"></script>';
@@ -57,7 +52,7 @@
                     <button class="buscar"><i class="bi bi-search-heart"></i></button>
                 </div>
                 
-                <button class="user"> <i class="bi bi-person-heart"></i></button>
+                <a href="Login.php"><button class="user"> <i class="bi bi-person-heart"></i></button></a>
                 <button class="carrito"> <i class="bi bi-bag-heart"></i></button>
                 
             </header>
@@ -65,7 +60,7 @@
         return $html;
     }
 
-function ofooter() {
+    function ofooter() {
         $html= '
             <footer class="footter">
                 <ul class="redes-icon">
@@ -94,13 +89,11 @@ function ofooter() {
         }
 
 
-//Si la categoria existe
+//Si la categoria/subategoria existe
     function catExis($categoria,$subcategoria){
         $case=0;
         foreach ($cates as $cat => $scat) {
-            echo "merca";
             foreach ($scat as $nscat){
-                echo "merquea2";
                 if($categoria == $cat){
                     if($subcategoria == $nscat){
                         $case=1;
@@ -126,9 +119,6 @@ function ofooter() {
                 break;
             case 2:
                 echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
-                break;
-            default:
-                echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1>';
                 break;
         }
     }

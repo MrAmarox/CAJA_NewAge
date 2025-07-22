@@ -1,6 +1,9 @@
 <?php
 include_once "../Logica/usuario.php";
-session_start();
+include_once "../Logica/Metodos.php";
+    echo oheader();
+    echo menuhamburguesa();
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,23 +17,43 @@ session_start();
 <body>
 
 <form action="" method="post">
-    <label>Nombre</label><input type="text" name="name"><br>
-    <label>Celular</label><input type="number" name="num"><br>
-    <label>Correo</label><input type="text" name="email"><br>
-    <label>Contraseña</label><input type="password" name="pass"><br>
-    <input type="submit" name="register" value="Registrarse">
+    <label>Correo</label><br>
+        <input type="email" name="correo" required><br>
+        <label>Contraseña</label><br>
+        <input type="password" id="pass" name="pass" required><br>
+        <label>Repita la contraseña</label><br>
+        <input type="password" id="pass2" name="pass2" required><br>
+        <label>Nombre completo</label><br>
+        <input type="text" name="nombre" required><br>
+        <label>Teléfono</label><br>
+        <input type="text" name="tel" required pattern="[0-9]+"><br>
+        <label>Cédula de identidad</label><br>
+        <input type="text" name="ci" required><br>
+        <input type="submit" name="submit" value="REGISTRARSE">
 
 </form>
 </body>
 </html>
 <?php
-if (isset($_POST['register'])) {
-    $usuario = new usuario();
-    $usuario->setNombre($_POST['name']);
-    $usuario->setCelular($_POST['num']);
-    $usuario->setCorreo($_POST['email']);
-    $usuario->setpass($_POST['pass']);
-    $usuario->setTipo('cliente');
-    $_SESSION['Usuarios'] []= $usuario;
-    header('location: login.php');
-}
+    include_once "../Logica/usuario.php";
+    
+    if(isset($_POST['submit'])){
+        $correosRegistrados = array_map(function($cliente) {return strtolower($cliente->getCorreo()); }, $_SESSION['usuarios'] ?? []);
+        if (in_array($_POST['correo'], $correosRegistrados)) {
+            if($_POST['pass'] == $_POST['pass2']){
+                $usuario = new usuario($_POST['correo'],$_POST['pass'],$_POST['ci'],$_POST['nombre'],$_POST['tel']);
+                if(!isset($_SESSION['usuarios'])){
+                $_SESSION['usuarios'] = [];
+                }
+                $_SESSION['usuarios'][] = serialize($usuario);
+ 
+            }else{
+                echo '<script>alert("Las contraseñas no coinciden.");</script>';
+            }
+        }else{
+            echo '<script>alert("El correo ingresado ya está registrado.");</script>';
+
+        }
+    }
+    echo ofooter();
+?>

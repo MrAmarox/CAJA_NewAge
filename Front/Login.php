@@ -1,5 +1,8 @@
 <?php
 include_once "../Logica/usuario.php";
+include_once "../Logica/Metodos.php";
+    echo oheader();
+    echo menuhamburguesa();
 session_start();
 ?>
 
@@ -18,7 +21,7 @@ session_start();
         <label for=""> Contraseña </label><input type="text" name="pass">
         <br>
         <input type="submit" value="Iniciar Sesion" name="Login">
-        <input type="submit" value="Registrarse" name="Register">
+        <a href='Registro.php'><input type="submit" value="Registrarse" name="Register"></a>
     </form>
     <?php
 
@@ -43,6 +46,9 @@ session_start();
             </script>";
         }
     }
+    echo '<main style="min-height: 60vh;">
+    </main>';
+    echo ofooter();
     ?>
 </body>
 </html>
