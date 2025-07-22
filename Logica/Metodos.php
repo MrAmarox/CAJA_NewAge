@@ -12,7 +12,7 @@
                     <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
                 ';
                 foreach ($cates as $cate) {
-                    $html .= $cate->html(); 
+                    $html .= $cate->html();
                 }
                     $html .= '
                     <li><a href="../Front/Categoria.php?categoria=Ofertas">Ofertas</a></li>
@@ -60,7 +60,7 @@
         return $html;
     }
 
-    function ofooter() {
+function ofooter() {
         $html= '
             <footer class="footter">
                 <ul class="redes-icon">
@@ -88,11 +88,13 @@
         }
 
 
-//Si la categoria/subategoria existe
+//Si la categoria existe
     function catExis($categoria,$subcategoria){
         $case=0;
         foreach ($cates as $cat => $scat) {
+            echo "merca";
             foreach ($scat as $nscat){
+                echo "merquea2";
                 if($categoria == $cat){
                     if($subcategoria == $nscat){
                         $case=1;
@@ -118,6 +120,9 @@
                 break;
             case 2:
                 echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
+                break;
+            default:
+                echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1>';
                 break;
         }
     }

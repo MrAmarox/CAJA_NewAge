@@ -3,7 +3,7 @@ include_once "../Logica/usuario.php";
 include_once "../Logica/Metodos.php";
     echo oheader();
     echo menuhamburguesa();
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ include_once "../Logica/Metodos.php";
 <body>
 
 <form action="" method="post">
-    <label>Correo</label><br>
+<label>Correo</label><br>
         <input type="email" name="correo" required><br>
         <label>Contraseña</label><br>
         <input type="password" id="pass" name="pass" required><br>
@@ -35,28 +35,28 @@ include_once "../Logica/Metodos.php";
 </body>
 </html>
 <?php
-    include_once "../Logica/usuario.php";
+include_once "../Logica/usuario.php";
     
-    if(isset($_POST['submit'])){
-        $correosRegistrados = array_map(function($cliente) {return strtolower($cliente->getCorreo()); }, $_SESSION['usuarios'] ?? []);
-        if (in_array($_POST['correo'], $correosRegistrados)) {
-            if($_POST['pass'] == $_POST['pass2']){
-                $usuario = new usuario($_POST['correo'],$_POST['pass'],$_POST['ci'],$_POST['nombre'],$_POST['tel']);
-                if(!isset($_SESSION['usuarios'])){
-                $_SESSION['usuarios'] = [];
-                }
-                $_SESSION['usuarios'][] = serialize($usuario);
- 
-            }else{
-                echo '<script>alert("Las contraseñas no coinciden.");</script>';
+if(isset($_POST['submit'])){
+    $correosRegistrados = array_map(function($cliente) {return strtolower($cliente->getCorreo()); }, $_SESSION['usuarios'] ?? []);
+    if (in_array($_POST['correo'], $correosRegistrados)) {
+        if($_POST['pass'] == $_POST['pass2']){
+            $usuario = new usuario($_POST['correo'],$_POST['pass'],$_POST['ci'],$_POST['nombre'],$_POST['tel']);
+            if(!isset($_SESSION['usuarios'])){
+            $_SESSION['usuarios'] = [];
             }
-        }else{
-            echo '<script>alert("El correo ingresado ya está registrado.");</script>';
+            $_SESSION['usuarios'][] = serialize($usuario);
 
+        }else{
+            echo '<script>alert("Las contraseñas no coinciden.");</script>';
         }
+    }else{
+        echo '<script>alert("El correo ingresado ya está registrado.");</script>';
+
     }
-    echo ofooter();
-?>if (isset($_POST['register'])) {
+}
+echo ofooter();
+if (isset($_POST['register'])) {
     $usuario = new usuario();
     $usuario->setNombre($_POST['name']);
     $usuario->setCelular($_POST['num']);
@@ -65,3 +65,4 @@ include_once "../Logica/Metodos.php";
     $usuario->setTipo('cliente');
     $_SESSION['Usuarios'] []= $usuario;
     header('location: login.php');
+}

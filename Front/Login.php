@@ -58,7 +58,6 @@ session_start();
     echo '<main style="min-height: 60vh;">
     </main>';
     echo ofooter();
-        ?>
     ?>
 </body>
 </html>
