@@ -284,13 +284,15 @@ body {
 
  /* Banner calza cele pag principal */ 
   .banner-calzacele {
-    width: 1400px;
+    width: 100%;
     height: 300px;
     background-image: linear-gradient(100deg, #000000, #00000020), url("../Img/Banner Calza CELE.png");
     background-repeat: no-repeat;
     background-size: cover; /* o "100% 100%" si querés que ocupe todo sin recortes */
     background-position: center;
     margin: 0 auto; /* para centrarlo si querés */
+    overflow: hidden;
+
 }
 
 .contenido-banner {
@@ -300,7 +302,7 @@ body {
     padding: 2rem 0;
 }
 
-.contenido-banner h2 {
+.contenido-banner .txtbanner {
     font-family: "Cherry Bomb One", system-ui;
     color: #fccaca;
 	font-size: 3.5rem;

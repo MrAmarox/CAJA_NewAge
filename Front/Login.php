@@ -16,12 +16,12 @@ session_start();
 </head>
 <body>
     <form method="post">
-        <label for=""> Correo </label><input type="text" name="email">
+        <label for=""> Correo </label><input type="text" name="correo">
         <br>
-        <label for=""> Contraseña </label><input type="text" name="pass">
+        <label for=""> Contraseña </label><input type="text" name="contraseña">
         <br>
         <input type="submit" value="Iniciar Sesion" name="Login">
-        <a href='Registro.php'><input type="submit" value="Registrarse" name="Register"></a>
+        <input type="submit" value="Registrarse" name="Register">
     </form>
     <?php
 
@@ -29,26 +29,36 @@ session_start();
         header("Location:Registro.php");
     }
     $encontrado=false;
-    if(isset($_POST["login"])) {
-        foreach($_SESSION['usuarios'] as $usuario){
-            if ($usuario ->getCorreo()==$_POST['email'] && $usuario->getPass()==$_POST['pass']){
-                $encontrado=true;
-                if($usuario->gettipo()== 'admin'){
-                    header('');//panel de admin
-                }else{
-                    header('location:IndexMolsy.php');
-                }
+    if (isset($_POST['Iniciar_Sesion'])) {
+        $correo = $_POST['correo'];
+        $contraseña = $_POST['contraseña'];
+    
+      
+    
+        foreach ($usuarios as $Usuario) {
+            $correoo = $Usuario->getCorreo();
+            $contraseñaa = $Usuario->getContraseña();
+            if ($correoo == $correo && $contraseñaa == $contraseña) {
+                break;
+            }else {
+                echo "<p> Error en correo o contraseña </p>";
+            }
         }
-    }
-    if(!$encontrado){
-            echo "<script>
-            alert('Usuario o contraseña incorrectos');
-            </script>";
-        }
+    
+        if ($Usuario != null) {
+            if ($Usuario->getTipo() == "Admin") {
+                header("Location: panelAdmin.php");
+                exit();
+            } else {
+                header("Location: IndexMolsy.php");
+                exit();
+            }
+        } 
     }
     echo '<main style="min-height: 60vh;">
     </main>';
     echo ofooter();
+        ?>
     ?>
 </body>
 </html>

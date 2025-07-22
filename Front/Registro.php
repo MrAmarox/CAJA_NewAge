@@ -56,4 +56,12 @@ include_once "../Logica/Metodos.php";
         }
     }
     echo ofooter();
-?>
+?>if (isset($_POST['register'])) {
+    $usuario = new usuario();
+    $usuario->setNombre($_POST['name']);
+    $usuario->setCelular($_POST['num']);
+    $usuario->setCorreo($_POST['email']);
+    $usuario->setpass($_POST['pass']);
+    $usuario->setTipo('cliente');
+    $_SESSION['Usuarios'] []= $usuario;
+    header('location: login.php');

@@ -19,7 +19,7 @@
                     <li class="novisi"><a href="#">Cuenta</a></li>
                     <li class="novisi"><a href="#">Emprendimiento</a></li>
         ';
-        $html .= '  
+        $html .= '
             </ul>
         </nav>
         <script src="../Front/Script.js"></script>';
@@ -52,8 +52,8 @@
                     <button class="buscar"><i class="bi bi-search-heart"></i></button>
                 </div>
                 
-                <a href="Login.php"><button class="user"> <i class="bi bi-person-heart"></i></button></a>
-                <button class="carrito"> <i class="bi bi-bag-heart"></i></button>
+               <a href="Login.php"> <button class="user"> <i class="bi bi-person-heart"> </i></button>  </a> 
+                <button class="carrito"> <i class="bi bi-bag-heart"> </i></button>
                 
             </header>
         ';
@@ -64,15 +64,14 @@
         $html= '
             <footer class="footter">
                 <ul class="redes-icon">
-                    <li class="icon-elem"><a href="" class="icon"><ion-icon name="logo-instagram"></ion-icon></a></li>
-                    <li class="icon-elem"><a href="" class="icon"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    <li class="icon-elem"><a href="https://www.instagram.com/molsstoredur/" class="icon"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                    <li class="icon-elem"><a href="https://www.facebook.com/MolsyStoreDur/" class="icon"><ion-icon name="logo-facebook"></ion-icon></a></li>
                     <li class="icon-elem"><a href="" class="icon"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
-                    <li class="icon-elem"><a href="" class="icon"><ion-icon name="logo-gmail"></ion-icon></a></li>
                 </ul>
         
                 <ul class="textos-clink">
-                    <li class="txtclink-elementos"><a href="" class="menu-icon">Inicio</a></li>
-                    <li class="txtclink-elementos"><a href="" class="menu-icon">Cuenta</a></li>
+                    <li class="txtclink-elementos"><a href="http://localhost/proyecto/Front/IndexMolsy.php" class="menu-icon">Inicio</a></li>
+                    <li class="txtclink-elementos"><a href="http://localhost/proyecto/Front/Login.php" class="menu-icon">Cuenta</a></li>
                     <li class="txtclink-elementos"><a href="" class="menu-icon">Contacto</a></li>
                     <li class="txtclink-elementos"><a href="" class="menu-icon">Sobre Nosotros</a></li>
                 </ul>

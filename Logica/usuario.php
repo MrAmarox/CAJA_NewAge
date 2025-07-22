@@ -1,7 +1,7 @@
 <?php
 
-  class usuario{
-
+class usuario
+{
     private $nombre;
     private $celular;
     private $correo;
@@ -44,5 +44,5 @@
     public function setTipo($value) {
       $this->tipo = $value;
     }
-  }
+}
 ?>
