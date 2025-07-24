@@ -12,14 +12,14 @@
                     <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
                 ';
                 foreach ($cates as $cate) {
-                    $html .= $cate->html();
+                    $html .= $cate->html(); 
                 }
                     $html .= '
                     <li><a href="../Front/Categoria.php?categoria=Ofertas">Ofertas</a></li>
                     <li class="novisi"><a href="#">Cuenta</a></li>
                     <li class="novisi"><a href="#">Emprendimiento</a></li>
         ';
-        $html .= '
+        $html .= '  
             </ul>
         </nav>
         <script src="../Front/Script.js"></script>';
@@ -52,15 +52,15 @@
                     <button class="buscar"><i class="bi bi-search-heart"></i></button>
                 </div>
                 
-               <a href="Login.php"> <button class="user"> <i class="bi bi-person-heart"> </i></button>  </a> 
-                <button class="carrito"> <i class="bi bi-bag-heart"> </i></button>
+                <a href="Login.php"><button class="user"> <i class="bi bi-person-heart"></i></button></a>
+                <button class="carrito"> <i class="bi bi-bag-heart"></i></button>
                 
             </header>
         ';
         return $html;
     }
 
-function ofooter() {
+    function ofooter() {
         $html= '
             <footer class="footter">
                 <ul class="redes-icon">
@@ -88,13 +88,11 @@ function ofooter() {
         }
 
 
-//Si la categoria existe
+//Si la categoria/subcategoría existe
     function catExis($categoria,$subcategoria){
         $case=0;
         foreach ($cates as $cat => $scat) {
-            echo "merca";
             foreach ($scat as $nscat){
-                echo "merquea2";
                 if($categoria == $cat){
                     if($subcategoria == $nscat){
                         $case=1;
@@ -120,9 +118,6 @@ function ofooter() {
                 break;
             case 2:
                 echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
-                break;
-            default:
-                echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1>';
                 break;
         }
     }
