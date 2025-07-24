@@ -1,8 +1,6 @@
 <?php
 include_once "../Logica/usuario.php";
 include_once "../Logica/Metodos.php";
-    echo oheader();
-    echo menuhamburguesa();
 session_start();
 ?>
 
@@ -11,58 +9,45 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Presentacion/DiseñoLogin.css">
+    <link rel="stylesheet" href="DiseñoRegistro.css">
     <title>Registro</title>
+
 </head>
 <body>
+<div class="logo-container">
+        <a href="IndexMolsy.php"> <img src="Img/logo.png" alt="logo" > </a>
+</div>
 
+<div class="contenido-principal">
+<h2 class="titulo-bienvenida">Bienvenido/a</h2>
+<p class="subtitulo">Crea una cuenta de usuario para ser parte de Molsy Store.</p>
 <form action="" method="post">
-<label>Correo</label><br>
-        <input type="email" name="correo" required><br>
-        <label>Contraseña</label><br>
-        <input type="password" id="pass" name="pass" required><br>
-        <label>Repita la contraseña</label><br>
-        <input type="password" id="pass2" name="pass2" required><br>
-        <label>Nombre completo</label><br>
-        <input type="text" name="nombre" required><br>
-        <label>Teléfono</label><br>
-        <input type="text" name="tel" required pattern="[0-9]+"><br>
-        <label>Cédula de identidad</label><br>
-        <input type="text" name="ci" required><br>
-        <input type="submit" name="submit" value="REGISTRARSE">
-
+      <label> Nombre: </label> <input type="text" name="nombre">
+      <br>
+      <label> Celular: </label> <input type="number" name="celular">
+      <br>
+      <label> Correo: </label> <input type="email" name="correo">
+      <br>
+      <label> Contraseña: </label> <input type="password" name="contraseña">
+      <br>
+      <label> Tipo: </label> <input type="Text" name="tipo">
+      <br>
+      <input type="submit" name="Registrarse" value="Registrarse ">
 </form>
+</div>
+
+<?php
+if (isset($_POST['Registrarse'])) {
+
+    $usuario = new usuario();
+    $usuario->setNombre($_POST['nombre']);
+    $usuario->setCelular($_POST['celular']);
+    $usuario->setCorreo($_POST['correo']);
+    $usuario->setPass($_POST['contraseña']);
+    $usuario->setTipo($_POST['tipo']);
+
+    $_SESSION['usuario'] [] = $usuario;
+}
+?>
 </body>
 </html>
-<?php
-include_once "../Logica/usuario.php";
-    
-if(isset($_POST['submit'])){
-    $correosRegistrados = array_map(function($cliente) {return strtolower($cliente->getCorreo()); }, $_SESSION['usuarios'] ?? []);
-    if (in_array($_POST['correo'], $correosRegistrados)) {
-        if($_POST['pass'] == $_POST['pass2']){
-            $usuario = new usuario($_POST['correo'],$_POST['pass'],$_POST['ci'],$_POST['nombre'],$_POST['tel']);
-            if(!isset($_SESSION['usuarios'])){
-            $_SESSION['usuarios'] = [];
-            }
-            $_SESSION['usuarios'][] = serialize($usuario);
-
-        }else{
-            echo '<script>alert("Las contraseñas no coinciden.");</script>';
-        }
-    }else{
-        echo '<script>alert("El correo ingresado ya está registrado.");</script>';
-
-    }
-}
-echo ofooter();
-if (isset($_POST['register'])) {
-    $usuario = new usuario();
-    $usuario->setNombre($_POST['name']);
-    $usuario->setCelular($_POST['num']);
-    $usuario->setCorreo($_POST['email']);
-    $usuario->setpass($_POST['pass']);
-    $usuario->setTipo('cliente');
-    $_SESSION['Usuarios'] []= $usuario;
-    header('location: login.php');
-}

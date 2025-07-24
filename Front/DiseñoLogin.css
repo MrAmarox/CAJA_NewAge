@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
 
 * {
@@ -6,30 +7,69 @@
     padding: 0;
 }
 
-body {
-    background-color: hsla(324.2105263157895, 46%, 75%, 1);
-    background-image: radial-gradient(circle at 40% 20%, hsla(357, 100%, 74%, 0) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 0%, hsla(324.2105263157895, 46%, 75%, 1) 0%, transparent 50%),
-                      radial-gradient(circle at 0% 50%, hsla(324, 100%, 93%, 1) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 50%, hsla(336.42857142857144, 16%, 66%, 1) 0%, transparent 50%),
-                      radial-gradient(circle at 0% 100%, hsla(324.2105263157895, 46%, 75%, 1) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 100%, hsla(324.2105263157895, 46%, 75%, 1) 0%, transparent 50%),
-                      radial-gradient(circle at 0% 0%, hsla(7.346938775510213, 55%, 82%, 1) 0%, transparent 50%);
-    background-blend-mode: normal, normal, normal, normal, normal, normal, normal;
+body, html {
+    width: 100%;
+    min-height: 100vh;
     font-family: "Cherry Bomb One", system-ui;
+    background: linear-gradient(135deg, #fccaca 0%, #f9bcbc 100%);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    justify-content: flex-start;
+    padding: 2rem 1rem;
+}
+
+/* LOGO */
+.logo-container {
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    padding: 1rem;
+}
+
+    .logo-container img {
+        height: 80px;
+        cursor: pointer;
+    }    
+
+
+/* CONTENIDO PRINCIPAL */
+.contenido-principal {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* TÍTULOS */
+.titulo-bienvenida {
+    font-size: 2.5rem;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 2rem;
 }
 
 /* FORMULARIO */
+.contenedor-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 form {
-    background-color: #000000cc;
-    padding: 3rem 4rem;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fccaca;
+    padding: 2.5rem 2rem;
     border-radius: 2rem;
-    box-shadow: 0 0 30px #00000055;
-    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
     width: 100%;
     max-width: 400px;
 }
@@ -37,10 +77,9 @@ form {
 /* LABELS */
 form label {
     display: block;
-    color: #fccaca;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
     text-align: left;
+    margin-bottom: 0.5rem;
 }
 
 /* INPUTS */
@@ -52,27 +91,46 @@ form input[type="password"] {
     border: none;
     border-radius: 1rem;
     background-color: #fccaca;
-    color: #000000;
-    font-size: 1rem;
+    color: #000;
     font-family: "Cherry Bomb One", system-ui;
+    font-size: 1rem;
     outline: none;
 }
 
 /* BOTONES */
 form input[type="submit"] {
     background-color: #fccaca;
-    color: #000000;
+    color: black;
     border: none;
     padding: 1rem 2rem;
-    border-radius: 1.5rem;
+    border-radius: 2rem;
     font-size: 1rem;
     font-family: "Cherry Bomb One", system-ui;
     cursor: pointer;
-    margin: 0.5rem;
-    transition: background-color 0.3s, transform 0.2s;
+    margin: 0.5rem auto;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 form input[type="submit"]:hover {
-    background-color: #f89e9e;
+    background-color: #f7a8a8;
     transform: scale(1.05);
+}
+
+/* TEXTO ADICIONAL */
+form p {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #fccaca;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .logo-container img {
+        height: 60px;
+    }
+
+    form {
+        padding: 2rem 1rem;
+    }
 }

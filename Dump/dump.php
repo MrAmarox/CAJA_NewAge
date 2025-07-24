@@ -28,4 +28,24 @@
                 </li>
                 ';
                 */
+
+    /* 
+    if(isset($_POST['submit'])){
+    $correosRegistrados = array_map(function($usuario) {return strtolower($usuario->getCorreo()); }, $_SESSION['usuarios'] ?? []);
+    if (in_array($_POST['correo'], $correosRegistrados)) {
+        if($_POST['pass'] == $_POST['pass2']){
+            $usuario = new usuario($_POST['correo'],$_POST['pass'],$_POST['ci'],$_POST['nombre'],$_POST['tel']);
+            if(!isset($_SESSION['usuarios'])){
+            $_SESSION['usuarios'] = [];
+            }
+            $_SESSION['usuarios'][] = serialize($usuario);
+
+        }else{
+            echo '<script>alert("Las contraseñas no coinciden.");</script>';
+        }
+    }else{
+        echo '<script>alert("El correo ingresado ya está registrado.");</script>';
+
+    }
+}*/
 ?>

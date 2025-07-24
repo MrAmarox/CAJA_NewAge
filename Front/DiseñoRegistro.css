@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "Cherry Bomb One", system-ui;
+    background: linear-gradient(135deg, #fccaca 0%, #f9bcbc 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem;
+}
+
+/* LOGO */
+.logo-container {
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    padding: 1rem;
+}
+
+    .logo-container img {
+        height: 80px;
+        cursor: pointer;
+    }    
+
+
+/* CONTENIDO PRINCIPAL */
+.contenido-principal {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* TÍTULOS */
+.titulo-bienvenida {
+    font-size: 2.5rem;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* FORMULARIO */
+.contenedor-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fccaca;
+    padding: 2.5rem 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* LABELS */
+form label {
+    display: block;
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+/* INPUTS */
+form input[type="text"],
+form input[type="password"], form input[type="number"], form input[type="email"]{
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #fccaca;
+    color: #000;
+    font-family: "Cherry Bomb One", system-ui;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* BOTONES */
+form input[type="submit"] {
+    background-color: #fccaca;
+    color: black;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-family: "Cherry Bomb One", system-ui;
+    cursor: pointer;
+    margin: 0.5rem auto;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #f7a8a8;
+    transform: scale(1.05);
+}
+
+/* TEXTO ADICIONAL */
+form p {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #fccaca;
+}
+
+
