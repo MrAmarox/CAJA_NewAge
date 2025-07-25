@@ -34,7 +34,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Molsy Store</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
-            <link rel="stylesheet" href="/Proyecto/Front/DiseñoMolsy.css">
+            <link rel="stylesheet" href="../Front/DiseñoMolsy.css">
         </head>
         <body>
             <div class="divEnvio">
