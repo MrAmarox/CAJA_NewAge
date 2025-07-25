@@ -11,7 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de admin</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="EstiloPanelAdmin.css">
 </head>
 <body>
     <h2> Agregar un producto como admin: </h2>
@@ -64,7 +64,7 @@ echo "
     <td>". $producto->getNombre() ."</td>
     <td>". $producto->getPrecio() ."</td>
     <td>". $producto->getColor() ."</td>
-    <td>". $producto->getTalle() ."<td>
+    <td>". $producto->getTalle() ."</td>
     <td> <img src='/Img/". $producto->getFoto() ."'></td>
 </tr>
 
@@ -74,7 +74,8 @@ echo "
 
 if(isset($_SESSION['usuario'])){
     echo "
-    <h2> Usuario registrado </h2>
+    <br>
+    <h2> Usuarios registrados: </h2>
     <table class=tabla-usuarios>
           <tr> 
                <th> Nombre </th>
@@ -93,7 +94,8 @@ foreach ($_SESSION['usuario'] as $usuario){
     <td>". $usuario->getPass() ."</td>
     <td>". $usuario->getTipo() ."</td>
           </tr>";
-          echo "</table>";
+          
 }
+echo "</table>";
 }
 ?>
