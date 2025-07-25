@@ -42,7 +42,7 @@
             </div>
             
             <header>
-                <a href="IndexMolsy.php"><img class="logo" src="../Img/logo.png" alt="logo"></a>
+                <a href="IndexMolsy.php"><img class="logo" src="Img/logo.png" alt="logo"></a>
                 <button id="abrir" class="abrirhamburguesa">
                     <i class="bi bi-list"></i>
                 </button>
