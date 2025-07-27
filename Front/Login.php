@@ -74,13 +74,13 @@ if (isset($_POST['Iniciar_Sesion'])) {
         if ($correoo == $correo && $contraseñaa == $pass) {
             break;
         } else {
-            echo "<p> Error en correo o contraseña </p>";
+            echo "<p> Correo o contraseña incorrectos. </p>";
         }
     }
 
     if ($usuario != null) {
         if ($usuario->getTipo() == "Admin") {
-            header("Location: panelAdminMolsy.php");
+            header("Location: PanelAdminMolsy.php");
             exit();
         } else {
             header("Location: IndexMolsy.php");
