@@ -93,3 +93,15 @@ td img {
 .tabla-producto, .tabla-usuarios {
     margin-top: 40px;
 }
+
+.logo-container {
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    padding: 1rem;
+}
+
+    .logo-container img {
+        height: 80px;
+        cursor: pointer;
+    }    

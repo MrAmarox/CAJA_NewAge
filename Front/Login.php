@@ -63,29 +63,30 @@ if(isset($_POST['Register'])){
     header("Location:Registro.php");
 }
 
-$encontrado=false;
+
 if (isset($_POST['Iniciar_Sesion'])) {
     $correo = $_POST['correo'];
     $pass = $_POST['contraseña'];
 
+    $usuarioEncontrado = null;
+    
     foreach ($usuarios as $usuario) {
-        $correoo = $usuario->getCorreo();
-        $contraseñaa = $usuario->getPass();
-        if ($correoo == $correo && $contraseñaa == $pass) {
+        if ($usuario->getCorreo() == $correo && $usuario->getPass() == $pass) {
+            $usuarioEncontrado = $usuario;
             break;
-        } else {
-            echo "<p> Error en correo o contraseña </p>";
         }
     }
 
-    if ($usuario != null) {
-        if ($usuario->getTipo() == "Admin") {
+    if ($usuarioEncontrado != null) {
+        if ($usuarioEncontrado->getTipo() == "Admin") {
             header("Location: panelAdminMolsy.php");
             exit();
         } else {
             header("Location: IndexMolsy.php");
             exit();
         }
+    } else {
+        echo "<p style='color:red; text-align:center;'>Correo o contraseña incorrectos</p>";
     }
 }
 

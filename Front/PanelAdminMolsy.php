@@ -14,6 +14,9 @@ session_start();
     <link rel="stylesheet" href="EstiloPanelAdmin.css">
 </head>
 <body>
+<div class="logo-container">
+        <a href="IndexMolsy.php"> <img src="Img/logo.png" alt="logo" > </a>
+</div>
     <h2> Agregar un producto como admin: </h2>
     <div>
     <form action="" method="post" enctype="multipart/form-data">
