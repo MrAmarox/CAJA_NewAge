@@ -6,17 +6,16 @@ include_once "../Logica/Metodos.php";
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="DiseñoRegistro.css">
-    <title>Registro</title>
-
-</head>
-<body>
-<div class="logo-container">
-        <a href="IndexMolsy.php"> <img src="Img/logo.png" alt="logo" > </a>
-</div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="DiseñoRegistro.css">
+        <title>Registro</title>
+    </head>
+    <body>
+        <div class="logo-container">
+            <a href="IndexMolsy.php"> <img src="Img/logo.png" alt="logo" > </a>
+        </div>
 
 <div class="contenido-principal">
 <h2 class="titulo-bienvenida">Bienvenido/a</h2>
@@ -31,30 +30,35 @@ include_once "../Logica/Metodos.php";
       <label> Correo: </label> <input type="email" name="correo">
       <br>
       <label> Contraseña: </label> <input type="password" name="contraseña">
-      
+      <br>
+                <label> Repita la contraseña: </label> <input type="password" name="pass2" id="pass2" onkeyup="chkInpt()">
+                <br>
+                <label id="Wrng" style="color:red;" ></label>
+                <br>
       <input type="submit" name="Registrarse" value="Registrarse ">
 </form>
 </div>
 
 <?php
-      if(isset($_POST['Registrarse'])) {
-          
-        $usuario = new Usuario();
-          $usuario->setNombre($_POST['nombre']);
-          $usuario->setCedula($_POST['cedula']);
-          $usuario->setTelefono($_POST['telefono']);
-          $usuario->setCorreo($_POST['correo']);
-          $usuario->setContrasena($_POST['contraseña']);
-          $usuario->setTipo("Cliente");
+    if(isset($_POST['submit'])){
+        if (empty($_POST['nombre']) || empty($_POST['celular']) || empty($_POST['correo']) || empty($_POST['pass'] || empty($_POST['pass2']))) {
+            echo '<script>alert("Por favor, complete todos los campos correctamente.");</script>';
+        }else{
+            $correosRegistrados = array_map(function($usuario) {return strtolower($usuario->getCorreo()); }, $_SESSION['usuarios'] ?? []);
+            if (!in_array($_POST['correo'], $correosRegistrados)){
+                if($_POST['pass'] === $_POST['pass2']){
+                    $usuario = new usuario($_POST['correo'],$_POST['pass'],$_POST['ci'],$_POST['nombre'],$_POST['tel']);
+                    if(!isset($_SESSION['usuarios'])){
+                        $_SESSION['usuarios'] = [];
+                    }
+                    $_SESSION['usuarios'][] = serialize($usuario);
+                }else{
+                    echo '<script>alert("Las contraseñas no coinciden.");</script>';
+                } 
+            }else{
+                echo '<script>alert("El correo ingresado ya está registrado.");</script>';
 
-          $resultado=$usuario->RegistrarUsuario();
-    
-          $_SESSION['Clientes'][] = $usuario;         
-      if ($resultado === true){
-      header("Location: login.php");
-      } 
-
+            }
+        }
     }
-  ?>
-</body>
-</html>
+?>

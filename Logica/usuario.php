@@ -67,5 +67,12 @@ public function RegistrarUsuario(){
  return $uBd->RegistrarUsuario($this->cedula, $this->nombre, $this->telefono, $this->correo, $this->contrasena, $this->tipo);
 }
 
+    public function __construct($pass, $naem, $corr, $cel){
+      $this->pass=$pass;
+      $this->nombre=$naem;
+      $this->correo=$corr;
+      $this->celular=$cel;
+      $this->tipo=1;
+    }
 }
 ?>

@@ -94,11 +94,13 @@
         foreach ($cates as $cat => $scat) {
             foreach ($scat as $nscat){
                 if($categoria == $cat){
-                    if($subcategoria == $nscat){
+                    if($subcategoria==null){
+                        $case=2;
+                    }elseif($subcategoria == $nscat){
                         $case=1;
                         exit();
                     }else{
-                    $case=2;
+                    $case=3;
                     exit();
                     }
                 }
@@ -114,11 +116,54 @@
                 echo '<h1 style="text-align:center;">UPS... ESTA CATEGORÍA NO EXISTE</h1>';
                 break;
             case 1:
-                echo '<h1 style="text-align:center;">mostrar productos</h1>';
+                if (isset($_SESSION['Producto']) && !empty($_SESSION['Producto'])) {
+                    $productos = $_SESSION['Producto'];
+                    echo "<div class='productos-container'>";
+                    foreach ($productos as $producto) {
+                        echo "<div class='producto-card'>";
+                        echo "<img src='Img/" . $producto->getFoto() . "' alt='Producto'>";
+                        echo "<h3>" . $producto->getNombre() . " - " . $producto->getPrecio() . "</h3>";
+                        echo "<p>Color: " . $producto->getColor() . "</p>";
+                        echo "<p>Talle: " . $producto->getTalle() . "</p>";
+                        echo "<button class='btn-agregar'><i class='bi bi-cart-plus'></i> Agregar al carrito</button>";
+                        echo "</div>";
+                    }
+                    echo "</div>";
+                }
                 break;
             case 2:
                 echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
                 break;
         }
     }
+
+
+    function CargarImagen(){
+        if (isset($_FILES['image'])) {
+            // Obtener detalles del archivo
+            $RutaTemporal = $_FILES['image']['tmp_name']; // Esta línea obtiene la ruta temporal donde se almacena el archivo subido en el servidor de forma temporal.
+            $NombreDelArchivo = $_FILES['image']['name']; // Aquí se obtiene el nombre original del archivo subido, tal como aparece en el dispositivo del usuario.
+            $NombreDelArchivoCmps = explode(separator: ".", string: $NombreDelArchivo); // Función explode: Esta función toma una cadena de texto y la divide en partes basándose en un delimitador, en este caso el punto (.). Propósito: El objetivo es dividir el nombre del archivo en dos partes: el nombre base y la extensión. Ejemplo Si el archivo es foto_vacaciones.jpg, después de aplicar explode(".", $NombreDelArchivo), el resultado será un array: $NombreDelArchivoCmps = ['foto_vacaciones', 'jpg'];
+            $ExtensionDelArchivo = strtolower(end($NombreDelArchivoCmps));
+            $extensionesPErmitidas = array('jpg', 'gif', 'png', 'jpeg'); // Definir extensiones permitidas
+            if (in_array(needle: $ExtensionDelArchivo, haystack: $extensionesPErmitidas)) { // in_array(), comprueba si un elemento existe dentro de un array.
+                $DirectorioDestino = '/Img';
+                $RutaCompetaFinal = $DirectorioDestino . $NombreDelArchivo; // Establecer el directorio donde se guardará la imagen
+                if (move_uploaded_file(from: $RutaTemporal, to: $RutaCompetaFinal)) { // Mover el archivo subido a la carpeta de destino
+                    echo "El archivo fue guardado correctamente";
+                    return $NombreDelArchivo;
+                } else {
+                    echo "Hubo un error moviendo el archivo a la carpeta de destino.";
+                    return null;
+                }
+            } else {
+                echo "Tipo de archivo no permitido. Solo se permiten imágenes en formato JPG, PNG, GIF, JPEG.";
+                return null;
+            }
+        } else {
+            echo "Hubo un error al subir el archivo (input).";
+            return null;
+        }
+    }
+
 ?>

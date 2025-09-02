@@ -96,7 +96,20 @@ form input[type="password"] {
     font-size: 1rem;
     outline: none;
 }
-
+.btn {
+    background-color: #fccaca;
+    color: black;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-family: "Cherry Bomb One", system-ui;
+    cursor: pointer;
+    margin: 0.5rem auto;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
 /* BOTONES */
 form input[type="submit"] {
     background-color: #fccaca;

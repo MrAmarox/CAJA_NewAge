@@ -24,18 +24,19 @@ include_once "../Logica/Metodos.php";
                 <form method="post">
                     <label>Correo</label>
                     <input type="text" name="correo">
-<br>
+                    <br>
                     <label>Contraseña</label>
                     <input type="password" name="contraseña">
-<br>
+                    <br>
                     <input type="submit" value="Iniciar Sesión" name="Iniciar_Sesion">
-
                     <p> ¿No tienes cuenta de usuario? <br> Registrate para ser parte de Molsy </p>
-                    <input type="submit" value="Registrarse" name="Registrarse">
+                    <button type="button" class="btn" onclick="window.location.href='Registro.php'">Registrarse</button>
+
                 </form>
             </div>
         </div>
 </body>
+</html>
 
 <?php
 if (isset($_POST['IniciarSesion'])) {
@@ -62,6 +63,5 @@ if (isset($_POST['IniciarSesion'])) {
   }
 
 ?>
-</body>
-</html>
+
 
