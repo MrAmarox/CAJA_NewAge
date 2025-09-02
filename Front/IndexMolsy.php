@@ -38,20 +38,7 @@ if (!isset($_SESSION['Producto'])) {
     $_SESSION['Producto'][]= $producto3;
 }
 
-if (isset($_SESSION['Producto']) && !empty($_SESSION['Producto'])) {
-    $productos = $_SESSION['Producto'];
-    echo "<div class='productos-container'>";
-    foreach ($productos as $producto) {
-        echo "<div class='producto-card'>";
-        echo "<img src='Img/" . $producto->getFoto() . "' alt='Producto'>";
-        echo "<h3>" . $producto->getNombre() . " - " . $producto->getPrecio() . "</h3>";
-        echo "<p>Color: " . $producto->getColor() . "</p>";
-        echo "<p>Talle: " . $producto->getTalle() . "</p>";
-        echo "<button class='btn-agregar'><i class='bi bi-cart-plus'></i> Agregar al carrito</button>";
-        echo "</div>";
-    }
-    echo "</div>";
-}
+
 echo'
 <div class="banner-Socks">
     <div class="contenido-bannerSocks">

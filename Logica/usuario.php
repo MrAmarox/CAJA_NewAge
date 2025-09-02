@@ -44,5 +44,12 @@ class usuario
     public function setTipo($value) {
       $this->tipo = $value;
     }
+    public function __construct($pass, $naem, $corr, $cel){
+      $this->pass=$pass;
+      $this->nombre=$naem;
+      $this->correo=$corr;
+      $this->celular=$cel;
+      $this->tipo=1;
+    }
 }
 ?>

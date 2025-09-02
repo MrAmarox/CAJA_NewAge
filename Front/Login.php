@@ -25,71 +25,64 @@ session_start();
                 <form method="post">
                     <label>Correo</label>
                     <input type="text" name="correo">
-<br>
+                    <br>
                     <label>Contraseña</label>
                     <input type="password" name="contraseña">
-<br>
+                    <br>
                     <input type="submit" value="Iniciar Sesión" name="Iniciar_Sesion">
-
                     <p> ¿No tienes cuenta de usuario? <br> Registrate para ser parte de Molsy </p>
-                    <input type="submit" value="Registrarse" name="Register">
+                    <button type="button" class="btn" onclick="window.location.href='Registro.php'">Registrarse</button>
+
                 </form>
             </div>
         </div>
 </body>
+</html>
 
 <?php
 
 // Simulacion de dos usuarios para ejemplo, admin y cliente
 
-$usuario1 = new Usuario();
-$usuario1->setNombre("Catalina");
-// $usuario1->setCelular(092958357);
-$usuario1->setCorreo("catacss@gmail.com");
-$usuario1->setPass("Molly");
-$usuario1->setTipo("Admin");
-
-$usuario2 = new Usuario();
-$usuario2->setNombre("Amaru");
-//$usuario2->setCelular(092958357);
-$usuario2->setCorreo("amaru@gmail.com");
-$usuario2->setPass("caniche");
-$usuario2->setTipo("Cliente");
+$usuario1 = new Usuario("Molly","Catalina","catacss@gmail.com","092958357");
+$usuario1->setTipo(0); // El tipo 0 es admin y el tipo 1 es cliente, si a futuro se desea contar con más niveles de acceso, se utilizan números más grandes.
+$usuario2 = new Usuario("caniche","Amaru","amaru@gmail.com","099154814");
+$usuario2->setTipo(1);
 
 $usuarios= array(
     $usuario1, $usuario2
 );
-if(isset($_POST['Register'])){
-    header("Location:Registro.php");
-}
 
 $encontrado=false;
 if (isset($_POST['Iniciar_Sesion'])) {
-    $correo = $_POST['correo'];
-    $pass = $_POST['contraseña'];
+    if($_POST['correo'] != null && $_POST['contraseña'] != null){
+        $correo = $_POST['correo'];
+        $pass = $_POST['contraseña'];
 
-    foreach ($usuarios as $usuario) {
-        $correoo = $usuario->getCorreo();
-        $contraseñaa = $usuario->getPass();
-        if ($correoo == $correo && $contraseñaa == $pass) {
-            break;
-        } else {
-            echo "<p> Correo o contraseña incorrectos. </p>";
+        foreach ($usuarios as $usuario) {
+            if ($usuario->getCorreo() === $correo && $usuario->getPass() === $pass) {
+                $encontrado = true;
+                break;
+            }
         }
-    }
-
-    if ($usuario != null) {
-        if ($usuario->getTipo() == "Admin") {
-            header("Location: PanelAdminMolsy.php");
-            exit();
-        } else {
-            header("Location: IndexMolsy.php");
-            exit();
+        if($encontrado){
+            if ($usuario != null) {
+                if ($usuario->getTipo() === 0) {
+                    header("Location: PanelAdminMolsy.php");
+                    exit();
+                } elseif($usuario->getTipo() === 1) {
+                    header("Location: IndexMolsy.php");
+                    exit();
+                }
+            }
+        }else{
+            echo '<script>alert("Correo o contraseña incorrectos.");</script>';
         }
+        
+    }else{
+        echo '<script>alert("Por favor, complete todos los campos correctamente.");</script>';
     }
 }
 
 ?>
-</body>
-</html>
+
 
