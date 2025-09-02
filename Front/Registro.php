@@ -1,7 +1,7 @@
 <?php
 include_once "../Logica/usuario.php";
 include_once "../Logica/Metodos.php";
-session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -22,32 +22,39 @@ session_start();
 <h2 class="titulo-bienvenida">Bienvenido/a</h2>
 <p class="subtitulo">Crea una cuenta de usuario para ser parte de Molsy Store.</p>
 <form action="" method="post">
+<label> Cedula: </label> <input type="text" name="cedula">
+<br>
       <label> Nombre: </label> <input type="text" name="nombre">
       <br>
-      <label> Celular: </label> <input type="number" name="celular">
+      <label> Telefono: </label> <input type="number" name="telefono">
       <br>
       <label> Correo: </label> <input type="email" name="correo">
       <br>
       <label> Contraseña: </label> <input type="password" name="contraseña">
-      <br>
-      <label> Tipo: </label> <input type="Text" name="tipo">
-      <br>
+      
       <input type="submit" name="Registrarse" value="Registrarse ">
 </form>
 </div>
 
 <?php
-if (isset($_POST['Registrarse'])) {
+      if(isset($_POST['Registrarse'])) {
+          
+        $usuario = new Usuario();
+          $usuario->setNombre($_POST['nombre']);
+          $usuario->setCedula($_POST['cedula']);
+          $usuario->setTelefono($_POST['telefono']);
+          $usuario->setCorreo($_POST['correo']);
+          $usuario->setContrasena($_POST['contraseña']);
+          $usuario->setTipo("Cliente");
 
-    $usuario = new usuario();
-    $usuario->setNombre($_POST['nombre']);
-    $usuario->setCelular($_POST['celular']);
-    $usuario->setCorreo($_POST['correo']);
-    $usuario->setPass($_POST['contraseña']);
-    $usuario->setTipo($_POST['tipo']);
+          $resultado=$usuario->RegistrarUsuario();
+    
+          $_SESSION['Clientes'][] = $usuario;         
+      if ($resultado === true){
+      header("Location: login.php");
+      } 
 
-    $_SESSION['usuario'] [] = $usuario;
-}
-?>
+    }
+  ?>
 </body>
 </html>

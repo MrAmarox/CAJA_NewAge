@@ -2,12 +2,21 @@
 
 class usuario
 {
+  private $cedula;
     private $nombre;
-    private $celular;
+    private $telefono;
     private $correo;
-    private $pass;
+    private $contrasena;
     private $tipo;
 
+
+    //CEDULA
+public function getCedula(){
+  return $this->cedula;
+}
+public function setCedula($cedula){
+  $this->cedula=$cedula;
+}
 
 
     public function getNombre() {
@@ -17,11 +26,11 @@ class usuario
       $this->nombre = $value;
     }
 
-    public function getCelular() {
-        return $this->celular;
+    public function getTelefono() {
+        return $this->telefono;
       }
-      public function setCelular($value) {
-        $this->celular = $value;
+      public function setTelefono($value) {
+        $this->telefono = $value;
       }
 
     public function getCorreo() {
@@ -31,11 +40,11 @@ class usuario
       $this->correo = $value;
     }
 
-    public function getPass() {
-      return $this->pass;
+    public function getContrasena() {
+      return $this->Contrasena;
     }
-    public function setPass($value) {
-      $this->pass = $value;
+    public function setContrasena($Contrasena) {
+      $this->contrasena = $Contrasena;
     }
 
     public function getTipo() {
@@ -44,5 +53,19 @@ class usuario
     public function setTipo($value) {
       $this->tipo = $value;
     }
+
+    //Metodo login
+public function Login(){
+  include_once "../Persistencia/usuarioBD.php";
+  $uBd= new UsuarioBD();
+  return $uBd->Login($this->correo, $this->contrasena);
+}
+
+public function RegistrarUsuario(){
+  include_once "../Persistencia/usuarioBD.php";
+  $uBd = new UsuarioBD();
+ return $uBd->RegistrarUsuario($this->cedula, $this->nombre, $this->telefono, $this->correo, $this->contrasena, $this->tipo);
+}
+
 }
 ?>

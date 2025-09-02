@@ -1,6 +1,9 @@
 <?php
 
 class Producto {
+
+    private $IDProducto;
+
     private $nombre;
 
     private $precio;
@@ -10,6 +13,16 @@ class Producto {
     private $talle;
 
     private $foto;
+
+
+
+public function getIDProducto(){
+        return $this->IDProducto;
+    }
+    
+public function setIDProducto($IDProducto){
+        $this->IDProducto=$IDProducto;
+    }
 
 // Metodos Nombre
 public function getNombre(){
@@ -53,6 +66,21 @@ public function getFoto(){
 }
 public function setFoto($foto){
     $this->foto=$foto;
+}
+
+
+public function AñadirProducto()
+{
+    include_once __DIR__."/../Persistencia/productoBD.php";
+    $productoBD = new productoBD();
+    $productoBD->AñadirProducto($this->nombre, $this->precio, $this->color, $this->talle, $this->foto);
+}
+
+public function listarProductos()
+{
+    include_once __DIR__."/../Persistencia/productoBD.php";
+    $productoBD = new productoBD();
+    return $productoBD->listarProductos();
 }
 
 }

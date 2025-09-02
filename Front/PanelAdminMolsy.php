@@ -2,7 +2,6 @@
 include_once "../Logica/productos.php";
 include_once "../Logica/usuario.php";
 include_once "funcionImagen.php";
-session_start();
 ?>
 
 <!DOCTYPE html>

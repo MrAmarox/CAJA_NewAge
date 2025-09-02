@@ -1,7 +1,6 @@
 <?php
 include_once "../Logica/usuario.php";
 include_once "../Logica/Metodos.php";
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -32,63 +31,35 @@ session_start();
                     <input type="submit" value="Iniciar Sesión" name="Iniciar_Sesion">
 
                     <p> ¿No tienes cuenta de usuario? <br> Registrate para ser parte de Molsy </p>
-                    <input type="submit" value="Registrarse" name="Register">
+                    <input type="submit" value="Registrarse" name="Registrarse">
                 </form>
             </div>
         </div>
 </body>
 
 <?php
-
-// Simulacion de dos usuarios para ejemplo, admin y cliente
-
-$usuario1 = new Usuario();
-$usuario1->setNombre("Catalina");
-// $usuario1->setCelular(092958357);
-$usuario1->setCorreo("catacss@gmail.com");
-$usuario1->setPass("Molly");
-$usuario1->setTipo("Admin");
-
-$usuario2 = new Usuario();
-$usuario2->setNombre("Amaru");
-//$usuario2->setCelular(092958357);
-$usuario2->setCorreo("amaru@gmail.com");
-$usuario2->setPass("caniche");
-$usuario2->setTipo("Cliente");
-
-$usuarios= array(
-    $usuario1, $usuario2
-);
-if(isset($_POST['Register'])){
-    header("Location:Registro.php");
-}
-
-
-if (isset($_POST['Iniciar_Sesion'])) {
-    $correo = $_POST['correo'];
-    $pass = $_POST['contraseña'];
-
-    $usuarioEncontrado = null;
-    
-    foreach ($usuarios as $usuario) {
-        if ($usuario->getCorreo() == $correo && $usuario->getPass() == $pass) {
-            $usuarioEncontrado = $usuario;
-            break;
-        }
+if (isset($_POST['IniciarSesion'])) {
+    $usuario = new usuario();
+    $usuario->setCorreo($_POST['correo']);
+    $usuario->setContrasena($_POST['contraseña']);
+    $u=$usuario->Login();
+    if($u != null){
+      $_SESSION['Cliente']=$u;
+      if ($u->getTipo()=="Admin"){
+          header("Location:panelAdmin.php");
+      }else{
+          header("Location:../index.php");
+      }
+  
+    }else{
+  echo "Usuario o contraseña incorrectas";
     }
+  
+  }
 
-    if ($usuarioEncontrado != null) {
-        if ($usuarioEncontrado->getTipo() == "Admin") {
-            header("Location: panelAdminMolsy.php");
-            exit();
-        } else {
-            header("Location: IndexMolsy.php");
-            exit();
-        }
-    } else {
-        echo "<p style='color:red; text-align:center;'>Correo o contraseña incorrectos</p>";
-    }
-}
+  if (isset($_POST['Registrarse'])){
+      header("Location: Registro.php");
+  }
 
 ?>
 </body>
