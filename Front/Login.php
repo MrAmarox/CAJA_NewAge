@@ -39,21 +39,22 @@ include_once "../Logica/Metodos.php";
 </html>
 
 <?php
+include_once "../Logica/usuario.php";
 if (isset($_POST['IniciarSesion'])) {
-    $usuario = new usuario();
-    $usuario->setCorreo($_POST['correo']);
-    $usuario->setContrasena($_POST['contraseña']);
-    $u=$usuario->Login();
+    $u= usuario::Login($_POST['correo'],$_POST['contraseña']);
     if($u != null){
-      $_SESSION['Cliente']=$u;
-      if ($u->getTipo()=="Admin"){
-          header("Location:panelAdmin.php");
-      }else{
-          header("Location:../index.php");
-      }
+        $_SESSION['Cliente']=$u;
+        switch ($u->getTipo()){
+            case 0:
+                header("Location:panelAdmin.php");
+                break;
+            case 1;
+                header("Location:../index.php");
+                break;
+        }
   
     }else{
-  echo "Usuario o contraseña incorrectas";
+        echo "Usuario o contraseña incorrectas";
     }
   
   }

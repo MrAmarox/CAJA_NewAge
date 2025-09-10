@@ -1,32 +1,70 @@
 <?php
+include_once '../Persistencia/catsubcatBD.php';
+class cat {
+    private $nombre;
+    private $id;
+    private $estado;
 
-    class cat {
-        private $name;
-        private $subcat =[];
-        private $visible;
+    private $subcat =[];
+    
 
-        public function __construct($naem, $catsub=[], $visibel){
-            $this->name=$naem;
-            $this->subcat=$catsub;
-            $this->visible=$visibel;
-        }
-        public function html(){
-        $html = '<li class="itemdemenu"><a href="../Front/Categoria.php?categoria='.$this->name.'">'.$this->name.'</a>
-                    <ul class="menuvertical">';
-            foreach ($this->subcat as $nscat){
-                $html .= '<li><a href="../Front/Categoria.php?categoria='.$this->name.'&subcat='.$nscat.'">'.$nscat.'</a></li>';
-            }
-            $html .= '</ul>
-                </li>';
-            return $html;
-            }
+    public function __construct($naem, $estado){
+      $this->nombre = $naem;
+      $this->estado = $estado;
+    }
+    public function newCat(){
+      $CSCBD = new catSubCatBD();
+      return $CSCBD->agrCate($this->nombre, $this->estado);
     }
 
-/*
-    $cates = array(
-        "Mujer"=> array("Calzas", "Pantalones", "Canguros y buzos", "Remeras", "Conjuntos"),
-        "Hombre"=> array("Pantalones", "Canguros"),
-        "Accesorios"=> array("Medias", "Vasos y Botellas", "Accesorios de cabello", "Bolsos")
-    );
-*/
+
+    public function menHam(){
+        $html = '<li class="itemdemenu"><a href="../Front/Categoria.php?categoria='.$this->id.'">'.$this->nombre.'</a>
+                <ul class="menuvertical">';
+        foreach ($this->subcat as $nscat){
+            $html .= '<li><a href="../Front/Categoria.php?categoria='.$this->id.'&subcat='.$nscat->getID().'">'.$nscat->getName().'</a></li>';
+        }
+        $html .= '</ul>
+            </li>';
+        return $html;
+    }
+    public static function bringCats($case){
+        $CBD = new catSubCatBD();
+        switch ($case) {
+          case 1:
+            return $CBD->listarCates(0,0);
+          case 2:
+            return $CBD->listarCates(2,0);
+        };
+    }
+    public function agrSubcat($subCat){
+        $this->subcat[] = $subCat;
+    }
+
+    public function getSubcat() {
+        return $this->subcat;
+    }
+    public function getName() {
+      return $this->nombre;
+    }
+    public function setName($value) {
+      $this->nombre = $value;
+    }
+
+    public function getID() {
+      return $this->id;
+    }
+    public function setID($value) {
+      $this->id = $value;
+    }
+
+    public function getEstado() {
+      return $this->estado;
+    }
+    public function setEstado($value) {
+      $this->estado = $value;
+    }
+}
+
+
 ?>

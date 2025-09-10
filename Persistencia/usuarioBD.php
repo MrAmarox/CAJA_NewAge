@@ -7,7 +7,7 @@ class usuarioBD extends conexion {
     public function Login ($correo, $contrasena){
 
         $con = $this->getConexion();
-        $sql = "select * from usuario where Correo=? and Contraseña=?";
+        $sql = "select * from usuario where Correo=? and pass=?";
         $stmt = $con->prepare($sql);
 
         $stmt->bind_param("ss", $correo, $contrasena);
@@ -15,14 +15,11 @@ class usuarioBD extends conexion {
 
         $resultado = $stmt->get_result();
 
-        $usuario = new Usuario();
+        
         if ($resultado->num_rows > 0){
             while ($fila = $resultado->fetch_assoc()){
-                $usuario->setCedula($fila['Cedula']);
-                $usuario->setNombre($fila['Nombre']);
-                $usuario->setTelefono($fila['Telefono']);
-                $usuario->setCorreo($fila['Correo']);
-                $usuario->setTipo($fila['Tipo']);
+                $usuario = new usuario($fila['Cedula'], $fila['Nombre'], $fila['Correo'], $fila['Telefono']);
+                $usuario->setTipo($fila['tipo']);
             }
             return $usuario;
         } else {
@@ -30,7 +27,26 @@ class usuarioBD extends conexion {
         }
     }
 
-    public function RegistrarUsuario( $Cedula,$Nombre, $Telefono, $Correo, $Contrasena, $Tipo) {
+    public function bringUsrs(){
+        $con = $this->getConexion();
+        $sql = 'select * from usuario';
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($res->num_rows > 0) {
+            $usrs=[];
+            while ($fila = $res->fetch_assoc()){
+                $usuario = new usuario($fila['Cedula'], $fila['Nombre'], $fila['Correo'], $fila['Telefono']);
+                $usuario->setTipo($fila['tipo']);
+                $usrs[]=$usuario;
+            }
+            return $usrs;
+        } else {
+            return null;
+        }
+    }
+
+    public function RegistrarUsuario($Cedula, $Nombre, $Telefono, $Correo, $Contrasena, $Tipo) {
         try {
 
             /* Validaciones de formatos de cedula y correo
@@ -70,14 +86,14 @@ class usuarioBD extends conexion {
             }
     
             // Insertar
-            $sqlInsert = "INSERT INTO usuario (Cedula, Nombre, Telefono, Correo, contraseña, Tipo) VALUES (?, ?, ?, ?, ?, ?)";
+            $sqlInsert = "INSERT INTO usuario (Cedula, Nombre, Telefono, Correo, pass, Tipo) VALUES (?, ?, ?, ?, ?, ?)";
             $stmtInsert = $con->prepare($sqlInsert);
-            $stmtInsert->bind_param("isssss", $Cedula, $Nombre, $Telefono, $Correo, $Contrasena, $Tipo);
-    
+            $stmtInsert->bind_param("issssi",$Cedula,$Nombre, $Telefono, $Correo, $Contrasena, $Tipo);
+            $stmtInsert->execute();
             if (!$stmtInsert->execute()) {
                 throw new Exception("Error al insertar: " . $stmtInsert->error);
             }
-          return true;
+            return true;
     
         } catch (Exception $e) {
             return $e->getMessage() ?: "Error desconocido al registrar usuario.";
@@ -85,7 +101,29 @@ class usuarioBD extends conexion {
 
 
     }
-    
+    public function RemUsr($ci){
+        try {
+            $con = $this->getConexion();
+            $sql = 'remove * from usuario where Cedula=?';
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $ci);
+            $stmt->execute();
+            $sql = "select * from usuario where Cedula=?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $ci);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            if($res->num_rows > 0){
+                echo "<script> alert('El usuario no pudo ser removido, consulte con mantenimiento.'); </script>";
+            }else{
+                echo "<script> alert('El usuario fue removido exitosamente'); </script>";
+            }
+
+
+        } catch (Exception $e) {
+            return $e->getMessage() ?: "Error desconocido al remover usuario.";
+        }
+    }
     
     
 }

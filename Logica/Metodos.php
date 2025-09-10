@@ -1,18 +1,18 @@
 <?php
     include_once "Cat.php";
-    $cates= [
+    /*$cates= [
         new cat("Mujer",["Calzas", "Pantalones", "Canguros y Buzos", "Remeras", "Conjuntos"], true),
         new cat("Hombre",["Pantalones", "Canguros"], true),
         new cat("Accesorios",["Medias", "Vasos y botellas", "Acccesorios de cabello", "Bolsos"], true)
-    ];
+    ];*/
     function menuhamburguesa(){
-        global $cates;
+        $cates= Cat::bringCats(1);
         $html = '<nav id="menuhamburguesa" class="menuhamburguesa">
                 <ul class="hamburguesa-list">
                     <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
                 ';
                 foreach ($cates as $cate) {
-                    $html .= $cate->html(); 
+                    $html .= $cate->menHam(); 
                 }
                     $html .= '
                     <li><a href="../Front/Categoria.php?categoria=Ofertas">Ofertas</a></li>
@@ -88,56 +88,6 @@
         }
 
 
-//Si la categoria/subcategoría existe
-    function catExis($categoria,$subcategoria){
-        $case=0;
-        foreach ($cates as $cat => $scat) {
-            foreach ($scat as $nscat){
-                if($categoria == $cat){
-                    if($subcategoria==null){
-                        $case=2;
-                    }elseif($subcategoria == $nscat){
-                        $case=1;
-                        exit();
-                    }else{
-                    $case=3;
-                    exit();
-                    }
-                }
-            }
-        }
-        return $case;
-    }
-
-//Mostrar producto
-    function mosprod($categoria, $subcategoria){
-        switch (catExis($categoria, $subcategoria)){
-            case 0:
-                echo '<h1 style="text-align:center;">UPS... ESTA CATEGORÍA NO EXISTE</h1>';
-                break;
-            case 1:
-                if (isset($_SESSION['Producto']) && !empty($_SESSION['Producto'])) {
-                    $productos = $_SESSION['Producto'];
-                    echo "<div class='productos-container'>";
-                    foreach ($productos as $producto) {
-                        echo "<div class='producto-card'>";
-                        echo "<img src='Img/" . $producto->getFoto() . "' alt='Producto'>";
-                        echo "<h3>" . $producto->getNombre() . " - " . $producto->getPrecio() . "</h3>";
-                        echo "<p>Color: " . $producto->getColor() . "</p>";
-                        echo "<p>Talle: " . $producto->getTalle() . "</p>";
-                        echo "<button class='btn-agregar'><i class='bi bi-cart-plus'></i> Agregar al carrito</button>";
-                        echo "</div>";
-                    }
-                    echo "</div>";
-                }
-                break;
-            case 2:
-                echo '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
-                break;
-        }
-    }
-
-
     function CargarImagen(){
         if (isset($_FILES['image'])) {
             // Obtener detalles del archivo
@@ -147,10 +97,10 @@
             $ExtensionDelArchivo = strtolower(end($NombreDelArchivoCmps));
             $extensionesPErmitidas = array('jpg', 'gif', 'png', 'jpeg'); // Definir extensiones permitidas
             if (in_array(needle: $ExtensionDelArchivo, haystack: $extensionesPErmitidas)) { // in_array(), comprueba si un elemento existe dentro de un array.
-                $DirectorioDestino = '/Img';
+                $DirectorioDestino = '../Front/Img/';
                 $RutaCompetaFinal = $DirectorioDestino . $NombreDelArchivo; // Establecer el directorio donde se guardará la imagen
                 if (move_uploaded_file(from: $RutaTemporal, to: $RutaCompetaFinal)) { // Mover el archivo subido a la carpeta de destino
-                    echo "El archivo fue guardado correctamente";
+                    //echo "El archivo fue guardado correctamente";
                     return $NombreDelArchivo;
                 } else {
                     echo "Hubo un error moviendo el archivo a la carpeta de destino.";

@@ -1,78 +1,82 @@
 <?php
 
-class usuario
-{
+class usuario{
   private $cedula;
-    private $nombre;
-    private $telefono;
-    private $correo;
-    private $contrasena;
-    private $tipo;
+  private $nombre;
+  private $telefono;
+  private $correo;
+  private $pass;
+  private $tipo;
+  //CEDULA
+  public function getCedula(){
+    return $this->cedula;
+  }
+  public function setCedula($cedula){
+    $this->cedula=$cedula;
+  }
 
 
-    //CEDULA
-public function getCedula(){
-  return $this->cedula;
-}
-public function setCedula($cedula){
-  $this->cedula=$cedula;
-}
+  public function getNombre() {
+    return $this->nombre;
+  }
+  public function setNombre($value) {
+    $this->nombre = $value;
+  }
 
-
-    public function getNombre() {
-      return $this->nombre;
+  public function getTelefono() {
+      return $this->telefono;
     }
-    public function setNombre($value) {
-      $this->nombre = $value;
-    }
-
-    public function getTelefono() {
-        return $this->telefono;
-      }
-      public function setTelefono($value) {
-        $this->telefono = $value;
-      }
-
-    public function getCorreo() {
-      return $this->correo;
-    }
-    public function setCorreo($value) {
-      $this->correo = $value;
+    public function setTelefono($value) {
+      $this->telefono = $value;
     }
 
-    public function getContrasena() {
-      return $this->Contrasena;
-    }
-    public function setContrasena($Contrasena) {
-      $this->contrasena = $Contrasena;
-    }
+  public function getCorreo() {
+    return $this->correo;
+  }
+  public function setCorreo($value) {
+    $this->correo = $value;
+  }
 
-    public function getTipo() {
-      return $this->tipo;
-    }
-    public function setTipo($value) {
-      $this->tipo = $value;
-    }
+  public function getPass() {
+    return $this->pass;
+  }
+  public function setPass($value) {
+    $this->pass = $value;
+  }
 
-    //Metodo login
-public function Login(){
-  include_once "../Persistencia/usuarioBD.php";
-  $uBd= new UsuarioBD();
-  return $uBd->Login($this->correo, $this->contrasena);
-}
+  public function getTipo() {
+    return $this->tipo;
+  }
+  public function setTipo($value) {
+    $this->tipo = $value;
+  }
 
-public function RegistrarUsuario(){
-  include_once "../Persistencia/usuarioBD.php";
-  $uBd = new UsuarioBD();
- return $uBd->RegistrarUsuario($this->cedula, $this->nombre, $this->telefono, $this->correo, $this->contrasena, $this->tipo);
-}
+  //Metodo login
+  public static function Login($corr, $pas){
+    include_once "../Persistencia/usuarioBD.php";
+    $uBd= new UsuarioBD();
+    return $uBd->Login($corr, $pas);
+  }
 
-    public function __construct($pass, $naem, $corr, $cel){
-      $this->pass=$pass;
-      $this->nombre=$naem;
-      $this->correo=$corr;
-      $this->celular=$cel;
-      $this->tipo=1;
+  public function RegistrarUsuario($pas){
+    if($this->tipo==null){
+      $this->tipo= 1;
     }
+    include_once "../Persistencia/usuarioBD.php";
+    $uBd = new UsuarioBD();
+    return $uBd->RegistrarUsuario($this->cedula, $this->nombre, $this->telefono, $this->correo, $pas, $this->tipo);
+  }
+  public static function bringUsrs(){
+    include_once '../Persistencia/usuarioBD.php';
+    $uBD= new UsuarioBD();
+    return $uBD->bringUsrs();
+  }
+  public function __construct($ci, $naem, $corr, $cel){
+    $this->cedula = $ci;
+    $this->nombre=$naem;
+    $this->correo=$corr;
+    $this->telefono=$cel;
+    $this->tipo=1;
+  }
 }
 ?>
