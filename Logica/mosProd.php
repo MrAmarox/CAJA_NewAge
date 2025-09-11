@@ -1,13 +1,11 @@
 <?php
 include_once 'producto.php';
     function mosprod(){
-        $categoria = $_GET['categoria'];
-        $subcategoria = $_GET['subcat'];
-    
-            
-            if(empty($categoria)){
+        $categoria = $_GET['categoria']??'';
+        $subcategoria = $_GET['subcat']??'';
+            if($categoria==''){
                 $prods=Producto::listarProductos(0,0);
-            }elseif(!empty($categoria) && empty($subcategoria)){
+            }elseif($categoria!='' && $subcategoria==''){
                 $prods=Producto::listarProductos(2,$categoria);
             }else{
                 $prods=Producto::listarProductos(1,$subcategoria);

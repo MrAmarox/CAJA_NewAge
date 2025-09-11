@@ -22,7 +22,7 @@ class cat {
         $html = '<li class="itemdemenu"><a href="../Front/Categoria.php?categoria='.$this->id.'">'.$this->nombre.'</a>
                 <ul class="menuvertical">';
         foreach ($this->subcat as $nscat){
-            $html .= '<li><a href="../Front/Categoria.php?categoria='.$this->id.'&subcat='.$nscat->getID().'">'.$nscat->getName().'</a></li>';
+            $html .= '<li><a href="../Front/Categoria.php?categoria='.$this->id.'&subcat='.$nscat->getID().'">'.$nscat->getNombre().'</a></li>';
         }
         $html .= '</ul>
             </li>';

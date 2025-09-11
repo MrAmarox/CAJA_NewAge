@@ -51,6 +51,11 @@ class usuario{
     $this->tipo = $value;
   }
 
+  public static function modUsr($usr) {
+    include_once '../Persistencia/usuarioBD.php';
+    $uBD= new UsuarioBD();
+    return $uBD->modUsr($usr);
+  }
   //Metodo login
   public static function Login($corr, $pas){
     include_once "../Persistencia/usuarioBD.php";

@@ -62,7 +62,7 @@ include_once "../Logica/Metodos.php";
                 <select id="catSelect" name="catSelect">
 
                 </select>
-                <br>
+
                 <br>
                 <input type="submit" name="agregarsubcat">
             </form>
@@ -85,9 +85,30 @@ include_once "../Logica/Metodos.php";
     </div>
     <div>
         <button id="btntblUsr">OCULTAR USUARIOS</button>
-        <div id="tabUsr"></div>
         <button id="btntblProd">OCULTAR PRODUCTOS</button>
+        <div id="tabUsr"></div>
         <div id="tabProd"></div>
+    </div>
+    <div id="modalModUsr" class="modalModUsr">
+        <div class="modal-content">
+            <form action="" method="post">
+                <span class="closeusr">x</span>
+                <label>Nombre: </label><label id="nombreUsr"></label><br>
+                <input type="text" id="nomin" name="nominusr"><br>
+                <label>CI: </label><label id="ci"></label><input type="hidden" id="c" name="cii"><br>
+                <label>Correo: </label><label id="corr"></label><br>
+                <input type="email" id="corrin" name="corrin"><br>
+                <label>Telefono: </label><label id="telefono"></label><br>
+                <input type="number" id="numin" name="numin"><br>
+                <label>Tipo: </label><label id="tipo"></label>
+                <select id="tipoSelect" name="tipoSelect">
+                    <option value="0">Admin</option>
+                    <option value="1">Cliente</option>
+                    <option value="2">Empleado</option>
+                </select><br>
+                <input type="submit" name="btnmodusr" value="Modificar">
+            </form>
+        </div>
     </div>
 
 </body>
@@ -99,22 +120,29 @@ if (isset($_POST['agregar'])) {
     if (isset($_POST['nombreProd']) && isset($_POST['precio']) && isset($_POST['color']) && isset($_POST['talle']) && isset($_POST['subcatSelect']) && isset($_POST['prodestadoSelect'])) {
         $producto = new Producto($_POST['nombreProd'], $_POST['precio'], $_POST['color'], $_POST['talle'], CargarImagen(), $_POST['subcatSelect'], $_POST['prodestadoSelect']);
         $producto->AddProducto();
+        header("Location: " . $_SERVER['PHP_SELF']);
         echo '<script>cargartablaProds();</script>';
     }
 }
 if (isset($_POST['agregarsubcat'])) {
     if (isset($_POST['nombresubcat']) && isset($_POST['catSelect']) && isset($_POST['subestadoSelect'])) {
-
         $Subcat = new SubCat($_POST['nombresubcat'], $_POST['subestadoSelect'], $_POST['catSelect']);
         $Subcat->newSubCat();
+        header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
 if (isset($_POST['agregarcat'])) {
     if (isset($_POST['nombrecat']) && isset($_POST['catestadoSelect'])) {
-        echo '<script>alert("MATENMEEEE")</script>';
         $cat = new cat($_POST['nombrecat'], $_POST['catestadoSelect']);
         $cat->newCat();
-        echo '<script>cargartablaCats();</script>';
+        header("Location: " . $_SERVER['PHP_SELF']);
+    }
+}
+if (isset($_POST['btnmodusr'])) {
+    if (isset($_POST['nominusr']) && isset($_POST['numin']) && isset($_POST['tipoSelect']) && isset($_POST['corrin'])) {
+        $usr = new usuario($_POST['cii'], $_POST['nominusr'], $_POST['corrin'], $_POST['numin']);
+        $usr->setTipo($_POST['tipoSelect']);
+        Usuario::modUsr($usr);
     }
 }
 
@@ -132,6 +160,7 @@ if (isset($_POST['agregarcat'])) {
         cargarselectCats();
         cargarselectSubcats();
         cargarTablaUsuarios();
+        modalUsr();
 
         function cargarselectSubcats() {
             fetch('../Logica/getCatSubcatIdNamelist.php?case=1')
@@ -179,6 +208,7 @@ if (isset($_POST['agregarcat'])) {
                     tdivU.innerHTML = "";
                     tdivU.innerHTML = htmlString;
                     tdivU.style.display = "block";
+                    modalUsr();
                 })
                 .catch(error => {
                     console.error("Error al obtener la tabla:", error);
@@ -212,6 +242,39 @@ if (isset($_POST['agregarcat'])) {
                 .catch(error => {
                     console.error("Error al obtener la tabla:", error);
                 });
+        }
+
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        function modalUsr() {
+            var modal = document.getElementById("modalModUsr");
+            var btn = document.getElementById("btnmodUsr");
+            var span = document.getElementsByClassName("closeusr")[0];
+            modal.style.display = 'none';
+            document.querySelectorAll('.btnmodUsr').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = document.getElementById("modalModUsr");
+                    modal.style.display = "block"; // Populate modal fields
+                    document.getElementById('nombreUsr').innerHTML = this.dataset.nombreusr;
+                    document.getElementById('nomin').value = this.dataset.nombreusr;
+                    document.getElementById('ci').innerHTML = this.dataset.ci;
+                    document.getElementById('c').value = this.dataset.ci;
+                    document.getElementById('corr').innerHTML = this.dataset.corr;
+                    document.getElementById('corrin').value = this.dataset.corr;
+                    document.getElementById('telefono').innerHTML = this.dataset.tel;
+                    document.getElementById('numin').value = this.dataset.tel;
+                    document.getElementById('tipo').innerHTML = this.dataset.tipo;
+                });
+            });
+            span.onclick = function() {
+                modal.style.display = "none";
+            };
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+
         }
     });
 </script>

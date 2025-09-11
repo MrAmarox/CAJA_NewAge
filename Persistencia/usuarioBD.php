@@ -37,12 +37,28 @@ class usuarioBD extends conexion {
             $usrs=[];
             while ($fila = $res->fetch_assoc()){
                 $usuario = new usuario($fila['Cedula'], $fila['Nombre'], $fila['Correo'], $fila['Telefono']);
-                $usuario->setTipo($fila['tipo']);
+                $usuario->setTipo($fila['Tipo']);
                 $usrs[]=$usuario;
             }
             return $usrs;
         } else {
             return null;
+        }
+    }
+    public function modUsr($usr){
+        $nom=$usr->getNombre();
+        $corr= $usr->getCorreo();
+        $tel=$usr->getTelefono();
+        $typ=$usr->getTipo();
+        $ci=$usr->getCedula();
+        $con = $this->getConexion();
+        $sql = 'UPDATE usuario SET Nombre = ?, Correo = ?, Telefono = ?, Tipo = ? WHERE Cedula = ?';
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param('sssii', $nom, $corr, $tel, $typ, $ci);
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
         }
     }
 

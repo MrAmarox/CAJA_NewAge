@@ -42,6 +42,7 @@ form label {
 }
 
 form input[type="text"],
+form input[type='email'],
 form input[type="number"],
 form input[type="file"] {
     width: 100%;
@@ -107,7 +108,17 @@ td img {
     padding: 1rem;
 }
 
-    .logo-container img {
-        height: 80px;
-        cursor: pointer;
-    }    
+.logo-container img {
+    height: 80px;
+    cursor: pointer;
+}    
+.modalModUsr{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
