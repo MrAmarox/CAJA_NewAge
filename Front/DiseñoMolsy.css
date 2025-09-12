@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Cherry+Bomb+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Cherry+Bomb+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans:wght@400..700&family=Titan+One&display=swap');
 
 
 * {
@@ -18,7 +18,7 @@ body {
     background-color: black;
     text-align: center;
     padding: 0.5rem;
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
 }
 
 .divEnvio p {
@@ -50,7 +50,7 @@ header {
   background-color: transparent;
   color: #fccaca;
   outline: none;
-  font-family: "Cherry Bomb One", system-ui;
+  font-family: "Montserrat", sans-serif;
 }
 
 .buscador::placeholder {
@@ -94,7 +94,7 @@ margin-left: 0.5rem;
 }
 
 .hamburguesa-list {
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -254,7 +254,7 @@ body {
     align-items: center;
     margin: 10px 0;
     flex-wrap: wrap;
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
   }
   
   .txtclink-elementos {
@@ -274,7 +274,7 @@ body {
   }
   
   .text {
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
     color: #fccaca;
     text-align: center;
     margin-top: 15px;
@@ -303,7 +303,7 @@ body {
 }
 
 .contenido-banner .txtbanner {
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
     color: #fccaca;
 	font-size: 3.5rem;
 	font-weight: 200;
@@ -315,7 +315,7 @@ body {
 .contenido-banner a {
 	margin-top: 2rem;
 	text-decoration: none;
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
     color: #000000;
 	background-color:#fccaca;
 	display: inline-block;
@@ -349,7 +349,7 @@ body {
 }
 
 .producto-card img {
-    width: 100%;
+    width: 300px;
     height: 300px;
     object-fit: cover;
     border-radius: 12px;
@@ -357,7 +357,7 @@ body {
 }
 
 .producto-card h3 {
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
     font-size: 1.1rem;
     color: #fccaca;
     margin: 0 0 10px 0;
@@ -367,12 +367,12 @@ body {
 .producto-card p {
    
     margin: 5px 0;
-    color: #cecaca;
+    color: #ffcece;
     font-size: 0.95rem;
 }
 
 .btn-agregar {
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
     background-color:#fccaca;
     color: rgb(0, 0, 0);
     border: none;
@@ -399,9 +399,9 @@ body {
     height: 300px;
     background-image: linear-gradient(100deg, #000000, #00000020), url("Img/BannersSocks.png");
     background-repeat: no-repeat;
-    background-size: cover; /* o "100% 100%" si querés que ocupe todo sin recortes */
+    background-size: cover; /*  ocupe todo sin recortes */
     background-position: center;
-    margin: 0 auto; /* para centrarlo si querés */
+    margin: 0 auto; /* para centrarlo*/
     overflow: hidden;
 
 }
@@ -414,7 +414,8 @@ body {
 }
 
 .contenido-bannerSocks .txtbannerSocks {
-    font-family: "Cherry Bomb One", system-ui;
+    font-family: "Montserrat", sans-serif;
+    font-style: bold;
     color: #fccaca;
 	font-size: 3.5rem;
 	font-weight: 500;
@@ -422,3 +423,4 @@ body {
     text-shadow: #2b1a1a;
     
 }
+
