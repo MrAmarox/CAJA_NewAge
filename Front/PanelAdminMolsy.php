@@ -83,13 +83,14 @@ include_once "../Logica/Metodos.php";
             </form>
         </div>
     </div>
-    <div>
-        <button id="btntblUsr">OCULTAR USUARIOS</button>
-        <button id="btntblProd">OCULTAR PRODUCTOS</button>
+    <center>
+        <button class="btnblUsr" id="btntblUsr">OCULTAR USUARIOS</button>
+        <button class="btntblProd" id="btntblProd">OCULTAR PRODUCTOS</button>
+</center>
         <div id="tabUsr"></div>
         <div id="tabProd"></div>
-    </div>
-    <div id="modalModUsr" class="modal">
+    
+    <div id="modalModUsr" class="modalModUsr">
         <div class="modal-content">
             <form action="" method="post">
                 <span class="close">x</span>
@@ -101,7 +102,7 @@ include_once "../Logica/Metodos.php";
                 <label>Telefono: </label><label id="telefono"></label><br>
                 <input type="number" id="numin" name="numin"><br>
                 <label>Tipo: </label><label id="tipo"></label>
-                <select id="tipoSelect" name="tipoSelect">
+                <select class="tipoSelect" id="tipoSelect" name="tipoSelect">
                     <option value="0">Admin</option>
                     <option value="1">Cliente</option>
                     <option value="2">Empleado</option>

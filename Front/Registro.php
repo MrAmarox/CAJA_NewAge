@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
             $pas=$_POST['pass'];
             $usuario = new usuario($_POST['cedula'], $_POST['nombre'], $_POST['correo'], $_POST['telefono']);
             $usuario->RegistrarUsuario($pas);
-            header("Location:../Front/index.php");
+            header("Location:../Front/IndexMolsy.php");
         } else {
             echo '<script>alert("Las contraseñas no coinciden.");</script>';
         }
