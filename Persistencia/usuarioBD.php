@@ -19,7 +19,7 @@ class usuarioBD extends conexion {
         if ($resultado->num_rows > 0){
             while ($fila = $resultado->fetch_assoc()){
                 $usuario = new usuario($fila['Cedula'], $fila['Nombre'], $fila['Correo'], $fila['Telefono']);
-                $usuario->setTipo($fila['tipo']);
+                $usuario->setTipo($fila['Tipo']);
             }
             return $usuario;
         } else {

@@ -26,9 +26,9 @@ include_once "../Logica/Metodos.php";
                     <input type="text" name="correo">
                     <br>
                     <label>Contraseña</label>
-                    <input type="password" name="contraseña">
+                    <input type="password" name="pass">
                     <br>
-                    <input type="submit" value="Iniciar Sesión" name="Iniciar_Sesion">
+                    <input type="submit" value="Iniciar Sesión" name="submit">
                     <p> ¿No tienes cuenta de usuario? <br> Registrate para ser parte de Molsy </p>
                     <button type="button" class="btn" onclick="window.location.href='Registro.php'">Registrarse</button>
 
@@ -40,17 +40,19 @@ include_once "../Logica/Metodos.php";
 
 <?php
 include_once "../Logica/usuario.php";
-if (isset($_POST['IniciarSesion'])) {
-    $u= usuario::Login($_POST['correo'],$_POST['contraseña']);
+if (isset($_POST['submit'])) {
+    $u= usuario::Login($_POST['correo'],$_POST['pass']);
     if($u != null){
-        $_SESSION['Cliente']=$u;
+        $_SESSION['sesion']=$u;
         switch ($u->getTipo()){
             case 0:
-                header("Location:panelAdmin.php");
+                header("Location:PanelAdminMolsy.php");
                 break;
             case 1;
-                header("Location:../index.php");
+                header("Location:../indexMolsy.php");
                 break;
+            default:
+            header("Location: ../Registro.php");
         }
   
     }else{

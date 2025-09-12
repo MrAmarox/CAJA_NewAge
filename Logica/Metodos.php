@@ -10,6 +10,7 @@
         $html = '<nav id="menuhamburguesa" class="menuhamburguesa">
                 <ul class="hamburguesa-list">
                     <li><button id="cerrar" class="cerrarhamburguesa"><i class="bi bi-x-circle-fill"></i></button></li>
+                    <li><a href="../Front/Categoria.php ">Productos</a><li>
                 ';
                 foreach ($cates as $cate) {
                     $html .= $cate->menHam(); 
