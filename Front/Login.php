@@ -49,7 +49,7 @@ if (isset($_POST['IniciarSesion'])) {
                 header("Location:panelAdmin.php");
                 break;
             case 1;
-                header("Location:../index.php");
+                header("Location:../IndexMolsy.php");
                 break;
         }
   

@@ -21,10 +21,10 @@ body, html {
 
 /* LOGO */
 .logo-container {
-    width: 100%;
+    width: 200%;
     background-color: black;
     text-align: center;
-    padding: 1rem;
+    padding: 4rem;
 }
 
     .logo-container img {
