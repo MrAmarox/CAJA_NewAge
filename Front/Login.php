@@ -26,9 +26,9 @@ include_once "../Logica/Metodos.php";
                     <input type="text" name="correo">
                     <br>
                     <label>Contraseña</label>
-                    <input type="password" name="contraseña">
+                    <input type="password" name="pass">
                     <br>
-                    <input type="submit" value="Iniciar Sesión" name="Iniciar_Sesion">
+                    <input type="submit" value="Iniciar Sesión" name="submit">
                     <p> ¿No tienes cuenta de usuario? <br> Registrate para ser parte de Molsy </p>
                     <button type="button" class="btn" onclick="window.location.href='Registro.php'">Registrarse</button>
 
@@ -40,17 +40,25 @@ include_once "../Logica/Metodos.php";
 
 <?php
 include_once "../Logica/usuario.php";
-if (isset($_POST['IniciarSesion'])) {
-    $u= usuario::Login($_POST['correo'],$_POST['contraseña']);
+session_start();
+if (isset($_POST['submit'])) {
+    $u= usuario::Login($_POST['correo'],$_POST['pass']);
     if($u != null){
-        $_SESSION['Cliente']=$u;
         switch ($u->getTipo()){
             case 0:
-                header("Location:panelAdmin.php");
+                header("Location:PanelAdminMolsy.php");
+                $_SESSION['usr'] = $u;//inicia la variable usr, que almacena el objeto usuario correspondiente al usuario logueado;
                 break;
-            case 1;
-                header("Location:../IndexMolsy.php");
+            case 1:
+                header("Location:IndexMolsy.php");
+                $_SESSION['usr'] = $u;
                 break;
+            case 2:
+                header("Location:PanelAdminMolsy.php");
+                $_SESSION['usr'] = $u;
+                break;
+            default:
+            header("Location:Registro.php");
         }
   
     }else{

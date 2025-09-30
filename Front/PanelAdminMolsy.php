@@ -4,6 +4,14 @@ include_once "../Logica/Cat.php";
 include_once "../Logica/producto.php";
 include_once "../Logica/usuario.php";
 include_once "../Logica/Metodos.php";
+session_start();
+if ($_SESSION['usr']) {
+    if($_SESSION['usr']->getTipo()!==2 && $_SESSION['usr']->getTipo() !== 0){
+        header("Location:IndexMolsy.php");
+    }
+}else{
+    header("Location:IndexMolsy.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -86,14 +94,14 @@ include_once "../Logica/Metodos.php";
     <center>
         <button class="btnblUsr" id="btntblUsr">OCULTAR USUARIOS</button>
         <button class="btntblProd" id="btntblProd">OCULTAR PRODUCTOS</button>
-</center>
-        <div id="tabUsr"></div>
-        <div id="tabProd"></div>
-    
+    </center>
+    <div id="tabUsr"></div>
+    <div id="tabProd"></div>
+
     <div id="modalModUsr" class="modalModUsr">
         <div class="modal-content">
             <form action="" method="post">
-                <span class="closeusr">x</span>
+                <span class="close">x</span>
                 <label>Nombre: </label><label id="nombreUsr"></label><br>
                 <input type="text" id="nomin" name="nominusr"><br>
                 <label>CI: </label><label id="ci"></label><input type="hidden" id="c" name="cii"><br>
@@ -108,6 +116,32 @@ include_once "../Logica/Metodos.php";
                     <option value="2">Empleado</option>
                 </select><br>
                 <input type="submit" name="btnmodusr" value="Modificar">
+            </form>
+        </div>
+    </div>
+    <div id="modalModProd" class="modal">
+        <div class="modal-content">
+            <form action="" method="post">
+                <span class="close">x</span>
+                <img id="foto" src="">
+                <label>Nombre: </label><label id="nombreProd"></label><br>
+                <input type="text" id="nominp" name="nominp"><br>
+                <label>Nombre: </label><label id="nombreProd"></label><br>
+                <input type="text" id="nominp" name="nominp"><br>
+                <label>Precio: </label><label id="prec"></label><br>
+                <input type="text" id="numinp" name="numinp"><br>
+                <label>ID: </label><label id="id"></label><input type="hidden" id="idin" name="id"><br>
+                <label>Color: </label><label id="col"></label><br>
+                <input type="text" id="colin" name="colin"><br>
+                <label>Talle: </label><label id="talle"></label><br>
+                <input type="number" id="tallin" name="tallin"><br>
+                <Label>Nueva Foto:</Label> <input type="file" name="image"><br>
+                <label>Visibilidad: </label><label id="estado"></label>
+                <select id="estSelect" name="estSelect">
+                    <option value="0">Oculto</option>
+                    <option value="1">Visible</option>
+                </select><br>
+                <input type="submit" name="btnmodProd" value="Modificar">
             </form>
         </div>
     </div>
@@ -144,6 +178,14 @@ if (isset($_POST['btnmodusr'])) {
         $usr = new usuario($_POST['cii'], $_POST['nominusr'], $_POST['corrin'], $_POST['numin']);
         $usr->setTipo($_POST['tipoSelect']);
         Usuario::modUsr($usr);
+        header("Location: " . $_SERVER['PHP_SELF']);
+    }
+}
+if (isset($_POST['btnmodProd'])) {
+    if (isset($_POST['nominp']) && isset($_POST['colin']) && isset($_POST['estSelect']) && isset($_POST['tallin'])) {
+        $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], $_POST['newimg'], $_POST['subcatIDmod'], $_POST['estselect']);
+        Usuario::modUsr($usr);
+        header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
 
@@ -239,6 +281,7 @@ if (isset($_POST['btnmodusr'])) {
                     tdivP.innerHTML = ""
                     tdivP.innerHTML = htmlString
                     tdivP.style.display = "block"
+                    modalProd();
                 })
                 .catch(error => {
                     console.error("Error al obtener la tabla:", error);
@@ -250,7 +293,7 @@ if (isset($_POST['btnmodusr'])) {
         function modalUsr() {
             var modal = document.getElementById("modalModUsr");
             var btn = document.getElementById("btnmodUsr");
-            var span = document.getElementsByClassName("closeusr")[0];
+            var span = document.getElementsByClassName("close")[0];
             modal.style.display = 'none';
             document.querySelectorAll('.btnmodUsr').forEach(button => {
                 button.addEventListener('click', function() {
@@ -265,6 +308,42 @@ if (isset($_POST['btnmodusr'])) {
                     document.getElementById('telefono').innerHTML = this.dataset.tel;
                     document.getElementById('numin').value = this.dataset.tel;
                     document.getElementById('tipo').innerHTML = this.dataset.tipo;
+                    document.getElementById('foto').src = this.dataset.foto;
+                });
+            });
+            span.onclick = function() {
+                modal.style.display = "none";
+            };
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+
+        }
+
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        function modalProd() {
+            var modal = document.getElementById("modalModProd");
+            var btn = document.getElementById("btnmodProd");
+            var span = document.getElementsByClassName("close")[0];
+            modal.style.display = 'none';
+            document.querySelectorAll('.btnmodProd').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = document.getElementById("modalModProd");
+                    modal.style.display = "block"; // Populate modal fields
+                    document.getElementById('nombreProd').innerHTML = this.dataset.nombreprod;
+                    document.getElementById('nominp').value = this.dataset.nombreprod;
+                    document.getElementById('id').innerHTML = this.dataset.id;
+                    document.getElementById('idin').value = this.dataset.id;
+                    document.getElementById('color').innerHTML = this.dataset.color;
+                    document.getElementById('colin').value = this.dataset.color;
+                    document.getElementById('talle').innerHTML = this.dataset.talle;
+                    document.getElementById('tallin').value = this.dataset.talle;
+                    document.getElementById('estado').innerHTML = this.dataset.estado;
+                    document.getElementById('prec').innerHTML = this.dataset.precio;
+                    document.getElementById('numinp').value = this.dataset.precio;
                 });
             });
             span.onclick = function() {

@@ -11,38 +11,58 @@ echo ofooter();
 ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const tablaDiv = document.getElementById("tablaVehiculos");
-        const toggleBtn = document.getElementById("toggleTabla");
+        const tdiv = document.getElementById("tab");
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoria = urlParams.get("categoria") || "";
+        const subcat = urlParams.get("subcat") || "";
+
         cargarTabla();
-        var toggl = document.getElementById("btntbl");
-        var tdiv = document.getElementById("tab");
-        toggl.addEventListener("click", function() {
-            if (tdiv.style.display === "none") {
-                cargarTabla();
-                tdiv.style.display = "block";
-                toggl.innerHTML = "OCULTAR VEHICULOS";
-            } else {
-                tdiv.style.display = "none";
-                toggl.innerHTML = "MOSTRAR VEHICULOS";
-            }
-        });
-        const params = new URLSearchParams({
-            categoria: categoria,
-            subcat: subcategoria
-        });
 
         function cargarTabla() {
-            fetch("../Logica/mosProd.php?${params.toString()}")
-                .then(res => res.json()) // convierte la respuesta JSON
-                .then(htmlString => { // htmlString es un string plano con el contenido HTML
-                    tdiv.innerHTML = "";
-                    tdiv.innerHTML = htmlString;
-                    tdiv.style.display = "block";
-                    modal();
-                })
-                .catch(error => {
-                    console.error("Error al obtener la tabla:", error);
+            if (subcat != "") {
+                const params = new URLSearchParams({
+                    categoria: categoria,
+                    subcat: subcat
                 });
+                fetch(`../Logica/mosProd.php?${params.toString()}`)
+                    .then(res => res.json()) // convierte la respuesta JSON
+                    .then(htmlString => { // htmlString es un string plano con el contenido HTML
+                        tdiv.innerHTML = "";
+                        tdiv.innerHTML = htmlString;
+                        tdiv.style.display = "block";
+                        modal();
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener la tabla:", error);
+                    });
+            } else if (categoria != "") {
+                const params = new URLSearchParams({
+                    categoria: categoria
+                });
+                fetch(`../Logica/mosProd.php?${params.toString()}`)
+                    .then(res => res.json()) // convierte la respuesta JSON
+                    .then(htmlString => { // htmlString es un string plano con el contenido HTML
+                        tdiv.innerHTML = "";
+                        tdiv.innerHTML = htmlString;
+                        tdiv.style.display = "block";
+                        modal();
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener la tabla:", error);
+                    });
+            } else {
+                fetch(`../Logica/mosProd.php`)
+                    .then(res => res.json()) // convierte la respuesta JSON
+                    .then(htmlString => { // htmlString es un string plano con el contenido HTML
+                        tdiv.innerHTML = "";
+                        tdiv.innerHTML = htmlString;
+                        tdiv.style.display = "block";
+                        modal();
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener la tabla:", error);
+                    });
+            }
         }
     });
 </script>

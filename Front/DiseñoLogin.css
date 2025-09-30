@@ -7,7 +7,8 @@
     padding: 0;
 }
 
-body, html {
+body,
+html {
     width: 100%;
     min-height: 100vh;
     font-family: "Montserrat", sans-serif;
@@ -27,10 +28,10 @@ body, html {
     padding: 4rem;
 }
 
-    .logo-container img {
-        height: 80px;
-        cursor: pointer;
-    }    
+.logo-container img {
+    height: 80px;
+    cursor: pointer;
+}
 
 
 /* CONTENIDO PRINCIPAL */
@@ -69,7 +70,7 @@ form {
     color: #fccaca;
     padding: 2.5rem 2rem;
     border-radius: 2rem;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     width: 100%;
     max-width: 400px;
 }
@@ -96,6 +97,7 @@ form input[type="password"] {
     font-size: 1rem;
     outline: none;
 }
+
 .btn {
     background-color: #fccaca;
     color: black;
@@ -110,6 +112,7 @@ form input[type="password"] {
     text-align: center;
     text-decoration: none;
 }
+
 /* BOTONES */
 form input[type="submit"] {
     background-color: #fccaca;

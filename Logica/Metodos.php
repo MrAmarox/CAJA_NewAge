@@ -1,10 +1,7 @@
 <?php
     include_once "Cat.php";
-    /*$cates= [
-        new cat("Mujer",["Calzas", "Pantalones", "Canguros y Buzos", "Remeras", "Conjuntos"], true),
-        new cat("Hombre",["Pantalones", "Canguros"], true),
-        new cat("Accesorios",["Medias", "Vasos y botellas", "Acccesorios de cabello", "Bolsos"], true)
-    ];*/
+
+    //<li><a href="../Front/Categoria.php ">Productos</a><li>
     function menuhamburguesa(){
         $cates= Cat::bringCats(1);
         $html = '<nav id="menuhamburguesa" class="menuhamburguesa">

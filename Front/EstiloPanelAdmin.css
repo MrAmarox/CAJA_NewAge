@@ -112,7 +112,7 @@ td img {
     height: 80px;
     cursor: pointer;
 }    
-.modalModUsr{
+.modal{
     position: fixed;
     top: 50%;
     left: 50%;
