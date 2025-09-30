@@ -2,7 +2,7 @@
 include_once '../Logica/Metodos.php';
 include_once '../Logica/producto.php';
 echo oheader();  // Este ya incluye <html>, <head> y <body>
-//echo menuhamburguesa();
+echo menuhamburguesa();
 
 echo '
 <div class="banner-calzacele">

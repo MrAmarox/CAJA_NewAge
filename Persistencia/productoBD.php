@@ -43,11 +43,12 @@ class productoBD extends conexion{
                             p.foto,
                             p.estado,
                             sc.nombre AS subcategoria,
+                            sc.subcatID AS subcatID,
                             c.nombre AS categoria
                         FROM productos p
-                        JOIN subcategoria sc ON p.subcatID = sc.id
-                        JOIN categoria c ON sc.categoria_id = c.id
-                        WHERE c.id = ?;";
+                        JOIN subcategoria sc ON p.subcatID = sc.subcatID
+                        JOIN categoria c ON sc.catID = c.catID
+                        WHERE c.catID = ?;";
                 $stmt = $conexion->prepare($sql);
                 $stmt->bind_param("i", $param);
                 $stmt->execute();

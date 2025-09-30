@@ -5,10 +5,14 @@ include_once 'Cat.php';
     function getCatsubcatIdNamelist(){
         switch( $_GET['case'] ){
             case 1:
-                $subcats = SubCat::bringSubcats();
+                $cats = Cat::bringCats(1);
                 $html = '';
-                foreach($subcats as $cat){
-                    $html.='<option value="'. $cat->getId().'">'. $cat->getNombre().'</option>';
+                foreach($cats as $cat){
+                    $html.= '<optgroup label="'.$cat->getName().'">';
+                    foreach($cat->getSubcat() as $subcat){
+                        $html.='<option value="'. $subcat->getId().'">'. $subcat->getNombre().'</option>';
+                    }
+                    $html.= '</optgroup>';
                 }
                 return $html;
             case 2:

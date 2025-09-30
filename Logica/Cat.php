@@ -19,14 +19,20 @@ class cat {
 
 
     public function menHam(){
+      if($this->estado==1){
         $html = '<li class="itemdemenu"><a href="../Front/Categoria.php?categoria='.$this->id.'">'.$this->nombre.'</a>
                 <ul class="menuvertical">';
         foreach ($this->subcat as $nscat){
+          if($nscat->getEstado()==1){
             $html .= '<li><a href="../Front/Categoria.php?categoria='.$this->id.'&subcat='.$nscat->getID().'">'.$nscat->getNombre().'</a></li>';
+          }
         }
         $html .= '</ul>
             </li>';
         return $html;
+      }else{
+        return null;
+      }
     }
     public static function bringCats($case){
         $CBD = new catSubCatBD();

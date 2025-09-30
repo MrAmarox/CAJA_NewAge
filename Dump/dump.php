@@ -49,7 +49,7 @@
         }
     }*/
 
-    /*switch (catExis($categoria, $subcategoria)) {
+/*switch (catExis($categoria, $subcategoria)) {
         case 0:
             $html= '<h1 style="text-align:center;">UPS... ESTA CATEGORÍA NO EXISTE</h1>';
             break;
@@ -71,4 +71,9 @@
             $html = '<h1 style="text-align:center;">UPS... ESTA SUBCATEGORÍA NO EXISTE</h1><br><h1 style="text-align:center;">ESPERE Y SERÁ REDIRIGIDO A LA CATEGORÍA PRINCIPAL.</h1>';
             break;
     }*/
+    /*$cates= [
+        new cat("Mujer",["Calzas", "Pantalones", "Canguros y Buzos", "Remeras", "Conjuntos"], true),
+        new cat("Hombre",["Pantalones", "Canguros"], true),
+        new cat("Accesorios",["Medias", "Vasos y botellas", "Acccesorios de cabello", "Bolsos"], true)
+        ];*/
 ?>

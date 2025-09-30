@@ -40,19 +40,25 @@ include_once "../Logica/Metodos.php";
 
 <?php
 include_once "../Logica/usuario.php";
+session_start();
 if (isset($_POST['submit'])) {
     $u= usuario::Login($_POST['correo'],$_POST['pass']);
     if($u != null){
-        $_SESSION['sesion']=$u;
         switch ($u->getTipo()){
             case 0:
                 header("Location:PanelAdminMolsy.php");
+                $_SESSION['usr'] = $u;//inicia la variable usr, que almacena el objeto usuario correspondiente al usuario logueado;
                 break;
-            case 1;
-                header("Location:../indexMolsy.php");
+            case 1:
+                header("Location:IndexMolsy.php");
+                $_SESSION['usr'] = $u;
+                break;
+            case 2:
+                header("Location:PanelAdminMolsy.php");
+                $_SESSION['usr'] = $u;
                 break;
             default:
-            header("Location: ../Registro.php");
+            header("Location:Registro.php");
         }
   
     }else{
