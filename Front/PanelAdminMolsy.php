@@ -98,7 +98,9 @@ if ($_SESSION['usr']) {
     <div id="tabUsr"></div>
     <div id="tabProd"></div>
 
-    <div id="modalModUsr" class="modalModUsr">
+
+<!--Modal USUARIO -->
+    <div id="modalModUsr" class="modal">
         <div class="modal-content">
             <form action="" method="post">
                 <span class="close">x</span>
@@ -119,6 +121,8 @@ if ($_SESSION['usr']) {
             </form>
         </div>
     </div>
+
+<!--Modal PRODUCTO -->
     <div id="modalModProd" class="modal">
         <div class="modal-content">
             <form action="" method="post">
@@ -194,12 +198,12 @@ if (isset($_POST['btnmodProd'])) {
     document.addEventListener("DOMContentLoaded", function() {
         var selsub = document.getElementById('subcatSelect');
         var selcat = document.getElementById('catSelect');
-        /*selsub.addEventListener('click', function() {
+        selsub.addEventListener('click', function() {
             cargarselectSubcats();
         });
         selcat.addEventListener('click', function() {
             cargarselectCats();
-        });*/
+        });
         cargarselectCats();
         cargarselectSubcats();
         cargarTablaUsuarios();

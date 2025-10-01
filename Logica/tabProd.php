@@ -15,6 +15,7 @@ function tabProd()
                 <th> Talle </th>
                 <th> Subcategoría </th>
                 <th> Foto </th>
+                <th> Acciones </th>
             </tr>";
     
     if (!empty($prods)) {
@@ -24,10 +25,17 @@ function tabProd()
                 <tr>
                     <td>" . $prod->getNombre() . "</td>
                     <td>" . $prod->getColor() . "</td>
-                    <td>$" . $prod->getPrecio() . "</td>
+                    <td>" . $prod->getPrecio() . "</td>
                     <td>" . $prod->getTalle() . "</td>
                     <td>" . $SubCat->getNombre() . "</td>
                     <td><img src='../Front/Img/".$prod->getFoto()."'></td>
+                         <td><button class='btnmodProd'
+                            data-nombreprod='" . htmlspecialchars($prod->getNombre()) . "'
+                            data-color='" . htmlspecialchars($prod->getColor()) . "'
+                            data-precio='" . htmlspecialchars($prod->getPrecio()) . "'
+                            data-talle='" . htmlspecialchars($prod->getTalle()) . "'
+                            data-subcat='" . htmlspecialchars($prod->getNombre()) . "'
+                        >Modificar</button></td>
                 </tr>";
         }
         $html .= "</table>";

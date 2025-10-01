@@ -17,19 +17,19 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 2rem 1rem;
+   
 }
 
 /* LOGO */
 .logo-container {
-    width: 200%;
+    width: 120%;
     background-color: black;
     text-align: center;
-    padding: 4rem;
+    padding: 1.5rem;
 }
 
 .logo-container img {
-    height: 80px;
+    height: 200px;
     cursor: pointer;
 }
 

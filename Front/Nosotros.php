@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros - Molsy Store</title>
     <link rel="stylesheet" href="EstiloNosotros.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="logo-container">
+        <a href="IndexMolsy.php"> <img src="Img/logo.png" alt="logo" > </a>
+        </div>
+
     <header>
+
         <div class="titulo-conteiner">
         <h1>Sobre Nosotros</h1>
 </div>
     </header>
+    <center>
     <section class="bloque">
         <div class="texto">
             <h2>Nuestros Comienzos</h2>
@@ -23,6 +28,7 @@
         </div>
         <img src="img/molsy.jpg" alt="Catalina, fundadora">
     </section>
+
 
     <section class="bloque">
     <img src="img/fam.jpg" alt="Inauguración con familia y amigos">
@@ -60,9 +66,11 @@
         </div>
         <img src="img/vision.jpg" alt="Visión y crecimiento">
     </section>
+    </center>
+
 
     <footer>
-        <p>Gracias por estar acá. Cada compra y cada mensaje cuenta. Seguiremos creciendo para darte lo mejor, siempre.</p>
+        <p>Gracias por estar acá. Cada compra y cada mensaje cuenta. <br> Seguiremos creciendo para darte lo mejor, siempre.</p>
     </footer>
 </body>
 </html>

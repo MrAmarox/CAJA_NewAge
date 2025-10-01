@@ -68,9 +68,9 @@
         
                 <ul class="textos-clink">
                     <li class="txtclink-elementos"><a href="http://localhost/proyecto/Front/IndexMolsy.php" class="menu-icon">Inicio</a></li>
-                    <li class="txtclink-elementos"><a href="http://localhost/proyecto/Front/Login.php" class="menu-icon">Cuenta</a></li>
+                    <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/Login.php" class="menu-icon">Cuenta</a></li>
                     <li class="txtclink-elementos"><a href="" class="menu-icon">Contacto</a></li>
-                    <li class="txtclink-elementos"><a href="C:\Users\56846014\Documents\GitHub\CAJA_NewAge\Front\Nosotros.php" class="menu-icon">Sobre Nosotros</a></li>
+                    <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/nosotros.php" class="menu-icon">Sobre Nosotros</a></li>
                 </ul>
         
                 <p class="text">@2025 | Todos los derechos reservados</p>
