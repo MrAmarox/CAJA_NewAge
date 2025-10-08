@@ -9,11 +9,11 @@ class Producto {
     private $foto;
     private $subcatID;
     private $estado;
-    
+
     public function getIDProducto(){
         return $this->IDProducto;
     }
-        
+
     public function setIDProducto($IDProducto){
         $this->IDProducto=$IDProducto;
     }
@@ -73,7 +73,7 @@ class Producto {
     public function setEstado($value){
         $this->estado = $value;
     }
-    
+
     public function __construct($name, $precio, $color, $talle, $foto, $subcatID, $estado) {
         $this->nombre=$name;
         $this->precio=$precio;
@@ -97,5 +97,5 @@ class Producto {
     }
 
 
-    
+
 }

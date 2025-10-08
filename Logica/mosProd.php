@@ -14,12 +14,12 @@ include_once 'producto.php';
             $html = "<div class='productos-container'>";
             if(!empty($prods)){
                 foreach ($prods as $producto) {
-                    $html .= "<div class='producto-card'>";
-                    $html .= "<img src='Img/" . $producto->getFoto() . "' alt='Producto'>";
-                    $html .= "<h3>" . $producto->getNombre() . " - " . $producto->getPrecio() . "</h3>";
-                    $html .= "<p>Color: " . $producto->getColor() . "</p>";
-                    $html .= "<p>Talle: " . $producto->getTalle() . "</p>";
-                    $html .= "<button class='btn-agregar'><i class='bi bi-cart-plus'></i> Agregar al carrito</button>";
+                    $html .= '<div class="producto-card">';
+                    $html .= '<img src="Img/' . $producto->getFoto() . '" alt="Producto">';
+                    $html .= '<h3>' . $producto->getNombre() . ' - ' . $producto->getPrecio() . '</h3>';
+                    $html .= '<p>Color: ' . $producto->getColor() . '</p>';
+                    $html .= '<p>Talle: ' . $producto->getTalle() . '</p>';
+                    $html .= '<button class = "" id ="'. $producto->getIDProducto() .'"> Agregar al carrito </button>';
                     $html .= "</div>";
                 }
             }else{
@@ -32,4 +32,4 @@ include_once 'producto.php';
 
     // Salida en formato JSON
     echo json_encode(mosprod());
-?>
+?> [idprod=>unidades, ]

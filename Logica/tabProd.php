@@ -17,7 +17,7 @@ function tabProd()
                 <th> Foto </th>
                 <th> Acciones </th>
             </tr>";
-    
+
     if (!empty($prods)) {
         foreach ($prods as $prod) {
             $SubCat = SubCat::bringSubcat($prod->getSubcatID());
@@ -29,7 +29,7 @@ function tabProd()
                     <td>" . $prod->getTalle() . "</td>
                     <td>" . $SubCat->getNombre() . "</td>
                     <td><img src='../Front/Img/".$prod->getFoto()."'></td>
-                         <td><button class='btnmodProd'
+                        <td><button class='btnmodProd'
                             data-nombreprod='" . htmlspecialchars($prod->getNombre()) . "'
                             data-color='" . htmlspecialchars($prod->getColor()) . "'
                             data-precio='" . htmlspecialchars($prod->getPrecio()) . "'

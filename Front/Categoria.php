@@ -2,6 +2,7 @@
 include '../Logica/Metodos.php';
 echo oheader();
 echo menuhamburguesa();
+echo ocart();
 ?>
 <div id="tab"></div>
 
@@ -10,7 +11,7 @@ echo '<main style="min-height: 20vh;"></main>';
 echo ofooter();
 ?>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const tdiv = document.getElementById("tab");
         const urlParams = new URLSearchParams(window.location.search);
         const categoria = urlParams.get("categoria") || "";
