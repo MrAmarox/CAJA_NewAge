@@ -129,9 +129,9 @@ if ($_SESSION['usr']) {
     <div id="modalModProd" class="modal">
         <div class="modal-content">
             <form action="" method="post">
-                <span class="close">x</span>
+                <span class="closep">x</span>
                 <img id="foto" src="">
-                <label>Nombre: </label><label id="nombreProd"></label><br>
+                <label>Foto: </label><label id="nombreProd"></label><br>
                 <input type="text" id="nominp" name="nominp"><br>
                 <label>Nombre: </label><label id="nombreProd"></label><br>
                 <input type="text" id="nominp" name="nominp"><br>
@@ -332,14 +332,14 @@ if (isset($_POST['btnmodProd'])) {
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         function modalProd() {
-            var modal = document.getElementById("modalModProd");
+            var modalp = document.getElementById("modalModProd");
             var btn = document.getElementById("btnmodProd");
-            var span = document.getElementsByClassName("close")[0];
-            modal.style.display = 'none';
+            var spanp = document.getElementsByClassName("closep")[0];
+            modalp.style.display = 'none';
             document.querySelectorAll('.btnmodProd').forEach(button => {
                 button.addEventListener('click', function() {
-                    const modal = document.getElementById("modalModProd");
-                    modal.style.display = "block"; // Populate modal fields
+                    const modalp = document.getElementById("modalModProd");
+                    modalp.style.display = "block"; // Populate modal fields
                     document.getElementById('nombreProd').innerHTML = this.dataset.nombreprod;
                     document.getElementById('nominp').value = this.dataset.nombreprod;
                     document.getElementById('id').innerHTML = this.dataset.id;
@@ -353,12 +353,12 @@ if (isset($_POST['btnmodProd'])) {
                     document.getElementById('numinp').value = this.dataset.precio;
                 });
             });
-            span.onclick = function() {
-                modal.style.display = "none";
+            spanp.onclick = function() {
+                modalp.style.display = "none";
             };
             window.onclick = function(event) {
                 if (event.target == modal) {
-                    modal.style.display = "none";
+                    modalp.style.display = "none";
                 }
             };
 
