@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Cherry+Bomb+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pixelify+Sans:wght@400..700&family=Titan+One&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: #fccaca;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fccaca;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #fccaca;
+    text-align: center;
+}
+
+
+.logo-container {
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    padding: 1rem;
+}
+
+.logo-container img {
+    height: 80px;
+    cursor: pointer;
+}    
+
+/* BOTON CERRAR SESION */
+.cerrarS {
+    background-color: #fccaca;
+    color: black;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    margin: 0.5rem auto;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cerrarS:hover {
+    background-color: #f7a8a8;
+    transform: scale(1.05);
+}
+
+
+/* ---------- TABLA DE USUARIO ---------- */
+.tabla-usuarios {
+    margin: 40px auto;
+    border-collapse: collapse;
+    width: 70%;
+    max-width: 700px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(214, 51, 132, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Encabezado */
+.tabla-usuarios th {
+    background-color: #ffb6c1;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Filas */
+.tabla-usuarios td {
+    padding: 10px;
+    border-bottom: 1px solid #ffe4ec;
+}
+
+/* Última fila sin borde */
+.tabla-usuarios tr:last-child td {
+    border-bottom: none;
+}
+
+/* Hover efecto */
+.tabla-usuarios tr:hover {
+    background-color: #fff0f5;
+}
+
+/* ---------- BOTÓN MODIFICAR ---------- */
+.btnmodUsr {
+    background-color: #f48fb1;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btnmodUsr:hover {
+    background-color: #ec407a;
+}
+
+
+/* ---------- MODAL ---------- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: (0, 0, 0, 0.6); /* Fondo gris oscuro sin transparencia */
+    padding-top: 80px;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #2b2b2b; /* Gris un poco más claro para contraste */
+    margin: auto;
+    padding: 25px 30px;
+    border-radius: 15px;
+    width: 320px;
+    box-shadow: 0 0 20px rgba(255, 192, 203, 0.2);
+    color: #ffb6c1; /* Rosado en el texto */
+    position: relative;
+    text-align: left;
+    border: 1px solid #ffb6c1;
+}
+
+/* Botón de cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffb6c1;
+}
+
+.close:hover {
+    color: #ffffff;
+}
+
+/* Inputs dentro del modal */
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 15px 0;
+    border: 1px solid #ffb6c1;
+    border-radius: 8px;
+    background-color: #1c1c1c;
+    color: #ffb6c1;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="email"]:focus,
+.modal-content input[type="number"]:focus {
+    outline: none;
+    border-color: #ffa6b8;
+    background-color: #222;
+}
+
+/* Botón Guardar */
+.modal-content input[type="submit"] {
+    background-color: #ffb6c1;
+    color: #1c1c1c;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-weight: bold;
+}
+
+.modal-content input[type="submit"]:hover {
+    background-color: #ffa6b8;
+    transform: scale(1.03);
+}
