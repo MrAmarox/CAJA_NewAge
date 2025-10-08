@@ -76,6 +76,15 @@ margin-left: 0.5rem;
 }
 
 .user{
+margin-left: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: #fccaca;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.Puser{
     margin-left: 0.5rem;
   border: none;
   background-color: transparent;
@@ -83,6 +92,7 @@ margin-left: 0.5rem;
   font-size: 1.5rem;
   cursor: pointer;
 }
+
 .menuhori {
     background-color: #000000;
     width: 100%;

@@ -91,10 +91,13 @@ if ($_SESSION['usr']) {
             </form>
         </div>
     </div>
+    
     <center>
         <button class="btnblUsr" id="btntblUsr">OCULTAR USUARIOS</button>
         <button class="btntblProd" id="btntblProd">OCULTAR PRODUCTOS</button>
     </center>
+
+<!--TABLAS USUARIO Y PRODUCTO -->
     <div id="tabUsr"></div>
     <div id="tabProd"></div>
 
