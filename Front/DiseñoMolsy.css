@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+#tab{
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
@@ -330,7 +334,7 @@ body {
 /* productos y cards */
 .productos-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: min-content;
     gap: 20px;
     padding: 40px;
     max-width: 1200px;
@@ -338,11 +342,13 @@ body {
 }
 
 .producto-card {
+    display: flex;
+    flex-direction: column;
     background-color: #000000;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 20px;
-    text-align: center;
+    align-items: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -482,7 +488,7 @@ body {
 }
 :root{
     --main-text:  #fccaca ;
-    --muted-text: #6b6b6b;
+    --muted-text: #fccaca;
     --accent: #a95199;
     --bg: #000000;
     --card-bg: #000000;
@@ -534,18 +540,21 @@ form.cart.site-cart-form{background:transparent;
 }
 
 /* Thumbnail / imagen */
-.thumbnail{display:block;
+.thumbnail{
+    display:block;
     flex:0 0 64px
 }
-.lazy-image-small{position:relative;
-    width:64px;
-    height:64px;
+.lazy-image-small{
+    position:relative;
+    width:100px;
+    height:100px;
     overflow:hidden;
     border-radius:6px;
     border:var(--cart-image-border);
     background:rgba(0,0,0,0.02)
 }
-.lazy-image-small img{width:100%;
+.lazy-image-small img{
+    width:100%;
     height:100%;
     object-fit:cover;
     display:block
@@ -621,12 +630,13 @@ cart-product-quantity{
 
 /* Input cantidad */
 .qty.qty-selector.product__quantity{
+    color: #fccaca;
     width:58px;
     height:30px;
     border:1px solid rgba(0,0,0,0.06);
     border-radius:6px;
     text-align:center;
-    font-size:0.95rem;
+    font-size:1.5rem;
     background:transparent;
 }
 .qty.qty-selector.product__quantity::-webkit-outer-spin-button,
@@ -636,7 +646,7 @@ cart-product-quantity{
 }
 
 /* Remove link */
-.remove{
+.eliminardelcarrito{
     text-decoration:none;
     color:var(--muted-text);
     font-size:0.85rem;

@@ -11,14 +11,14 @@ cerrar.addEventListener ("click", () => {
 })
 
 /*--------------------Carrito-----------------*/
-document.addEventListener('click', function(e) {
-    if(e.target && e.target.classList.contains('btnaggcarrito')) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const idProducto = e.target.getAttribute('data-idproducto');
+document.addEventListener('click', function(event) {
+    if(event.target && event.target.classList.contains('btnaggcarrito')) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const idProducto = event.target.getAttribute('data-idproducto');
         console.log('ID Producto:', idProducto);
-        
+
         // Agregar producto al carrito
         fetch('../logica/agregarcarrito.php', {
             method: 'POST',
@@ -30,13 +30,12 @@ document.addEventListener('click', function(e) {
         .then(res => res.json())
         .then(data => {
             if(data.success) {
-                alert('Producto agregado al carrito');
-                
                 // Si el carrito está abierto, actualizarlo
                 const cartElement = document.getElementById("myCart");
-                if(cartElement && cartElement.style.width === "500px") {
+                if(cartElement && cartElement.style.width === "600px") {
                     cargarProductosCarrito();
                 }
+
             } else {
                 alert('Error: ' + data.message);
             }
@@ -59,8 +58,6 @@ function openCart() {
 
 // Función para cargar los productos del carrito
 function cargarProductosCarrito() {
-    console.log('Cargando productos del carrito...');
-    
     fetch('../Logica/listcart.php')
         .then(res => res.json())
         .then(data => {
@@ -87,3 +84,21 @@ function closeCart() {
         cartElement.style.width = "0";
     }
 }
+
+document.addEventListener('click', function(event){
+    if(event.target.classList.contains('eliminardelcarrito')){
+        const idprod = event.target.getAttribute('data-idproducto');
+        console.log('click capturado');
+        fetch('../logica/eliminarcarrito.php', {
+            method:'POST',
+            headers: {'content-type':'application/x-www-form-urlencoded'},
+            body: 'idproducto=' + encodeURIComponent(idprod)
+        })
+        .then(res =>res.json())
+        .then(data => {
+            if(data.success){
+                cargarProductosCarrito();
+            }
+        })
+    }
+})

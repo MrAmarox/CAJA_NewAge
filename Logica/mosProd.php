@@ -16,7 +16,7 @@ include_once 'producto.php';
                 foreach ($prods as $producto) {
                     $html .= '<div class="producto-card">';
                     $html .= '<img src="Img/' . $producto->getFoto() . '" alt="Producto">';
-                    $html .= '<h3>' . $producto->getNombre() . ' - ' . $producto->getPrecio() . '</h3>';
+                    $html .= '<h3>' . $producto->getNombre() . ' - $' . $producto->getPrecio() . '</h3>';
                     $html .= '<p>Color: ' . $producto->getColor() . '</p>';
                     $html .= '<p>Talle: ' . $producto->getTalle() . '</p>';
                     $html .= '<button class = "btnaggcarrito"
