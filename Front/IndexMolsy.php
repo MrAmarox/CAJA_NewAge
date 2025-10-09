@@ -4,7 +4,6 @@ include_once '../Logica/producto.php';
 echo oheader();  // Este ya incluye <html>, <head> y <body>
 echo menuhamburguesa();
 echo ocart();
-
 echo '
 <div class="banner-calzacele">
     <div class="contenido-banner">

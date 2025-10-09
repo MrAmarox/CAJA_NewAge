@@ -17,7 +17,7 @@ function menuhamburguesa()
                     <li class="novisi"><a href="#">Cuenta</a></li>
                     <li class="novisi"><a href="#">Emprendimiento</a></li>
         ';
-    $html .= '  
+    $html .= '
             </ul>
         </nav>
         ';
@@ -60,51 +60,22 @@ function oheader()
 }
 function ocart()
 {
-    $html= '<div id="myCart" class="Cart">
+    session_start();
+    
+    $html = '<div id="myCart" class="Cart">
             <a href="javascript:void(0)" class="closebtn" onclick="closeCart()">
                 <i class="bi bi-x-circle"></i>
-            </a>';
-
-
-    if (empty($carrito)) {
-        $html .= '
-            <p>El carrito está vacío</p>';
+            </a>
+            <div class="cart-holder" id="cart-content">';
     
-        $html .='<div class="top">
-  <form id="cart" class="cart site-cart-form" action="/cart" method="post" novalidate>
-    <div class="cart-holder" data-items="2">
-      <div class="cart-items">
-        <div class="cart-item" data-js-cart-item data-variant="123" data-product-id="456" data-qty="1">
-          <a class="thumbnail" href="/product/123">
-            <figure class="lazy-image-small" style="padding-top:100%">
-              <img class="product-thumb" src="..." alt="...">
-            </figure>
-          </a>
-          <div class="content">
-            <a class="item-title" href="/product/123"><span class="underline-animation">Producto</span></a>
-            <div class="item-price text-size--smaller"><strong>$0.00</strong></div>
-            <div class="actions">
-              <product-quantity class="quantity-selector-holder">
-                <cart-product-quantity>
-                  <button class="qty-button qty-minus" type="button">-</button>
-                  <label class="visually-hidden" for="updates_123">Quantity</label>
-                  <input id="updates_123" class="qty qty-selector product__quantity" name="updates[]" type="number" min="0" value="1" data-href="/cart/change?line=1&quantity=$qty">
-                  <button class="qty-button qty-plus" type="button">+</button>
-                </cart-product-quantity>
-              </product-quantity>
-              <a class="remove text-size--smallest" href="#" data-href="/cart/change?line=1&quantity=0">Remove</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-  <span class="hidden" aria-hidden="true" data-cart-count>2</span>
-</div>
-        ';
+    if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
+        $html .= '<p>Cargando productos...</p>';
+    } else {
+        $html .= '<p>El carrito está vacío</p>';
     }
-    $html .= '<script src="../Front/Script.js"></script>
-        </div>';
+    
+    $html .= '</div></div>';
+    
     return $html;
 }
 
@@ -131,6 +102,7 @@ function ofooter()
 
             <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
             <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            <script src="../Front/Script.js"></script>
         </body>
         </html>
         ';
@@ -167,4 +139,4 @@ function CargarImagen()
     }
 }
 
-?> 
+?>

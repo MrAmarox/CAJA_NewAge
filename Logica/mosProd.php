@@ -19,7 +19,8 @@ include_once 'producto.php';
                     $html .= '<h3>' . $producto->getNombre() . ' - ' . $producto->getPrecio() . '</h3>';
                     $html .= '<p>Color: ' . $producto->getColor() . '</p>';
                     $html .= '<p>Talle: ' . $producto->getTalle() . '</p>';
-                    $html .= '<button class = "" id ="'. $producto->getIDProducto() .'"> Agregar al carrito </button>';
+                    $html .= '<button class = "btnaggcarrito"
+                            data-idproducto="'. htmlspecialchars($producto->getIDProducto()).'"> Agregar al carrito</button>';
                     $html .= "</div>";
                 }
             }else{
@@ -32,4 +33,4 @@ include_once 'producto.php';
 
     // Salida en formato JSON
     echo json_encode(mosprod());
-?> [idprod=>unidades, ]
+?>
