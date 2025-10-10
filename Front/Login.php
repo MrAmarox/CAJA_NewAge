@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['usr'] = $u;//inicia la variable usr, que almacena el objeto usuario correspondiente al usuario logueado;
                 break;
             case 1:
-                header("Location:IndexMolsy.php");
+                header("Location:PanelUser.php");
                 $_SESSION['usr'] = $u;
                 break;
             case 2:

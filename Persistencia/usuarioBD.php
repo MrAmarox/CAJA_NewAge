@@ -45,6 +45,22 @@ class usuarioBD extends conexion {
             return null;
         }
     }
+    public function getUsrWCI($ci){
+        $con = $this->getConexion();
+        $sql = 'select * from usuario where Cedula=?';
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param('i',$ci);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($res->num_rows > 0) {
+            $fila = $res->fetch_assoc();
+            $usuario = new usuario($fila['Cedula'], $fila['Nombre'], $fila['Correo'], $fila['Telefono']);
+            $usuario->setTipo($fila['Tipo']);
+            return $usuario;
+        } else {
+            return null;
+        }
+    }
     public function modUsr($usr){
         $nom=$usr->getNombre();
         $corr= $usr->getCorreo();
@@ -58,6 +74,17 @@ class usuarioBD extends conexion {
         if($stmt->execute()){
             return true;
         }else{
+            return false;
+        }
+    }
+    public function modPass($pass, $ci){
+        $con = $this->getConexion();
+        $sql='UPDATE usuario SET Pass = ? WHERE Cedula = ?';
+        $stmt=$con->prepare($sql);
+        $stmt->bind_param('si', $pass, $ci);
+        if ($stmt->execute()) {
+            return true;
+        } else {
             return false;
         }
     }
@@ -137,9 +164,27 @@ class usuarioBD extends conexion {
 
 
         } catch (Exception $e) {
-            return $e->getMessage() ?: "Error desconocido al remover usuario.";
+            return $e->getMessage() ?: "Error desconocido al remover usuario, consulte con mantenimiento.";
         }
     }
     
-    
+    public function checkPass($ci,$pass){
+
+        $con = $this->getConexion();
+        $sql = "select * from usuario where Cedula=? and pass=?";
+        $stmt = $con->prepare($sql);
+
+        $stmt->bind_param("is", $ci, $pass);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+
+
+        if ($resultado->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

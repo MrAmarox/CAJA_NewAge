@@ -6,10 +6,10 @@ include_once "../Logica/usuario.php";
 include_once "../Logica/Metodos.php";
 session_start();
 if ($_SESSION['usr']) {
-    if($_SESSION['usr']->getTipo()!==2 && $_SESSION['usr']->getTipo() !== 0){
+    if ($_SESSION['usr']->getTipo() !== 2 && $_SESSION['usr']->getTipo() !== 0) {
         header("Location:IndexMolsy.php");
     }
-}else{
+} else {
     header("Location:IndexMolsy.php");
 }
 ?>
@@ -91,15 +91,18 @@ if ($_SESSION['usr']) {
             </form>
         </div>
     </div>
+
     <center>
         <button class="btnblUsr" id="btntblUsr">OCULTAR USUARIOS</button>
         <button class="btntblProd" id="btntblProd">OCULTAR PRODUCTOS</button>
     </center>
+
+    <!--TABLAS USUARIO Y PRODUCTO -->
     <div id="tabUsr"></div>
     <div id="tabProd"></div>
 
 
-<!--Modal USUARIO -->
+    <!--Modal USUARIO -->
     <div id="modalModUsr" class="modal">
         <div class="modal-content">
             <form action="" method="post">
@@ -122,14 +125,13 @@ if ($_SESSION['usr']) {
         </div>
     </div>
 
-<!--Modal PRODUCTO -->
+    <!--Modal PRODUCTO -->
     <div id="modalModProd" class="modal">
         <div class="modal-content">
             <form action="" method="post">
                 <span class="closep">x</span>
                 <img id="foto" src="">
-                <label>Foto: </label><label id="nombreProd"></label><br>
-                <input type="text" id="nominp" name="nominp"><br>
+                <label>Foto: </label><label id="fotoProd"></label><br>
                 <label>Nombre: </label><label id="nombreProd"></label><br>
                 <input type="text" id="nominp" name="nominp"><br>
                 <label>Precio: </label><label id="prec"></label><br>
@@ -341,7 +343,7 @@ if (isset($_POST['btnmodProd'])) {
                     document.getElementById('nominp').value = this.dataset.nombreprod;
                     document.getElementById('id').innerHTML = this.dataset.id;
                     document.getElementById('idin').value = this.dataset.id;
-                    document.getElementById('color').innerHTML = this.dataset.color;
+                    document.getElementById('col').innerHTML = this.dataset.color;
                     document.getElementById('colin').value = this.dataset.color;
                     document.getElementById('talle').innerHTML = this.dataset.talle;
                     document.getElementById('tallin').value = this.dataset.talle;
@@ -355,7 +357,7 @@ if (isset($_POST['btnmodProd'])) {
             };
             window.onclick = function(event) {
                 if (event.target == modal) {
-                    modalp.style.display = "none";
+                    modal.style.display = "none";
                 }
             };
 
