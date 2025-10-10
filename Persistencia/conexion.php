@@ -2,7 +2,7 @@
 class conexion{
     private $servername = "localhost";
     private $username = "root";
-    private $password = "root";
+    private $password = "";
     private $dbname = "molsy";
     private $conn;
     //funcion del constructor conexion
