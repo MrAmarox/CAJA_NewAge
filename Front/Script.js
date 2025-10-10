@@ -102,3 +102,34 @@ document.addEventListener('click', function(event){
         })
     }
 })
+
+document.addEventListener('click', function(event){
+    if(event.target.classList.contains('qty-plus')){
+        const idprod = event.target.getAttribute('data-idproducto');
+        fetch('../logica/agregarcarrito.php', {
+            method:'POST',
+            headers: {'content-type':'application/x-www-form-urlencoded'},
+            body: 'idproducto=' + encodeURIComponent(idprod) + '&accion=incrementar'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                cargarProductosCarrito();
+            }
+        })
+    }
+    if(event.target.classList.contains('qty-minus')){
+        const idprod = event.target.getAttribute('data-idproducto');
+        fetch('../logica/agregarcarrito.php', {
+            method:'POST',
+            headers: {'content-type':'application/x-www-form-urlencoded'},
+            body: 'idproducto=' + encodeURIComponent(idprod) + '&accion=decrementar'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                cargarProductosCarrito();
+            }
+        })
+    }
+})
