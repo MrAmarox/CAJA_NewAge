@@ -56,13 +56,29 @@ class usuario{
     $uBD= new UsuarioBD();
     return $uBD->modUsr($usr);
   }
+  public static function modPass($pass, $ci){
+    include_once '../Persistencia/usuarioBD.php';
+    $uBD= new UsuarioBD();
+    return $uBD->modPass($pass, $ci);
+  }
   //Metodo login
   public static function Login($corr, $pas){
     include_once "../Persistencia/usuarioBD.php";
     $uBd= new UsuarioBD();
-    return $uBd->Login($corr, $pas);
+    return $uBd->Login( $corr, $pas);
   }
 
+  public static function getUsrWCI($ci){
+    include_once '../Persistencia/usuarioBD.php';
+    $uBD= new UsuarioBD();
+    return $uBD->getUsrWCI($ci);
+  }
+
+  public static function checkPass($ci, $pas){
+    include_once "../Persistencia/usuarioBD.php";
+    $uBd = new UsuarioBD();
+    return $uBd->checkPass($ci, $pas);
+  }
   public function RegistrarUsuario($pas){
     if($this->tipo==null){
       $this->tipo= 1;

@@ -18,26 +18,14 @@ $html = "<div>
             <th>Cédula</th>
             <th>Celular</th>
             <th>Correo</th>
-            <th>Contraseña </th>
-            <th>Acciones</th>
         </tr>";
 
 $html .= '
     <tr>
-        <td>' . htmlspecialchars($usuario->getNombre()) . '</td>
-        <td>' . htmlspecialchars($usuario->getCedula()) . '</td>
-        <td>' . htmlspecialchars($usuario->getTelefono()) . '</td>
-        <td>' . htmlspecialchars($usuario->getCorreo()) . '</td>
-        <td>' . htmlspecialchars($usuario->getPass()) . '</td>
-        <td>
-            <button class="btnmodUsr"
-                data-nombreusr="' . htmlspecialchars($usuario->getNombre()) . '"
-                data-ci="' . htmlspecialchars($usuario->getCedula()) . '"
-                data-corr="' . htmlspecialchars($usuario->getCorreo()) . '"
-                data-tel="' . htmlspecialchars($usuario->getTelefono()) . '"
-                data-pass="' . htmlspecialchars($usuario->getPass()) . '"
-            >Modificar</button>
-        </td>
+        <td data-nombreusr="' . htmlspecialchars($usuario->getNombre()) . '">' . htmlspecialchars($usuario->getNombre()) . '</td>
+        <td data-ci="' . htmlspecialchars($usuario->getCedula()) . '">' . htmlspecialchars($usuario->getCedula()) . '</td>
+        <td data-tel="' . htmlspecialchars($usuario->getTelefono()) . '">' . htmlspecialchars($usuario->getTelefono()) . '</td>
+        <td data-corr="' . htmlspecialchars($usuario->getCorreo()) . '">' . htmlspecialchars($usuario->getCorreo()) . '</td>
     </tr>
     </table>
 </div>';

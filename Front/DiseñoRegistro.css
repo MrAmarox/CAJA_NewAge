@@ -84,7 +84,7 @@ form label {
 
 /* INPUTS */
 form input[type="text"],
-form input[type="password"], form input[type="number"], form input[type="email"]{
+form input[type="password"],  form input[type="email"]{
     width: 100%;
     padding: 1rem;
     margin-bottom: 1.5rem;
@@ -95,6 +95,26 @@ form input[type="password"], form input[type="number"], form input[type="email"]
     font-family: "Montserrat", sans-serif;
     font-size: 1rem;
     outline: none;
+}
+form input[type="number"] {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #fccaca;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    outline: none;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+/* Chrome, Safari, Edge */
+form input[type="number"]::-webkit-inner-spin-button,
+form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* BOTONES */
