@@ -15,11 +15,18 @@ class productoBD extends conexion{
 
     //listar
     /*
-        Este metodo recibe 2 parámetros $wpar y $wparam:
-            $wpar(qué parámetro)->  
+        Este metodo recibe 2 parámetros $wpar y $param:
+
+            $wpar(qué parámetro)->Indica la opción de listar productos deseada.
+                0: devuelve todos los productos.
+                1: devuelve todos los productos correspondientes a una subcategoría (especificada con $param).
+                2: devuelve todos los productos correspondientes a una categoría (especificada con $param).
+                3: devuelve el objeto correspondiente a un IDProducto (especificado con $param).
+
+            $param(parámetro)->Es el valor necesario para la opcion seleccionada(si la opcion es 0 entonces debe darsele un valor 0).
     */
     public function listarProductos($wpar, $param){
-        
+
         $conexion = $this->getConexion();
         switch ($wpar) {
             case 0:
@@ -49,6 +56,12 @@ class productoBD extends conexion{
                         JOIN subcategoria sc ON p.subcatID = sc.subcatID
                         JOIN categoria c ON sc.catID = c.catID
                         WHERE c.catID = ?;";
+                $stmt = $conexion->prepare($sql);
+                $stmt->bind_param("i", $param);
+                $stmt->execute();
+                break;
+            case 3:
+                $sql = "SELECT * from productos where IDProducto=?";
                 $stmt = $conexion->prepare($sql);
                 $stmt->bind_param("i", $param);
                 $stmt->execute();

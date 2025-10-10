@@ -9,7 +9,7 @@ class SubCat{
 
     public function newSubCat(){
         $CSCBD = new catSubCatBD();
-        $CSCBD->agrSubCat($this->nombre, $this->estado, $this->catID);   
+        $CSCBD->agrSubCat($this->nombre, $this->estado, $this->catID);
     }
     public function __construct($nombre, $estado, $catID){
         $this->nombre= $nombre;
