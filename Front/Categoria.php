@@ -31,7 +31,6 @@ echo ofooter();
                         tdiv.innerHTML = "";
                         tdiv.innerHTML = htmlString;
                         tdiv.style.display = "block";
-                        modal();
                     })
                     .catch(error => {
                         console.error("Error al obtener la tabla:", error);
@@ -46,7 +45,7 @@ echo ofooter();
                         tdiv.innerHTML = "";
                         tdiv.innerHTML = htmlString;
                         tdiv.style.display = "block";
-                        modal();
+                
                     })
                     .catch(error => {
                         console.error("Error al obtener la tabla:", error);
@@ -58,7 +57,7 @@ echo ofooter();
                         tdiv.innerHTML = "";
                         tdiv.innerHTML = htmlString;
                         tdiv.style.display = "block";
-                        modal();
+
                     })
                     .catch(error => {
                         console.error("Error al obtener la tabla:", error);

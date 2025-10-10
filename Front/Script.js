@@ -20,7 +20,7 @@ document.addEventListener('click', function(event) {
         console.log('ID Producto:', idProducto);
 
         // Agregar producto al carrito
-        fetch('../logica/agregarcarrito.php', {
+        fetch('../Logica/agregarcarrito.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -89,7 +89,7 @@ document.addEventListener('click', function(event){
     if(event.target.classList.contains('eliminardelcarrito')){
         const idprod = event.target.getAttribute('data-idproducto');
         console.log('click capturado');
-        fetch('../logica/eliminarcarrito.php', {
+        fetch('../Logica/eliminarcarrito.php', {
             method:'POST',
             headers: {'content-type':'application/x-www-form-urlencoded'},
             body: 'idproducto=' + encodeURIComponent(idprod)
@@ -106,7 +106,7 @@ document.addEventListener('click', function(event){
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('qty-plus')){
         const idprod = event.target.getAttribute('data-idproducto');
-        fetch('../logica/agregarcarrito.php', {
+        fetch('../Logica/agregarcarrito.php', {
             method:'POST',
             headers: {'content-type':'application/x-www-form-urlencoded'},
             body: 'idproducto=' + encodeURIComponent(idprod) + '&accion=incrementar'
@@ -120,7 +120,7 @@ document.addEventListener('click', function(event){
     }
     if(event.target.classList.contains('qty-minus')){
         const idprod = event.target.getAttribute('data-idproducto');
-        fetch('../logica/agregarcarrito.php', {
+        fetch('../Logica/agregarcarrito.php', {
             method:'POST',
             headers: {'content-type':'application/x-www-form-urlencoded'},
             body: 'idproducto=' + encodeURIComponent(idprod) + '&accion=decrementar'

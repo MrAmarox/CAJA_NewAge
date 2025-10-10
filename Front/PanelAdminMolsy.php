@@ -125,22 +125,23 @@ if ($_SESSION['usr']) {
         </div>
     </div>
 
-    <!--Modal PRODUCTO -->
+    <!--Modal PRODUCTO -
     <div id="modalModProd" class="modal">
         <div class="modal-content">
             <form action="" method="post">
                 <span class="closep">x</span>
                 <img id="foto" src="">
                 <label>Foto: </label><label id="fotoProd"></label><br>
-                <label>Nombre: </label><label id="nombreProd"></label><br>
+                <label>Nombre: </label><label id="nombreProd"></label>
                 <input type="text" id="nominp" name="nominp"><br>
-                <label>Precio: </label><label id="prec"></label><br>
+                <label>Subcategoría: </label><label id="subcatmod"></label><br>
+                <label>Precio: </label><label id="prec"></label>
                 <input type="text" id="numinp" name="numinp"><br>
                 <label>ID: </label><label id="id"></label><input type="hidden" id="idin" name="id"><br>
-                <label>Color: </label><label id="col"></label><br>
+                <label>Color: </label><label id="col"></label>
                 <input type="text" id="colin" name="colin"><br>
-                <label>Talle: </label><label id="talle"></label><br>
-                <input type="number" id="tallin" name="tallin"><br>
+                <label>Talle: </label><label id="talle"></label>
+                <input type="text" id="tallin" name="tallin"><br>
                 <Label>Nueva Foto:</Label> <input type="file" name="image"><br>
                 <label>Visibilidad: </label><label id="estado"></label>
                 <select id="estSelect" name="estSelect">
@@ -150,7 +151,7 @@ if ($_SESSION['usr']) {
                 <input type="submit" name="btnmodProd" value="Modificar">
             </form>
         </div>
-    </div>
+    </div> -->
 
 </body>
 
@@ -190,7 +191,7 @@ if (isset($_POST['btnmodusr'])) {
 if (isset($_POST['btnmodProd'])) {
     if (isset($_POST['nominp']) && isset($_POST['colin']) && isset($_POST['estSelect']) && isset($_POST['tallin'])) {
         $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], $_POST['newimg'], $_POST['subcatIDmod'], $_POST['estselect']);
-        Usuario::modUsr($usr);
+        //Producto::modProd($usr);
         header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
@@ -330,7 +331,7 @@ if (isset($_POST['btnmodProd'])) {
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-        function modalProd() {
+        /*function modalProd() {
             var modalp = document.getElementById("modalModProd");
             var btn = document.getElementById("btnmodProd");
             var spanp = document.getElementsByClassName("closep")[0];
@@ -350,6 +351,7 @@ if (isset($_POST['btnmodProd'])) {
                     document.getElementById('estado').innerHTML = this.dataset.estado;
                     document.getElementById('prec').innerHTML = this.dataset.precio;
                     document.getElementById('numinp').value = this.dataset.precio;
+                    document.getElementById('subcatmod').innerHTML = this.dataset.subcat;
                 });
             });
             spanp.onclick = function() {
@@ -357,10 +359,10 @@ if (isset($_POST['btnmodProd'])) {
             };
             window.onclick = function(event) {
                 if (event.target == modal) {
-                    modal.style.display = "none";
+                    modalp.style.display = "none";
                 }
             };
 
-        }
+        }*/
     });
 </script>

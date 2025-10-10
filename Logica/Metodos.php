@@ -51,7 +51,15 @@ function oheader()
                     <button class="buscar"><i class="bi bi-search-heart"></i></button>
                 </div>
 
-                <a href="Login.php"><button class="user"> <i class="bi bi-person-heart"></i></button></a>
+                ';
+            session_start();
+            if (!isset($_SESSION['usr'])) {
+                $html .= '<a href="Login.php"><button class="user"> <i class="bi bi-box-arrow-in-right"></i></button></a>';
+            } else {
+                $html .= '<a href="PanelUser.php"><button class="Puser"> <i class="bi bi-person-heart"></i></button></a>';
+            }
+
+    $html .= '
                 <button class="carrito" onclick="openCart()"><i class="bi bi-bag-heart"></i></button>
 
             </header>
@@ -94,7 +102,7 @@ function ofooter()
                     <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/IndexMolsy.php" class="menu-icon">Inicio</a></li>
                     <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/PanelUser.php" class="menu-icon">Cuenta</a></li>
                     <li class="txtclink-elementos"><a href="" class="menu-icon">Contacto</a></li>
-                    <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/nosotros.php" class="menu-icon">Sobre Nosotros</a></li>
+                    <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/Nosotros.php" class="menu-icon">Sobre Nosotros</a></li>
                 </ul>
 
                 <p class="text">@2025 | Todos los derechos reservados</p>

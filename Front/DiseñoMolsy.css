@@ -343,7 +343,7 @@ body {
 
 /* productos y cards */
 .productos-container {
-    display: grid;
+    display: flex;
     grid-template-columns: min-content;
     gap: 20px;
     padding: 40px;
