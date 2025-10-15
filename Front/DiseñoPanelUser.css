@@ -92,6 +92,7 @@ h2 {
 /* Última fila sin borde */
 .tabla-usuarios tr:last-child td {
     border-bottom: none;
+    color: black;
 }
 
 /* Hover efecto */

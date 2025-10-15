@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         echo '<script>alert("Por favor, complete todos los campos correctamente.");</script>';
     } else {
         if ($_POST['pass'] === $_POST['pass2']) {
-            $pas=$_POST['pass'];
+            $pas=password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $usuario = new usuario($_POST['cedula'], $_POST['nombre'], $_POST['correo'], $_POST['telefono']);
             $usuario->RegistrarUsuario($pas);
             header("Location:../Front/IndexMolsy.php");

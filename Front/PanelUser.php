@@ -36,7 +36,7 @@ if (!isset($_SESSION['usr'])) {
     <div id="tabUsr"></div>
     <center>
         <button class="btnmodUsr">Modificar</button>
-        <button class="btnmodPass">Cambiar contraseña.</button>
+        <button class="btnmodPass">Cambiar contraseña</button>
     </center>
 
     <!-- Modal -->
@@ -45,11 +45,11 @@ if (!isset($_SESSION['usr'])) {
             <form action="" method="post">
                 <span class="close">x</span>
                 <label>Nombre:</label><br>
-                <input type="text" id="nomin" name="nominusr"><br>
+                <input type="text" id="nomin" name="nominusr" required><br>
                 <label>Correo:</label><br>
-                <input type="email" id="corrin" name="corrin"><br>
+                <input type="email" id="corrin" name="corrin" required><br>
                 <label>Telefono:</label><br>
-                <input type="number" id="numin" name="numin"><br>
+                <input type="number" id="numin" name="numin" required><br>
 
                 <input type="hidden" id="ciiu" name="ciiu"><br>
 
@@ -62,11 +62,11 @@ if (!isset($_SESSION['usr'])) {
             <form action="" method="post">
                 <span class="closep">x</span>
                 <label>Contraseña actual:</label><br>
-                <input type="password" id="cpass" name="cpass"><br>
+                <input type="password" id="cpass" name="cpass" required><br>
                 <label>Nueva contraseña:</label><br>
-                <input type="password" id="npass" name="npass"><br>
+                <input type="password" id="npass" name="npass" required><br>
                 <label>Confirmar contraseña:</label><br>
-                <input type="password" id="npass2" name="npass2"><br>
+                <input type="password" id="npass2" name="npass2" required><br>
                 <input type="hidden" id="ciip" name="ciip"><br>
                 <input type="submit" name="btnmodpass" value="Cambiar contraseña">
             </form>
@@ -82,19 +82,25 @@ if (!isset($_SESSION['usr'])) {
     if (isset($_POST['btnmodusr'])) {
         if (isset($_POST['nominusr']) && isset($_POST['corrin']) && isset($_POST['numin'])) {
             $usr = new Usuario($_POST['ciiu'], $_POST['nominusr'], $_POST['corrin'], $_POST['numin']);
-            Usuario::modUsr($usr); // método ya existente
-            $_SESSION['usr'] = Usuario::getUsrWCI($_POST['ciiu']); // actualizamos sesión
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit;
+            if(Usuario::modUsr($usr)){
+                $_SESSION['usr'] = Usuario::getUsrWCI($_POST['ciiu']); // actualizamos sesión
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit;
+            }else{
+                echo '<script>alert("Error al modificar el usuario, intente nuevamente.")</script>';
+            }
         }
     }
     if (isset($_POST['btnmodpass'])) {
         if (isset($_POST['cpass']) && isset($_POST['npass']) && isset($_POST['npass2'])) {
             if(Usuario::checkPass($_POST['ciip'],$_POST['cpass'])){
                 if ($_POST['npass'] === $_POST['npass2']) {
-                    Usuario::modPass($_POST['npass'], $_POST['ciip']);
-                    header("Location: " . $_SERVER['PHP_SELF']);
-                    exit;
+                    if(Usuario::modPass($_POST['npass'], $_POST['ciip'])){
+                        header("Location: " . $_SERVER['PHP_SELF']);
+                        exit;
+                    }else{
+                        echo '<script>alert("Error al modificar la contraseña, intente nuevamente.")</script>';
+                    }
                 }else{
                     echo '<script>alert("Las contraseñas no coinciden.");</script>';
                 }

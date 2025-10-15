@@ -43,7 +43,7 @@ include_once "../Logica/usuario.php";
 session_start();
 if (isset($_POST['submit'])) {
     $u= usuario::Login($_POST['correo'],$_POST['pass']);
-    if($u != null){
+    if(is_object($u)){
         switch ($u->getTipo()){
             case 0:
                 header("Location:PanelAdminMolsy.php");
@@ -62,7 +62,17 @@ if (isset($_POST['submit'])) {
         }
   
     }else{
-        echo "Usuario o contraseña incorrectas";
+        switch ($u){
+            case 1:
+                echo "Contraseña incorrecta";
+                break;
+            case 2:
+                echo 'Correo incorrecto';
+                break;
+            default:
+                echo 'Error desconocido';
+                break;
+        }   
     }
   
   }

@@ -4,7 +4,7 @@ include_once "../Logica/usuario.php";
 
 class usuarioBD extends conexion {
 
-    public function Login ($correo, $contrasena){
+    /*public function Login ($correo, $contrasena){
 
         $con = $this->getConexion();
         $sql = "select * from usuario where Correo=? and pass=?";
@@ -15,7 +15,6 @@ class usuarioBD extends conexion {
 
         $resultado = $stmt->get_result();
 
-        
         if ($resultado->num_rows > 0){
             while ($fila = $resultado->fetch_assoc()){
                 $usuario = new usuario($fila['Cedula'], $fila['Nombre'], $fila['Correo'], $fila['Telefono']);
@@ -24,6 +23,32 @@ class usuarioBD extends conexion {
             return $usuario;
         } else {
             return null;
+        }
+    }*/
+    public function Login ($corr,$pass){
+        $con= $this->getConexion();
+        $sql= 'select pass from usuario where Correo=?';
+        $stmt= $con->prepare($sql);
+        $stmt->bind_param('s',$corr);
+        $stmt->execute();
+        $res=$stmt->get_result();
+        if($res->num_rows > 0){
+            $fila=$res->fetch_assoc();
+            if(password_verify($pass,$fila['pass'])){
+                $sql = 'select * from usuario where Correo=?';
+                $stmt = $con->prepare($sql);
+                $stmt->bind_param('s', $corr);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                $fila= $res->fetch_assoc();
+                $usuario = new usuario($fila['Cedula'], $fila['Nombre'], $fila['Correo'], $fila['Telefono']);
+                $usuario->setTipo($fila['Tipo']);
+                return $usuario;
+            }else{
+                return 1;    
+            }
+        }else{
+            return 2;
         }
     }
 
@@ -171,19 +196,18 @@ class usuarioBD extends conexion {
     public function checkPass($ci,$pass){
 
         $con = $this->getConexion();
-        $sql = "select * from usuario where Cedula=? and pass=?";
+        $sql = 'select pass from usuario where Cedula=?';
         $stmt = $con->prepare($sql);
-
-        $stmt->bind_param("is", $ci, $pass);
+        $stmt->bind_param('s', $ci);
         $stmt->execute();
-
-        $resultado = $stmt->get_result();
-
-
-        if ($resultado->num_rows > 0) {
-            return true;
-        } else {
-            return false;
+        $res = $stmt->get_result();
+        if ($res->num_rows > 0) {
+            $fila = $res->fetch_assoc();
+            if (password_verify($pass, $fila['pass'])) {
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 
