@@ -17,7 +17,6 @@ document.addEventListener('click', function(event) {
         event.stopPropagation();
 
         const idProducto = event.target.getAttribute('data-idproducto');
-        console.log('ID Producto:', idProducto);
 
         // Agregar producto al carrito
         fetch('../Logica/agregarcarrito.php', {
@@ -61,7 +60,6 @@ function cargarProductosCarrito() {
     fetch('../Logica/listcart.php')
         .then(res => res.json())
         .then(data => {
-            console.log('Datos del carrito:', data);
             if(data.success) {
                 const contenedorCarrito = document.getElementById('cart-content');
                 if(contenedorCarrito) {
@@ -88,7 +86,6 @@ function closeCart() {
 document.addEventListener('click', function(event){
     if(event.target.classList.contains('eliminardelcarrito')){
         const idprod = event.target.getAttribute('data-idproducto');
-        console.log('click capturado');
         fetch('../Logica/eliminarcarrito.php', {
             method:'POST',
             headers: {'content-type':'application/x-www-form-urlencoded'},

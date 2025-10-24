@@ -96,6 +96,10 @@ class Producto {
         return $pBD->listarProductos($wpar, $param);
     }
 
-
+    public static function modProd($prod){
+        include_once '../Persistencia/productoBD.php';
+        $pBD= new productoBD();
+        return $pBD->modProd($prod);
+    }
 
 }

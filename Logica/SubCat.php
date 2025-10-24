@@ -49,5 +49,9 @@ class SubCat{
     public function setCatID($value) {
     $this->catID = $value;
     }
+    public static function delSubcat($subID){
+        $CSCBD = new catSubCatBD();
+        return $CSCBD->delsubCat($subID);
+    }
 }
 ?>

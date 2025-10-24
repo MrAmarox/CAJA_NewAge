@@ -14,14 +14,16 @@ include_once 'producto.php';
             $html = "<div class='productos-container'>";
             if(!empty($prods)){
                 foreach ($prods as $producto) {
-                    $html .= '<div class="producto-card">';
-                    $html .= '<img src="Img/' . $producto->getFoto() . '" alt="Producto">';
-                    $html .= '<h3>' . $producto->getNombre() . ' - $' . $producto->getPrecio() . '</h3>';
-                    $html .= '<p>Color: ' . $producto->getColor() . '</p>';
-                    $html .= '<p>Talle: ' . $producto->getTalle() . '</p>';
-                    $html .= '<button class = "btnaggcarrito"
-                            data-idproducto="'. htmlspecialchars($producto->getIDProducto()).'"> Agregar al carrito</button>';
-                    $html .= "</div>";
+                    if($producto->getEstado()===1){
+                        $html .= '<div class="producto-card">';
+                        $html .= '<img src="Img/' . $producto->getFoto() . '" alt="Producto">';
+                        $html .= '<h3>' . $producto->getNombre() . ' - $' . $producto->getPrecio() . '</h3>';
+                        $html .= '<p>Color: ' . $producto->getColor() . '</p>';
+                        $html .= '<p>Talle: ' . $producto->getTalle() . '</p>';
+                        $html .= '<button class = "btnaggcarrito"
+                                data-idproducto="'. htmlspecialchars($producto->getIDProducto()).'"> Agregar al carrito</button>';
+                        $html .= "</div>";
+                    }
                 }
             }else{
                 echo "<script> alert('Ha ocurrido un eror grave, será redirigido a la página de inicio. en 10 segundos.'); setTimeout(function() {window.location.href = '../Front/IndexMolsy.php';}, 10000); </script>";

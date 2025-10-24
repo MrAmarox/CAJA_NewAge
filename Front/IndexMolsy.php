@@ -19,21 +19,21 @@ echo '
     <img src="Img\PolleraLu.jpg">
     <h3> Pollera Lu </h3>
     <p> $390 </p>
-    <button id="addtocart" class="btn-agregar"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+    <button id="addtocart" class="btnaggcarrito"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
 </div>';
 echo '
 <div class="producto-card">
     <img src="Img\ShortVal.jpg">
     <h3> Short Val </h3>
     <p> $320 </p>
-    <button id="addtocart" class="btn-agregar"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+    <button id="addtocart" class="btnaggcarrito"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
 </div>';
 echo '
 <div class="producto-card">
     <img src="Img\ShortBatik.jpg">
     <h3> Short Batik </h3>
     <p> $390 </p>
-    <button id="addtocart" class="btn-agregar"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
+    <button id="addtocart" class="btnaggcarrito"><i class="bi bi-cart-plus"></i> Agregar al carrito</button>
 </div>
 </div>';
 

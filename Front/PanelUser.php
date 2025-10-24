@@ -37,6 +37,13 @@ if (!isset($_SESSION['usr'])) {
     <center>
         <button class="btnmodUsr">Modificar</button>
         <button class="btnmodPass">Cambiar contraseña</button>
+
+        <?php
+        if ($_SESSION['usr']->getTipo() == 0 || $_SESSION['usr']->getTipo() == 2) {
+            echo '<button class="btnpanelAdm"> Panel Admin </button>';
+        }
+        ?>
+
     </center>
 
     <!-- Modal -->
@@ -82,32 +89,32 @@ if (!isset($_SESSION['usr'])) {
     if (isset($_POST['btnmodusr'])) {
         if (isset($_POST['nominusr']) && isset($_POST['corrin']) && isset($_POST['numin'])) {
             $usr = new Usuario($_POST['ciiu'], $_POST['nominusr'], $_POST['corrin'], $_POST['numin']);
-            if(Usuario::modUsr($usr)){
+            if (Usuario::modUsr($usr)) {
                 $_SESSION['usr'] = Usuario::getUsrWCI($_POST['ciiu']); // actualizamos sesión
                 header("Location: " . $_SERVER['PHP_SELF']);
                 exit;
-            }else{
+            } else {
                 echo '<script>alert("Error al modificar el usuario, intente nuevamente.")</script>';
             }
         }
     }
     if (isset($_POST['btnmodpass'])) {
         if (isset($_POST['cpass']) && isset($_POST['npass']) && isset($_POST['npass2'])) {
-            if(Usuario::checkPass($_POST['ciip'],$_POST['cpass'])){
+            if (Usuario::checkPass($_POST['ciip'], $_POST['cpass'])) {
                 if ($_POST['npass'] === $_POST['npass2']) {
-                    if(Usuario::modPass($_POST['npass'], $_POST['ciip'])){
+                    if (Usuario::modPass($_POST['npass'], $_POST['ciip'])) {
                         header("Location: " . $_SERVER['PHP_SELF']);
                         exit;
-                    }else{
+                    } else {
                         echo '<script>alert("Error al modificar la contraseña, intente nuevamente.")</script>';
                     }
-                }else{
+                } else {
                     echo '<script>alert("Las contraseñas no coinciden.");</script>';
                 }
-            }else{
+            } else {
                 echo '<script>alert("La contraseña actual no es correcta.");</script>';
             }
-        }else{
+        } else {
             echo '<script>alert("Todos los campos son requeridos.");</script>';
         }
     }
@@ -123,7 +130,12 @@ if (!isset($_SESSION['usr'])) {
         document.addEventListener("DOMContentLoaded", function() {
             const tdivU = document.getElementById("tabUsr");
             cargarTablaUsuarios(tdivU);
-
+            document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("btnpanelAdm")) {
+                    e.preventDefault();
+                    window.location.href = '../Front/PanelAdminMolsy.php';
+                }
+            });
 
             function cargarTablaUsuarios(tdivU) {
                 fetch("../Logica/infUsr.php")

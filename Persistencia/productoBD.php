@@ -23,7 +23,7 @@ class productoBD extends conexion{
                 2: devuelve todos los productos correspondientes a una categoría (especificada con $param).
                 3: devuelve el objeto correspondiente a un IDProducto (especificado con $param).
 
-            $param(parámetro)->Es el valor necesario para la opcion seleccionada(si la opcion es 0 entonces debe darsele un valor 0).
+            $param(parámetro)->Es el valor necesario para la opcion seleccionada(si la opcion es 0 entonces debe dársele un valor 0).
     */
     public function listarProductos($wpar, $param){
 
@@ -67,20 +67,36 @@ class productoBD extends conexion{
                 $stmt->execute();
                 break;
             default:
-                echo "<script> alert('Ha ocurrido un eror grave, será redirigido a la página de inicio. en 10 segundos.'); setTimeout(function() {window.location.href = '../Front/IndexMolsy.php';}, 10000); </script>";
+                echo "<script> alert('Ha ocurrido un eror grave, será redirigido a la página de inicio en 10 segundos.'); setTimeout(function() {window.location.href = '../Front/IndexMolsy.php';}, 10000); </script>";
                 break;
         }
         $resultado = $stmt->get_result();
         $productolista = [];
         if ($resultado->num_rows > 0) {
             while ($fila = $resultado->fetch_assoc()) {
-                if ($fila["estado"] == 1) {
                     $producto = new producto($fila['nombre'], $fila['precio'], $fila['color'], $fila['talle'], $fila['foto'], $fila['subcatID'], $fila['estado']);
                     $producto->setIDProducto($fila['IDProducto']);
                     $productolista[] = $producto;
-                }
             }
         }
         return $productolista;
+    }
+    public function modProd($prod){
+        $nam=$prod->getNombre();
+        $pre=$prod->getPrecio();
+        $col=$prod->getColor();
+        $tal=$prod->getTalle();
+        $img=$prod->getFoto();
+        $est=$prod->getEstado();
+        $id=$prod->getIDProducto();
+        $con = $this->getConexion();
+        $sql = 'UPDATE productos SET nombre = ?, precio = ?, color = ?, talle = ?, foto = ?, estado = ? WHERE IDProducto = ?';
+        $stmt= $con->prepare($sql);
+        $stmt->bind_param('sisssii', $nam, $pre, $col, $tal, $img, $est, $id);
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

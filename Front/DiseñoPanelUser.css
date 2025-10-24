@@ -100,8 +100,8 @@ h2 {
     background-color: #fff0f5;
 }
 
-/* ---------- BOTÓN MODIFICAR ---------- */
-.btnmodUsr, .btnmodPass {
+/* ---------- BOTÓNES MODIFICAR ---------- */
+.btnmodUsr, .btnmodPass{
     background-color: #f48fb1;
     color: white;
     border: none;
@@ -112,9 +112,22 @@ h2 {
     transition: 0.2s;
 }
 
-.btnmodUsr:hover, .btnmodPass:hover {
+.btnmodUsr:hover, .btnmodPass:hover{
     background-color: #ec407a;
 }
+/* ---------- BOTÓN QUE REDIRIGE A PANEL ADMIN ---------- */
+.btnpanelAdm{
+    background-color: #f48fb1;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.2s;
+}
+
+
 
 
 /* ---------- MODAL ---------- */
