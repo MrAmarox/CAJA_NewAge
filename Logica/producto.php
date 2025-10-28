@@ -9,6 +9,7 @@ class Producto {
     private $foto;
     private $subcatID;
     private $estado;
+    private $stock;
 
     public function getIDProducto(){
         return $this->IDProducto;
@@ -73,6 +74,12 @@ class Producto {
     public function setEstado($value){
         $this->estado = $value;
     }
+    public function getStock(){
+        return $this->stock;
+    }
+    public function setStock($value){
+        $this->stock=$value;
+    }
 
     public function __construct($name, $precio, $color, $talle, $foto, $subcatID, $estado) {
         $this->nombre=$name;
@@ -87,7 +94,7 @@ class Producto {
     public function AddProducto(){
         include_once "../Persistencia/productoBD.php";
         $pBD = new productoBD();
-        $pBD->AddProducto($this->nombre, $this->precio, $this->color, $this->talle, $this->foto, $this->estado, $this->subcatID);
+        $pBD->AddProducto($this->nombre, $this->precio, $this->color, $this->talle, $this->foto, $this->estado, $this->subcatID, $this->stock);
     }
 
     public static function listarProductos($wpar, $param){

@@ -52,7 +52,8 @@ if ($_SESSION['usr']) {
                     <label> Subcategoría </label>
                     <select id="subcatSelect" name="subcatSelect">
 
-                    </select>
+                    </select><br>
+                    <label>Stock</label> <input type="number" name="stockin">
                     <br>
                     <input type="submit" name="agregar" value="Agregar">
                 </form>
@@ -170,14 +171,13 @@ if ($_SESSION['usr']) {
                 <input type="text" id="colin" name="colin"><br>
                 <label>Talle: </label><label id="talle"></label>
                 <input type="text" id="tallin" name="tallin"><br>
-                <Label>Nueva Foto:</Label> <input type="file" name="image2">
-                <input<br>
-                    <label>Visibilidad: </label><label id="estado"></label>
-                    <select id="estSelect" name="estSelect">
-                        <option value="0">Oculto</option>
-                        <option value="1">Visible</option>
-                    </select><br>
-                    <input type="submit" name="btnmodProd" value="Modificar">
+                <Label>Nueva Foto:</Label> <input type="file" name="image2"><br>
+                <label>Visibilidad: </label><label id="estado"></label>
+                <select id="estSelect" name="estSelect">
+                    <option value="0">Oculto</option>
+                    <option value="1">Visible</option>
+                </select><br>
+                <input type="submit" name="btnmodProd" value="Modificar">
             </form>
         </div>
     </div>
@@ -188,9 +188,15 @@ if ($_SESSION['usr']) {
 
 <?php
 if (isset($_POST['agregar'])) {
-    if (isset($_POST['nombreProd']) && isset($_POST['precio']) && isset($_POST['color']) && isset($_POST['talle']) && isset($_POST['subcatSelect']) && isset($_POST['prodestadoSelect'])) {
+    if (isset($_POST['nombreProd']) && isset($_POST['precio']) && isset($_POST['color']) && isset($_POST['talle']) && isset($_POST['subcatSelect']) && isset($_POST['prodestadoSelect']) && isset($_POST['stockin'])) {
+        if($_POST['stockin']<=1){
+            $stock=1;
+        }else{
+            $stock=$_POST['stockin'];
+        }
         $producto = new Producto($_POST['nombreProd'], $_POST['precio'], $_POST['color'], $_POST['talle'], CargarImagen(), $_POST['subcatSelect'], $_POST['prodestadoSelect']);
         $producto->AddProducto();
+        unset($_FILES['image']);
         header("Location: " . $_SERVER['PHP_SELF']);
         echo '<script>cargartablaProds();</script>';
     }
@@ -226,10 +232,11 @@ if (isset($_POST['btnmodusr'])) {
 if (isset($_POST['btnmodProd'])) {
     if (isset($_POST['nominp']) && isset($_POST['colin']) && isset($_POST['estSelect']) && isset($_POST['tallin'])) {
         if (isset($_FILES['image2']) && $_FILES['image2']['error'] !== UPLOAD_ERR_NO_FILE) {
-            $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], CargarImagen2(), $_POST['subcatIDmod'], $_POST['estSelect']);
+            $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], CargarImagen(), $_POST['subcatIDmod'], $_POST['estSelect']);
         } else {
             $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], $_POST['oldpic'], $_POST['subcatIDmod'], $_POST['estSelect']);
         }
+        unset($_FILES['image2']);
         $prod->setIDProducto($_POST['id']);
         if (Producto::modProd($prod)) {
             echo '<script>alert("Producto modificado con exito");</script>';

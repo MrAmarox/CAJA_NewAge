@@ -5,12 +5,16 @@ include_once "../Logica/producto.php";
 class productoBD extends conexion{
 
     //insertar
-    public function AddProducto($nombre, $precio, $color, $talle, $foto, $estado, $subcatID){
+    public function AddProducto($nombre, $precio, $color, $talle, $foto, $estado, $subcatID, $stock){
         $conexion = $this->getConexion();
-        $sql = "INSERT into productos (nombre, precio, color, talle, foto, estado, subcatID) values (?,?,?,?,?,?,?)";
+        $sql = "INSERT into productos (nombre, precio, color, talle, foto, estado, subcatID, stock) values (?,?,?,?,?,?,?,?)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("sisssii", $nombre, $precio, $color, $talle, $foto, $estado, $subcatID);
-        $stmt->execute();
+        $stmt->bind_param("sisssii", $nombre, $precio, $color, $talle, $foto, $estado, $subcatID, $stock);
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     //listar
@@ -49,6 +53,7 @@ class productoBD extends conexion{
                             p.talle,
                             p.foto,
                             p.estado,
+                            p.stock,
                             sc.nombre AS subcategoria,
                             sc.subcatID AS subcatID,
                             c.nombre AS categoria
@@ -76,6 +81,7 @@ class productoBD extends conexion{
             while ($fila = $resultado->fetch_assoc()) {
                     $producto = new producto($fila['nombre'], $fila['precio'], $fila['color'], $fila['talle'], $fila['foto'], $fila['subcatID'], $fila['estado']);
                     $producto->setIDProducto($fila['IDProducto']);
+                    $producto->setStock($fila['stock']);
                     $productolista[] = $producto;
             }
         }
@@ -89,10 +95,11 @@ class productoBD extends conexion{
         $img=$prod->getFoto();
         $est=$prod->getEstado();
         $id=$prod->getIDProducto();
+        $stock=$prod->getStock();
         $con = $this->getConexion();
-        $sql = 'UPDATE productos SET nombre = ?, precio = ?, color = ?, talle = ?, foto = ?, estado = ? WHERE IDProducto = ?';
+        $sql = 'UPDATE productos SET nombre = ?, precio = ?, color = ?, talle = ?, foto = ?, estado = ?, stock = ? WHERE IDProducto = ?';
         $stmt= $con->prepare($sql);
-        $stmt->bind_param('sisssii', $nam, $pre, $col, $tal, $img, $est, $id);
+        $stmt->bind_param('sisssiii', $nam, $pre, $col, $tal, $img, $est, $id, $stock);
         if($stmt->execute()){
             return true;
         }else{

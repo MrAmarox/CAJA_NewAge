@@ -648,6 +648,12 @@ cart-product-quantity{
     text-align:center;
     font-size:1.5rem;
     background:transparent;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .qty.qty-selector.product__quantity::-webkit-outer-spin-button,
 .qty.qty-selector.product__quantity::-webkit-inner-spin-button{
