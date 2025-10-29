@@ -41,31 +41,23 @@ header {
     max-width: 10rem;
 }
 .busqueda{
+    color: black;
         display: flex;
         align-items: center;
-        border: 2px solid #fccaca;
+        border: 2px solid #000000;
         border-radius: 5px;
         padding: 0.2rem;
 }
-.buscador {
-    padding: 0.5rem;
-  border: 2px solid #fccaca;
-  border-radius: 4px;
-  background-color: transparent;
-  color: #fccaca;
-  outline: none;
-  font-family: "Montserrat", sans-serif;
-}
 
 .buscador::placeholder {
-    color: #fccaca;
+    color: #000000;
   }
 
 .buscar {
 margin-left: 0.5rem;
   border: none;
   background-color: transparent;
-  color: #fccaca;
+  color: #000000;
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -341,54 +333,41 @@ body {
 	border-radius: 3rem;
 }
 
-/* productos y cards */
-.productos-container {
+/*Carrousel */
+.carrousel {
+    height: 50px;
+    margin: 5px auto;
+    width: 100%;
     display: flex;
-    grid-template-columns: min-content;
-    gap: 20px;
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
+    overflow-x: auto;
 }
 
-.producto-card {
-    display: flex;
-    flex-direction: column;
-    background-color: #000000;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 20px;
-    align-items: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.carrousel::-webkit-scrollbar{
+    display: none;
 }
 
-.producto-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+.grupo-carrousel{
+display: flex;
+align-items: center;
+justify-content:center;
+gap: 1em;
+animation: spin 5s infinite linear;
 }
 
-.producto-card img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px;
+@keyframes spin{
+    from {translate: 0;}
+    to {translate: -100%;}
 }
-
-.producto-card h3 {
+.card{
+    height: 30em;
+    padding: 0.3em;
+    font-size: 3rem;
+    text-align: center;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.1rem;
-    color: #fccaca;
-    margin: 0 0 10px 0;
-    font-weight: 600;
+    align-content: center;
+    color: black;
 }
 
-.producto-card p {
-
-    margin: 5px 0;
-    color: #ffcece;
-    font-size: 0.95rem;
-}
 
 .btnaggcarrito {
     font-family: "Montserrat", sans-serif;
@@ -415,31 +394,13 @@ body {
 /* Banner medias pag principal */
 .banner-Socks {
     width: 100%;
-    height: 300px;
-    background-image: linear-gradient(100deg, #000000, #00000020), url("Img/BannersSocks.png");
+    height: 600px;
+    background-image: linear-gradient(100deg, #000000, #00000020), url("Img/bannerMolsy NEWCOLLECION (1).png");
     background-repeat: no-repeat;
     background-size: cover; /*  ocupe todo sin recortes */
     background-position: center;
     margin: 0 auto; /* para centrarlo*/
     overflow: hidden;
-
-}
-
-.contenido-bannerSocks {
-	max-width: 80rem;
-	margin: 0;
-    text-align: center;
-    padding: 3rem 0;
-}
-
-.contenido-bannerSocks .txtbannerSocks {
-    font-family: "Montserrat", sans-serif;
-    font-style: bold;
-    color: #fccaca;
-	font-size: 3.5rem;
-	font-weight: 500;
-	line-height: 1.0;
-    text-shadow: #2b1a1a;
 
 }
 
@@ -689,4 +650,119 @@ cart-product-quantity{
 .qty-button:focus,.remove:focus,.item-title:focus{
     outline:2px solid rgba(169,81,153,0.15);
     outline-offset:2px
+}
+
+
+/* Diseño de checkout */
+.checkout {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    color: #fff;
+    background: #111;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255, 0, 150, 0.3);
+    font-family: "Montserrat", sans-serif;
+}
+
+.titulocheckout{
+    font-family: "Montserrat", sans-serif;
+  text-align: center;
+    font-size: 2.2em;
+    color: #fe95ca;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.resumen, .datos {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
+}
+
+.resumen h2, .datos h2 {
+    color: #ff66b2;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.item .info p {
+    margin: 2px 0;
+}
+
+.resumen-total {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #ffb3d9;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-form label {
+    margin-top: 10px;
+    color: #ffb3d9;
+    font-weight: bold;
+}
+
+.checkout-form input, 
+.checkout-form select {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    background: #222;
+    color: #fff;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.checkout-form input:focus, 
+.checkout-form select:focus {
+    box-shadow: 0 0 10px #ffd5ea;
+}
+
+.btn-comprar {
+    margin-top: 20px;
+    background: #ff66b2;
+    color: #111;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-comprar:hover {
+    background: #ff1a8c;
+    transform: scale(1.05);
 }

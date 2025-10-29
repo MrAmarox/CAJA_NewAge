@@ -45,8 +45,7 @@ function oheader(){
                 </button>
 
                 <div class="busqueda">
-                    <input type="text" class="buscador" placeholder="Buscar...">
-                    <button class="buscar"><i class="bi bi-search-heart"></i></button>
+                    <h1> . </h1>
                 </div>
 
                 ';
