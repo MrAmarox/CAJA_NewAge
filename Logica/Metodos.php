@@ -68,7 +68,7 @@ function oheader()
 }
 function ocart()
 {
-    session_start();
+   
     
     $html = '<div id="myCart" class="Cart">
             <a href="javascript:void(0)" class="closebtn" onclick="closeCart()">
