@@ -30,65 +30,94 @@ if ($_SESSION['usr']) {
     </div>
     <div class="contdiv1">
         <div>
-            <h2> Agregar un producto: </h2>
-            <form action="" method="post" enctype="multipart/form-data">
-                <label> Nombre </label> <input type="text" name="nombreProd">
-                <br>
-                <label> Precio </label> <input type="number" name="precio">
-                <br>
-                <label> Color </label> <input type="text" name="color">
-                <br>
-                <label> Talle </label> <input type="text" name="talle">
-                <br>
-                <label> Foto </label> <input type="file" name="image">
-                <br>
-                <label>Visibilidad</label>
-                <select id="prodestadoSelect" name="prodestadoSelect">
-                    <option value="0">Oculto</option>
-                    <option value="1">Visible</option>
-                </select>
-                <br>
-                <label> Subcategoría </label>
-                <select id="subcatSelect" name="subcatSelect">
+            <div>
+                <h2> Agregar un producto: </h2>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <label> Nombre </label> <input type="text" name="nombreProd">
+                    <br>
+                    <label> Precio </label> <input type="number" name="precio">
+                    <br>
+                    <label> Color </label> <input type="text" name="color">
+                    <br>
+                    <label> Talle </label> <input type="text" name="talle">
+                    <br>
+                    <label> Foto </label> <input type="file" name="image">
+                    <br>
+                    <label>Visibilidad</label>
+                    <select id="prodestadoSelect" name="prodestadoSelect">
+                        <option value="0">Oculto</option>
+                        <option value="1">Visible</option>
+                    </select>
+                    <br>
+                    <label> Subcategoría </label>
+                    <select id="subcatSelect" name="subcatSelect">
 
-                </select>
-                <br>
-                <input type="submit" name="agregar">
-            </form>
+                    </select><br>
+                    <label>Stock</label> <input type="number" name="stockin">
+                    <br>
+                    <input type="submit" name="agregar" value="Agregar">
+                </form>
+            </div>
         </div>
         <div>
-            <h2>Agregar una SubCategoría: </h2>
-            <form action="" method="post">
-                <label>Nombre</label> <input type="text" name="nombresubcat">
-                <br>
-                <label>Estado</label>
-                <select id="subestadoSelect" name="subestadoSelect">
-                    <option value="0">Inactiva</option>
-                    <option value="1">Activa</option>
-                </select>
-                <label> Categoría </label>
-                <select id="catSelect" name="catSelect">
+            <div>
+                <h2>Agregar una SubCategoría: </h2>
+                <form action="" method="post">
+                    <label>Nombre</label> <input type="text" name="nombresubcat">
+                    <br>
+                    <label>Estado</label>
+                    <select id="subestadoSelect" name="subestadoSelect">
+                        <option value="0">Inactiva</option>
+                        <option value="1">Activa</option>
+                    </select>
+                    <label> Categoría </label>
+                    <select id="catSelect" name="catSelect">
 
-                </select>
+                    </select>
 
-                <br>
-                <input type="submit" name="agregarsubcat">
-            </form>
+                    <br>
+                    <input type="submit" name="agregarsubcat" value="Agregar">
+                </form>
+            </div>
+            <div>
+                <h2>Eliminar una Subcategoría: </h2>
+                <form action="" method="post">
+                    <select id="subcatSelecte" name="subcatselecte">
+
+                    </select>
+                    <br>
+                    <input type="submit" name="eliminarsubcat" value="Eliminar">
+                </form>
+            </div>
+
         </div>
         <div>
-            <h2>Agregar una Categoría: </h2>
-            <form action="" method="post">
-                <label>Nombre</label> <input type="text" name="nombrecat">
-                <br>
-                <label>Estado</label>
-                <select id="catestadoSelect" name="catestadoSelect">
-                    <option value="0">Inactiva</option>
-                    <option value="1">Activa</option>
-                </select>
-                <br>
-                <br>
-                <input type="submit" name="agregarcat">
-            </form>
+            <div>
+                <h2>Agregar una Categoría: </h2>
+                <form action="" method="post">
+                    <label>Nombre</label> <input type="text" name="nombrecat">
+                    <br>
+                    <label>Estado</label>
+                    <select id="catestadoSelect" name="catestadoSelect">
+                        <option value="0">Inactiva</option>
+                        <option value="1">Activa</option>
+                    </select>
+                    <br>
+                    <br>
+                    <input type="submit" name="agregarcat" value="Agregar">
+                </form>
+            </div>
+            <div>
+                <h2>Eliminar una Categoría: </h2>
+                <form action="" method="post">
+                    <select id="catSelecte" name="catselecte">
+
+                    </select>
+                    <br>
+                    <input type="submit" name="eliminarcat" value="Eliminar">
+                </form>
+            </div>
+
         </div>
     </div>
 
@@ -125,16 +154,16 @@ if ($_SESSION['usr']) {
         </div>
     </div>
 
-    <!--Modal PRODUCTO -
+    <!--Modal PRODUCTO -->
     <div id="modalModProd" class="modal">
         <div class="modal-content">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <span class="closep">x</span>
                 <img id="foto" src="">
-                <label>Foto: </label><label id="fotoProd"></label><br>
+                <label>Foto: </label><input type='hidden' id="fotoProd" name="oldpic"></label><br>
                 <label>Nombre: </label><label id="nombreProd"></label>
                 <input type="text" id="nominp" name="nominp"><br>
-                <label>Subcategoría: </label><label id="subcatmod"></label><br>
+                <label>Subcategoría: </label><label id="subcatIDmod"></label><input type=hidden name=subcatIDmod id=subcatIDmodin><br>
                 <label>Precio: </label><label id="prec"></label>
                 <input type="text" id="numinp" name="numinp"><br>
                 <label>ID: </label><label id="id"></label><input type="hidden" id="idin" name="id"><br>
@@ -142,7 +171,7 @@ if ($_SESSION['usr']) {
                 <input type="text" id="colin" name="colin"><br>
                 <label>Talle: </label><label id="talle"></label>
                 <input type="text" id="tallin" name="tallin"><br>
-                <Label>Nueva Foto:</Label> <input type="file" name="image"><br>
+                <Label>Nueva Foto:</Label> <input type="file" name="image2"><br>
                 <label>Visibilidad: </label><label id="estado"></label>
                 <select id="estSelect" name="estSelect">
                     <option value="0">Oculto</option>
@@ -151,7 +180,7 @@ if ($_SESSION['usr']) {
                 <input type="submit" name="btnmodProd" value="Modificar">
             </form>
         </div>
-    </div> -->
+    </div>
 
 </body>
 
@@ -159,9 +188,15 @@ if ($_SESSION['usr']) {
 
 <?php
 if (isset($_POST['agregar'])) {
-    if (isset($_POST['nombreProd']) && isset($_POST['precio']) && isset($_POST['color']) && isset($_POST['talle']) && isset($_POST['subcatSelect']) && isset($_POST['prodestadoSelect'])) {
+    if (isset($_POST['nombreProd']) && isset($_POST['precio']) && isset($_POST['color']) && isset($_POST['talle']) && isset($_POST['subcatSelect']) && isset($_POST['prodestadoSelect']) && isset($_POST['stockin'])) {
+        if($_POST['stockin']<=1){
+            $stock=1;
+        }else{
+            $stock=$_POST['stockin'];
+        }
         $producto = new Producto($_POST['nombreProd'], $_POST['precio'], $_POST['color'], $_POST['talle'], CargarImagen(), $_POST['subcatSelect'], $_POST['prodestadoSelect']);
         $producto->AddProducto();
+        unset($_FILES['image']);
         header("Location: " . $_SERVER['PHP_SELF']);
         echo '<script>cargartablaProds();</script>';
     }
@@ -171,6 +206,7 @@ if (isset($_POST['agregarsubcat'])) {
         $Subcat = new SubCat($_POST['nombresubcat'], $_POST['subestadoSelect'], $_POST['catSelect']);
         $Subcat->newSubCat();
         header("Location: " . $_SERVER['PHP_SELF']);
+        echo '<script>cargarselectSubcats();</script>';
     }
 }
 if (isset($_POST['agregarcat'])) {
@@ -178,35 +214,61 @@ if (isset($_POST['agregarcat'])) {
         $cat = new cat($_POST['nombrecat'], $_POST['catestadoSelect']);
         $cat->newCat();
         header("Location: " . $_SERVER['PHP_SELF']);
+        echo '<script>cargarselectCats();</script>';
     }
 }
 if (isset($_POST['btnmodusr'])) {
     if (isset($_POST['nominusr']) && isset($_POST['numin']) && isset($_POST['tipoSelect']) && isset($_POST['corrin'])) {
         $usr = new usuario($_POST['cii'], $_POST['nominusr'], $_POST['corrin'], $_POST['numin']);
         $usr->setTipo($_POST['tipoSelect']);
-        Usuario::modUsr($usr);
+        if (Usuario::modUsr($usr)) {
+            echo '<script>alert("Usuario modificado con exito");</script>';
+        } else {
+            echo '<script>alert("Error al modificar el usuario");</script>';
+        }
         header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
 if (isset($_POST['btnmodProd'])) {
     if (isset($_POST['nominp']) && isset($_POST['colin']) && isset($_POST['estSelect']) && isset($_POST['tallin'])) {
-        $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], $_POST['newimg'], $_POST['subcatIDmod'], $_POST['estselect']);
-        //Producto::modProd($usr);
+        if (isset($_FILES['image2']) && $_FILES['image2']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], CargarImagen(), $_POST['subcatIDmod'], $_POST['estSelect']);
+        } else {
+            $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], $_POST['oldpic'], $_POST['subcatIDmod'], $_POST['estSelect']);
+        }
+        unset($_FILES['image2']);
+        $prod->setIDProducto($_POST['id']);
+        if (Producto::modProd($prod)) {
+            echo '<script>alert("Producto modificado con exito");</script>';
+        } else {
+            echo '<script>alert("Error al modificar el producto");</script>';
+        }
         header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
 
+if (isset($_POST['eliminarcat'])) {
+    if(Cat::delCat($_POST['catselecte'])){
+        echo '<script>alert("Categoría eliminada con exito");</script>';
+    }else{
+        echo '<script>alert("Error al eliminar categoría, elimine todas las subcategorías dependientes e intente nuevamente.");</script>';
+    }
+}
+
+if (isset($_POST['eliminarsubcat'])){
+    if(SubCat::delSubcat($_POST['subcatselecte'])){
+        echo '<script>alert("Subcategoría eliminada con exito");</script>';
+    }else{
+        echo '<script>alert("Error al eliminar subcategoría.");</script>';
+    }
+}
 ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var selsub = document.getElementById('subcatSelect');
+        var selsube = document.getElementById('subcatSelecte');
         var selcat = document.getElementById('catSelect');
-        selsub.addEventListener('click', function() {
-            cargarselectSubcats();
-        });
-        selcat.addEventListener('click', function() {
-            cargarselectCats();
-        });
+        var selcate = document.getElementById('catSelecte');
         cargarselectCats();
         cargarselectSubcats();
         cargarTablaUsuarios();
@@ -218,6 +280,8 @@ if (isset($_POST['btnmodProd'])) {
                 .then(htmlString => { // htmlString es un string plano con el contenido HTML
                     selsub.innerHTML = "";
                     selsub.innerHTML = htmlString;
+                    selsube.innerHTML = "";
+                    selsube.innerHTML = htmlString;
                 })
                 .catch(error => {
                     console.error("Error al obtener la tabla:", error);
@@ -230,6 +294,8 @@ if (isset($_POST['btnmodProd'])) {
                 .then(htmlString => { // htmlString es un string plano con el contenido HTML
                     selcat.innerHTML = "";
                     selcat.innerHTML = htmlString;
+                    selcate.innerHTML = "";
+                    selcate.innerHTML = htmlString;
                 })
                 .catch(error => {
                     console.error("Error al obtener la tabla:", error);
@@ -331,7 +397,8 @@ if (isset($_POST['btnmodProd'])) {
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-        /*function modalProd() {
+        /**/
+        function modalProd() {
             var modalp = document.getElementById("modalModProd");
             var btn = document.getElementById("btnmodProd");
             var spanp = document.getElementsByClassName("closep")[0];
@@ -351,7 +418,9 @@ if (isset($_POST['btnmodProd'])) {
                     document.getElementById('estado').innerHTML = this.dataset.estado;
                     document.getElementById('prec').innerHTML = this.dataset.precio;
                     document.getElementById('numinp').value = this.dataset.precio;
-                    document.getElementById('subcatmod').innerHTML = this.dataset.subcat;
+                    document.getElementById('subcatIDmod').innerHTML = this.dataset.subcat;
+                    document.getElementById('subcatIDmodin').value = this.dataset.subcat;
+                    document.getElementById('fotoProd').value = this.dataset.pic;
                 });
             });
             spanp.onclick = function() {
@@ -363,6 +432,6 @@ if (isset($_POST['btnmodProd'])) {
                 }
             };
 
-        }*/
+        }
     });
 </script>

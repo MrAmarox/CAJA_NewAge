@@ -12,5 +12,8 @@ echo oheader();
     </div>
 
 <?php
+    if(isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])){
+        
+    }
     echo ofooter();
 ?>

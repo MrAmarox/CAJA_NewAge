@@ -27,7 +27,7 @@ function listcart(){
                                 <cart-product-quantity>
                                     <label class="visually-hidden">Cantidad: </label>
                                     <button class="qty-button qty-minus" type="button" data-idproducto="'. htmlspecialchars($producto->getIDProducto()) .'">-</button>
-                                    <input class="qty qty-selector product__quantity" type="number" min="1" value="'. htmlspecialchars(($cantidad)) .'">
+                                    <input class="qty qty-selector product__quantity" type="number" min="1" value="'. htmlspecialchars(($cantidad)) .'" readonly>
                                     <button class="qty-button qty-plus" type="button" data-idproducto="'. htmlspecialchars($producto->getIDProducto()) .'">+</button>
                                 </cart-product-quantity>
                             </product-quantity>

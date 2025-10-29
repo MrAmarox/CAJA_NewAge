@@ -2,8 +2,7 @@
 include_once "Cat.php";
 
 //<li><a href="../Front/Categoria.php ">Productos</a><li>
-function menuhamburguesa()
-{
+function menuhamburguesa(){
     $cates = Cat::bringCats(1);
     $html = '<nav id="menuhamburguesa" class="menuhamburguesa">
                 <ul class="hamburguesa-list">
@@ -23,8 +22,7 @@ function menuhamburguesa()
         ';
     return $html;
 }
-function oheader()
-{
+function oheader(){
     $html = '
         <!DOCTYPE html>
         <html lang="es">
@@ -68,7 +66,7 @@ function oheader()
 }
 function ocart()
 {
-   
+    session_start();
     
     $html = '<div id="myCart" class="Cart">
             <a href="javascript:void(0)" class="closebtn" onclick="closeCart()">
@@ -88,8 +86,7 @@ function ocart()
 }
 
 
-function ofooter()
-{
+function ofooter(){
     $html = '
             <footer class="footter">
                 <ul class="redes-icon">
@@ -118,8 +115,7 @@ function ofooter()
 }
 
 
-function CargarImagen()
-{
+function CargarImagen(){
     if (isset($_FILES['image'])) {
         // Obtener detalles del archivo
         $RutaTemporal = $_FILES['image']['tmp_name']; // Esta línea obtiene la ruta temporal donde se almacena el archivo subido en el servidor de forma temporal.
@@ -141,10 +137,30 @@ function CargarImagen()
             echo "Tipo de archivo no permitido. Solo se permiten imágenes en formato JPG, PNG, GIF, JPEG.";
             return null;
         }
+    } elseif (isset($_FILES['image2'])) {
+        // Obtener detalles del archivo
+        $RutaTemporal = $_FILES['image2']['tmp_name']; // Esta línea obtiene la ruta temporal donde se almacena el archivo subido en el servidor de forma temporal.
+        $NombreDelArchivo = $_FILES['image2']['name']; // Aquí se obtiene el nombre original del archivo subido, tal como aparece en el dispositivo del usuario.
+        $NombreDelArchivoCmps = explode(".", $NombreDelArchivo); // Función explode: Esta función toma una cadena de texto y la divide en partes basándose en un delimitador, en este caso el punto (.). Propósito: El objetivo es dividir el nombre del archivo en dos partes: el nombre base y la extensión. Ejemplo Si el archivo es foto_vacaciones.jpg, después de aplicar explode(".", $NombreDelArchivo), el resultado será un array: $NombreDelArchivoCmps = ['foto_vacaciones', 'jpg'];
+        $ExtensionDelArchivo = strtolower(end($NombreDelArchivoCmps));
+        $extensionesPErmitidas = ['jpg', 'gif', 'png', 'jpeg']; // Definir extensiones permitidas
+        if (in_array($ExtensionDelArchivo, $extensionesPErmitidas)) { // in_array(), comprueba si un elemento existe dentro de un array.
+            $DirectorioDestino = '../Front/Img/';
+            $RutaCompetaFinal = $DirectorioDestino . $NombreDelArchivo; // Establecer el directorio donde se guardará la imagen
+            if (move_uploaded_file($RutaTemporal, $RutaCompetaFinal)) { // Mover el archivo subido a la carpeta de destino
+                echo "<script>alert('El archivo fue guardado correctamente');</script>";
+                return $NombreDelArchivo;
+            } else {
+                echo "<script>alert('Hubo un error moviendo el archivo a la carpeta de destino.');</script>";
+                return null;
+            }
+        } else {
+            echo "<script>alert('Tipo de archivo no permitido. Solo se permiten imágenes en formato JPG, PNG, GIF, JPEG.');</script>";
+            return null;
+        }
     } else {
-        echo "Hubo un error al subir el archivo (input).";
+        echo "<script>alert('Hubo un error al subir el archivo (input)');</script>";
         return null;
     }
 }
 
-?>

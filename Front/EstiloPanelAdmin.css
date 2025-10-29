@@ -24,7 +24,7 @@ h2 {
     margin-bottom: 20px;
     color: #fccaca;
     text-align: center;
-}
+}   
 
 .close,
 .closep {
@@ -134,6 +134,9 @@ td img {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
+    min-width: 500px;
+    max-height: 95vh;
+    overflow-y: auto;
 }
 
 

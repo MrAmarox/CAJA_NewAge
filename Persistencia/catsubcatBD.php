@@ -13,7 +13,7 @@
                 if($stmt->execute()){
                     echo '<script>alert("Categoria agregada con exito);</script>';
                 }else{
-                    echo '<script>alert("fuck");</script>';
+                    echo '<script>alert("Error al agregar categoría");</script>';
                 }
             }else{
                 return false;
@@ -32,12 +32,45 @@
                 return false;
             }
         }
+
+        public function delCat($nombre){
+            if ($this->catExis($nombre)) {
+                $conexion = $this->getConexion();
+                $sql = "DELETE FROM categoria WHERE subcatID = ?";
+                $stmt = $conexion->prepare($sql);
+                $stmt->bind_param("s", $nombre);
+                if ($stmt->execute()) {
+                    echo '<script>alert("Categoria eliminada con exito);</script>';
+                } else {
+                    echo '<script>alert("Error al eliminar categoria, verifique que esta no tenga subcategorías dependientes.");</script>';
+                }
+            } else {
+                return false;
+            }
+        }
         public function agrSubCat($nombre, $estado, $catID){
             $conexion = $this->getConexion();
             $sql = "INSERT into subcategoria (nombre, estado, catID) values (?,?,?)";
             $stmt = $conexion->prepare($sql);
             $stmt->bind_param("sii", $nombre,$estado, $catID);
+            if($stmt->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function delsubCat($subID){
+            $conexion = $this->getConexion();
+            $sql = "DELETE FROM subcategoria WHERE catID = ? ";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param("i", $subID);
             $stmt->execute();
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
         }
        //listar
         public function listarCates($wcat, $scat){
