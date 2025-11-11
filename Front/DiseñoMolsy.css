@@ -332,6 +332,54 @@ body {
 	text-transform: uppercase;
 	border-radius: 3rem;
 }
+/* productos y cards */
+.productos-container {
+    display: flex;
+    grid-template-columns: min-content;
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.producto-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.producto-card img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.producto-card h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    color: #fccaca;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.producto-card p {
+
+    margin: 5px 0;
+    color: #ffcece;
+    font-size: 0.95rem;
+}
 
 /*Carrousel */
 .carrousel {
@@ -357,6 +405,20 @@ animation: spin 5s infinite linear;
 @keyframes spin{
     from {translate: 0;}
     to {translate: -100%;}
+}
+/* Banner medias pag principal */
+.banner-Socks {
+    width: 100%;
+    height: 600px;
+    background-image: linear-gradient(100deg, #000000, #00000020), url("Img/bannerMolsy NEWCOLLECION (1).png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*  ocupe todo sin recortes */
+    background-position: center;
+    margin: 0 auto;
+    /* para centrarlo*/
+    overflow: hidden;
+
 }
 .card{
     height: 30em;
@@ -391,18 +453,7 @@ animation: spin 5s infinite linear;
     margin-right: 5px;
 }
 
-/* Banner medias pag principal */
-.banner-Socks {
-    width: 100%;
-    height: 600px;
-    background-image: linear-gradient(100deg, #000000, #00000020), url("Img/bannerMolsy NEWCOLLECION (1).png");
-    background-repeat: no-repeat;
-    background-size: cover; /*  ocupe todo sin recortes */
-    background-position: center;
-    margin: 0 auto; /* para centrarlo*/
-    overflow: hidden;
 
-}
 
 .Cart {
     height: 100%;
@@ -415,6 +466,12 @@ animation: spin 5s infinite linear;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+}
+.cart-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .Cart a {
@@ -478,11 +535,16 @@ form.cart.site-cart-form{background:transparent;
     border-radius:var(--radius)
     ;width:100%
 }
-.cart-holder{background:var(--card-bg);
+
+.cart-holder{
+    flex: 1;
+    background:var(--card-bg);
     border-radius:var(--radius);
     padding:12px;
+    padding-bottom:80px;
     border:0;
-    box-shadow:0 1px 4px rgba(0,0,0,0.03)
+    box-shadow:0 1px 4px rgba(0,0,0,0.03);
+    overflow-y: auto;
 }
 .cart-holder[data-items="0"]{
     min-height:100px;
@@ -561,7 +623,7 @@ form.cart.site-cart-form{background:transparent;
     font-weight:700
 }
 
-/* Actions: cantidad + remove */
+
 .actions{
     display:flex;
     align-items:center;
@@ -579,6 +641,9 @@ cart-product-quantity{
     gap:6px
 }
 
+.cantidad{
+    color: #fccaca;
+}
 /* Botones cantidad */
 .qty-button{
     display:inline-flex;
@@ -622,7 +687,7 @@ cart-product-quantity{
     margin:0
 }
 
-/* Remove link */
+
 .eliminardelcarrito{
     text-decoration:none;
     color:var(--muted-text);
@@ -637,7 +702,7 @@ cart-product-quantity{
 [data-cart-count]{display:inline-block;min-width:20px;text-align:center;padding:4px 6px;border-radius:999px;background:var(--accent);color:#fff;font-size:0.85rem}
 .hidden{display:none!important}
 
-/* Responsive adjustments */
+
 @media (max-width:600px){
     .cart-item{gap:10px;padding:10px}
     .thumbnail{flex:0 0 56px}
@@ -650,6 +715,23 @@ cart-product-quantity{
 .qty-button:focus,.remove:focus,.item-title:focus{
     outline:2px solid rgba(169,81,153,0.15);
     outline-offset:2px
+}
+
+.checkBtn {
+    width: calc(100% - 40px);
+    padding: 12px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--buttons-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.checkBtn:hover {
+    background-color: #8c3e7f;
 }
 
 

@@ -12,6 +12,7 @@ function tabProd(){
                 <th> Color </th>
                 <th> Precio </th>
                 <th> Talle </th>
+                <th> Stock </th>
                 <th> Subcategoría </th>
                 <th> Estado </th>
                 <th> Foto </th>
@@ -23,25 +24,28 @@ function tabProd(){
             if($prod->getEstado()==1){
                 $SubCat = SubCat::bringSubcat($prod->getSubcatID());
                 $html .= "
-                    <tr>
-                        <td>" . $prod->getNombre() . "</td>
-                        <td>" . $prod->getColor() . "</td>
-                        <td>" . $prod->getPrecio() . "</td>
-                        <td>" . $prod->getTalle() . "</td>
-                        <td>" . $SubCat->getNombre() . "</td>
-                        <td>" . $prod->getEstado() . "</td>
-                        <td><img src='../Front/Img/".$prod->getFoto(). "'></td>
-                        <td><button class='btnmodProd'
-                            data-pic='" . htmlspecialchars($prod->getFoto()) . "'
-                            data-id='" . htmlspecialchars($prod->getIDProducto()) . "'
-                            data-nombreprod='" . htmlspecialchars($prod->getNombre()) . "'
-                            data-color='" . htmlspecialchars($prod->getColor()) . "'
-                            data-precio='" . htmlspecialchars($prod->getPrecio()) . "'
-                            data-talle='" . htmlspecialchars($prod->getTalle()) . "'
-                            data-estado='". htmlspecialchars($prod->getEstado()) . "'
-                            data-subcat='" . htmlspecialchars($SubCat->getNombre()) . "'
-                        >Modificar</button></td>
-                    </tr>";
+                <tr>
+                    <td>" . $prod->getNombre() . "</td>
+                    <td>" . $prod->getColor() . "</td>
+                    <td>" . $prod->getPrecio() . "</td>
+                    <td>" . $prod->getTalle() . "</td>
+                    <td>" . $prod->getStock() . "</td>
+                    <td>" . $SubCat->getNombre() . "</td>
+                    <td>" . $prod->getEstado() . "</td>
+                    <td><img src='../Front/Img/" . $prod->getFoto() . "'></td>
+                    <td><button class='btnmodProd'
+                        data-pic='" . htmlspecialchars($prod->getFoto()) . "'
+                        data-id='" . htmlspecialchars($prod->getIDProducto()) . "'
+                        data-nombreprod='" . htmlspecialchars($prod->getNombre()) . "'
+                        data-color='" . htmlspecialchars($prod->getColor()) . "'
+                        data-precio='" . htmlspecialchars($prod->getPrecio()) . "'
+                        data-talle='" . htmlspecialchars($prod->getTalle()) . "'
+                        data-estado='" . htmlspecialchars($prod->getEstado()) . "'
+                        data-subcat='" . htmlspecialchars($SubCat->getNombre()) . "'
+                        data-stock='" . htmlspecialchars($prod->getStock()) . "'
+                        data-desc='" . htmlspecialchars($prod->getDesc()) . "'
+                    >Modificar</button></td>
+                </tr>";
             }
         }
         $html .= "</table>";
@@ -52,6 +56,7 @@ function tabProd(){
                 <th> Color </th>
                 <th> Precio </th>
                 <th> Talle </th>
+                <th> Stock </th>
                 <th> Subcategoría </th>
                 <th> Estado </th>
                 <th> Foto </th>
@@ -67,6 +72,7 @@ function tabProd(){
                         <td>" . $prod->getColor() . "</td>
                         <td>" . $prod->getPrecio() . "</td>
                         <td>" . $prod->getTalle() . "</td>
+                        <td>" . $prod->getStock() . "</td>
                         <td>" . $SubCat->getNombre() . "</td>
                         <td>" . $prod->getEstado() . "</td>
                         <td><img src='../Front/Img/" . $prod->getFoto() . "'></td>
@@ -79,6 +85,8 @@ function tabProd(){
                             data-talle='" . htmlspecialchars($prod->getTalle()) . "'
                             data-estado='" . htmlspecialchars($prod->getEstado()) . "'
                             data-subcat='" . htmlspecialchars($SubCat->getNombre()) . "'
+                            data-stock='".htmlspecialchars($prod->getStock()). "'
+                            data-desc='" . htmlspecialchars($prod->getDesc()) . "'
                         >Modificar</button></td>
                     </tr>";
             }

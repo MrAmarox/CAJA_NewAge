@@ -55,7 +55,8 @@ form label {
 form input[type="text"],
 form input[type='email'],
 form input[type="number"],
-form input[type="file"] {
+form input[type="file"],
+form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -63,22 +64,9 @@ form input[type="file"] {
     border-radius: 8px;
     background-color: #000;
     color: #fccaca;
+    resize: none;
 }
 
-form input[type="submit"] {
-    background-color: #fccaca;
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-form input[type="submit"]:hover {
-    background-color: #ffb0b0;
-}
 
 table {
     width: 90%;
@@ -181,30 +169,30 @@ td img {
     outline: none;
     cursor: pointer;
     transition: all 0.3s ease;
-  }
-  
-  /* Hover */
-  #tipoSelect:hover {
+}
+
+/* Hover */
+#tipoSelect:hover {
     background-color: #fddede;
     border-color: #f48fb1;
   }
   
   /* Focus */
   #tipoSelect:focus {
-    box-shadow: 0 0 8px rgba(244, 143, 177, 0.6);
-    border-color: #f06292;
-  }
-  
-  /* Opciones */
-  #tipoSelect option {
+      box-shadow: 0 0 8px rgba(244, 143, 177, 0.6);
+      border-color: #f06292;
+    }
+    
+    /* Opciones */
+    #tipoSelect option {
     font-family: "Montserrat", sans-serif;
     background: #fff0f0;
     color: #333;
-  }
+}
   
 
-  
-/* para los imput  */
+
+/* para los input  */
 form input[type="submit"] {
     background-color: #fccaca;
     color: black;

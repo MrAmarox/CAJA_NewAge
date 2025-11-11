@@ -12,11 +12,8 @@ function menuhamburguesa(){
         $html .= $cate->menHam();
     }
     $html .= '
-                    <li><a href="../Front/Categoria.php?categoria=Ofertas">Ofertas</a></li>
                     <li class="novisi"><a href="#">Cuenta</a></li>
                     <li class="novisi"><a href="#">Emprendimiento</a></li>
-        ';
-    $html .= '
             </ul>
         </nav>
         ';
@@ -55,33 +52,37 @@ function oheader(){
             } else {
                 $html .= '<a href="PanelUser.php"><button class="Puser"> <i class="bi bi-person-heart"></i></button></a>';
             }
-
-    $html .= '
-                <button class="carrito" onclick="openCart()"><i class="bi bi-bag-heart"></i></button>
-
-            </header>
-        ';
+    if(isset($_SESSION['usr']) && !empty($_SESSION['usr'])){
+        $html .= '<button class="carrito" onclick="openCart()"><i class="bi bi-bag-heart"></i></button>';
+    }
+    $html .= '</header>';
     return $html;
 }
-function ocart()
-{
+function ocart(){
     session_start();
-    
-    $html = '<div id="myCart" class="Cart">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeCart()">
-                <i class="bi bi-x-circle"></i>
-            </a>
-            <div class="cart-holder" id="cart-content">';
-    
-    if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
-        $html .= '<p>Cargando productos...</p>';
-    } else {
-        $html .= '<p>El carrito está vacío</p>';
+    if(isset($_SESSION['usr']) && !empty($_SESSION['usr'])){
+        $html = '<div id="myCart" class="Cart">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeCart()">
+                    <i class="bi bi-x-circle"></i>
+                </a>
+                <div class="cart-wrapper">
+                    <div class="cart-holder" id="cart-content">';
+        
+        if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
+            $html .= '<p>Cargando productos...</p>';
+        } else {
+            $html .= '<p>El carrito está vacío</p>';
+        }
+        
+        $html .= '</div>
+                <div>
+                    <a href="Checkout.php"><button class="checkBtn">Comprar</button></a>
+                </div>
+            </div>
+        </div>';
+        
+        return $html;
     }
-    
-    $html .= '</div></div>';
-    
-    return $html;
 }
 
 
