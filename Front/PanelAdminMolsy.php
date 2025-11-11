@@ -252,6 +252,7 @@
             <form action="" method="post" enctype="multipart/form-data">
                 <span class="closep">x</span>
                 <img id="foto" src="">
+<<<<<<< Updated upstream
                 <label>Foto: </label><input type='hidden' id="fotoProd" name="oldpic"></label><br>
                 <label>Nombre: </label><label id="nombreProd"></label>
                 <input type="text" id="nominp" name="nominp"><br>
@@ -263,6 +264,7 @@
                 <input type="text" id="colin" name="colin"><br>
                 <label>Talle: </label><label id="talle"></label>
                 <input type="text" id="tallin" name="tallin"><br>
+<<<<<<< Updated upstream
                 <Label>Nueva Foto:</Label> <input type="file" name="image2"><br>
                 <label>Visibilidad: </label><label id="estado"></label>
                 <select id="estSelect" name="estSelect">
@@ -448,6 +450,7 @@
                 modalp.style.display = "none";
             };
             window.onclick = function(event) {
+<<<<<<< Updated upstream
                 if (event.target == modalp) {
                     modalp.style.display = "none";
                 }
