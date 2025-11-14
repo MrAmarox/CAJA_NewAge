@@ -16,7 +16,9 @@ include_once 'producto.php';
                 foreach ($prods as $producto) {
                     if($producto->getEstado()===1){
                         $html .= '<div class="producto-card">';
+                        $html .= '<a href="Detalles.php?id=' . $producto->getIDProducto() . '" style="text-decoration: none;">';
                         $html .= '<img src="Img/' . $producto->getFoto() . '" alt="Producto">';
+                        $html .= '</a>';
                         $html .= '<h3>' . $producto->getNombre() . ' - $' . $producto->getPrecio() . '</h3>';
                         $html .= '<p>Color: ' . $producto->getColor() . '</p>';
                         $html .= '<p>Talle: ' . $producto->getTalle() . '</p>';

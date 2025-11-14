@@ -59,7 +59,6 @@ function oheader(){
     return $html;
 }
 function ocart(){
-    session_start();
     if(isset($_SESSION['usr']) && !empty($_SESSION['usr'])){
         $html = '<div id="myCart" class="Cart">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeCart()">
