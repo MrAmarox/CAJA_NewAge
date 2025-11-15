@@ -1,5 +1,5 @@
 <?php
-class venta{
+class Venta{
     private $idVenta;
     private $monto;
     private $prods = [];
@@ -8,6 +8,7 @@ class venta{
     private $pago;
     private $telcont;
     private $fecha;
+    private $estado;
 
     public function getFecha() {
       return $this->fecha;
@@ -58,13 +59,20 @@ class venta{
       $this->pago = $value;
     }
 
-    public function getTelcont() {
+    public function getTel() {
       return $this->telcont;
     }
-    public function setTelcont($value) {
+    public function setTel($value) {
       $this->telcont = $value;
     }
-
+    
+    public function getEstado() {
+      return $this->estado;
+    }
+    public function setEstado($value) {
+      $this->estado = $value;
+    }
+    
     public static function newVenta($venta){
         include_once '../Persistencia/ventaBD.php';
         $vBD = new ventaBD();
@@ -75,6 +83,18 @@ class venta{
       include_once '../Persistencia/ventaBD.php';
       $vBD = new ventaBD();
       return $vBD->bringVentas($wparam,$param);
+    }
+
+    public static function modEstado($idventa, $estado){
+      include_once '../Persistencia/ventaBD.php';
+      $vBD = new ventaBD();
+      return $vBD->modEstado($idventa, $estado);
+    }
+
+    public static function modpago($idventa, $pago){
+      include_once '../Persistencia/ventaBD.php';
+      $vBD = new ventaBD();
+      return $vBD->modPago($idventa, $pago);
     }
 }
 

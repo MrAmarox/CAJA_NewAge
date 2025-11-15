@@ -31,7 +31,7 @@ document.addEventListener('click', function(event) {
             if(data.success) {
                 // Si el carrito está abierto, actualizarlo
                 const cartElement = document.getElementById("myCart");
-                if(cartElement && cartElement.style.width === "600px") {
+                if(cartElement && cartElement.style.width === "500px") {
                     cargarProductosCarrito();
                 }
 
@@ -50,7 +50,7 @@ document.addEventListener('click', function(event) {
 function openCart() {
     const cartElement = document.getElementById("myCart");
     if(cartElement) {
-        cartElement.style.width = "600px";
+        cartElement.style.width = "500px";
         cargarProductosCarrito();
     }
 }

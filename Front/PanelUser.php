@@ -37,6 +37,7 @@ if (!isset($_SESSION['usr'])) {
     <center>
         <button class="btnmodUsr">Modificar</button>
         <button class="btnmodPass">Cambiar contraseña</button>
+        <button class="btntblSll" id="btntblSll">MOSTRAR COMPRAS</button>
 
         <?php
         if ($_SESSION['usr']->getTipo() == 0 || $_SESSION['usr']->getTipo() == 2) {
@@ -45,6 +46,7 @@ if (!isset($_SESSION['usr'])) {
         ?>
 
     </center>
+    <div id="tabSll" style="display:none"></div>
 
     <!-- Modal -->
     <div id="modalModUsr" class="modal">
@@ -121,6 +123,7 @@ if (!isset($_SESSION['usr'])) {
 
     if (isset($_POST['logout'])) {
         unset($_SESSION['usr']);
+        unset($_SESSION['carrito']);
         header("location: " . "../Front/IndexMolsy.php");
     }
     ?>
@@ -214,6 +217,32 @@ if (!isset($_SESSION['usr'])) {
                     modalp.style.display = "none";
                 }
             });
+            var togglS = document.getElementById("btntblSll");
+            var tdivS = document.getElementById("tabSll");
+            togglS.addEventListener("click", function() {
+                if (tdivS.style.display === "none") {
+                    cargarTablaVentas();
+                    tdivS.style.display = "block";
+                    togglS.innerHTML = "OCULTAR COMPRAS";
+                } else {
+                    tdivS.style.display = "none";
+                    togglS.innerHTML = "MOSTRAR COMPRAS";
+                }
+            });
+
+            function cargarTablaVentas() {
+                const fila = document.querySelector(".tabla-usuarios tr:nth-child(2)");
+                fetch("../Logica/tabSll.php?opt=" + fila.querySelector("td[data-ci]").dataset.ci)
+                    .then(res => res.json()) // convierte la respuesta JSON
+                    .then(htmlString => { // htmlString es un string plano con el contenido HTML
+                        tdivS.innerHTML = "";
+                        tdivS.innerHTML = htmlString;
+                        tdivS.style.display = "block";
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener la tabla:", error);
+                    });
+            }
         });
     </script>
 

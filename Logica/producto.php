@@ -116,4 +116,9 @@ class Producto {
         return $pBD->modProd($prod);
     }
 
+    public static function redStock($idprod, $unid){
+        include_once '../Persistencia/productoBD.php';
+        $pBD = new productoBD();
+        return $pBD->redStock($idprod, $unid);
+    }
 }

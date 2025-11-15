@@ -62,7 +62,7 @@ h2 {
 
 
 /* ---------- TABLA DE USUARIO ---------- */
-.tabla-usuarios {
+.tabla-usuarios, .tabla-ventas {
     margin: 40px auto;
     border-collapse: collapse;
     width: 70%;
@@ -74,7 +74,7 @@ h2 {
 }
 
 /* Encabezado */
-.tabla-usuarios th {
+.tabla-usuarios, .tabla-ventas th {
     background-color: #ffb6c1;
     color: white;
     padding: 12px;
@@ -84,19 +84,19 @@ h2 {
 }
 
 /* Filas */
-.tabla-usuarios td {
+.tabla-usuarios, .tabla-ventas td {
     padding: 10px;
     border-bottom: 1px solid #ffe4ec;
 }
 
 /* Última fila sin borde */
-.tabla-usuarios tr:last-child td {
+.tabla-usuarios, .tabla-ventas tr:last-child td {
     border-bottom: none;
     color: black;
 }
 
 /* Hover efecto */
-.tabla-usuarios tr:hover {
+.tabla-usuarios, .tabla-ventas tr:hover {
     background-color: #fff0f5;
 }
 
@@ -111,7 +111,16 @@ h2 {
     font-size: 14px;
     transition: 0.2s;
 }
-
+.btntblSll{
+    background-color: #f48fb1;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
 .btnmodUsr:hover, .btnmodPass:hover{
     background-color: #ec407a;
 }

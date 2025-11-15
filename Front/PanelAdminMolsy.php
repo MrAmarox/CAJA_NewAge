@@ -1,101 +1,111 @@
 <?php
-    include_once "../Logica/SubCat.php";
-    include_once "../Logica/Cat.php";
-    include_once "../Logica/producto.php";
-    include_once "../Logica/usuario.php";
-    include_once "../Logica/Metodos.php";
-    session_start();
-    if ($_SESSION['usr']) {
-        if ($_SESSION['usr']->getTipo() !== 2 && $_SESSION['usr']->getTipo() !== 0) {
-            header("Location:IndexMolsy.php");
-        }
-    } else {
+include_once "../Logica/SubCat.php";
+include_once "../Logica/Cat.php";
+include_once "../Logica/producto.php";
+include_once "../Logica/usuario.php";
+include_once "../Logica/Metodos.php";
+include_once '../Logica/venta.php';
+session_start();
+if ($_SESSION['usr']) {
+    if ($_SESSION['usr']->getTipo() !== 2 && $_SESSION['usr']->getTipo() !== 0) {
         header("Location:IndexMolsy.php");
     }
+} else {
+    header("Location:IndexMolsy.php");
+}
 
-    if (isset($_POST['agregar'])) {
-        if (isset($_POST['nombreProd']) && isset($_POST['precio']) && isset($_POST['color']) && isset($_POST['talle']) && isset($_POST['subcatSelect']) && isset($_POST['prodestadoSelect']) && isset($_POST['stockin'])) {
-            if ($_POST['stockin'] <= 1 || !isset($_POST['stickin'])) {
-                $stock = 1;
-            } else {
-                $stock = $_POST['stockin'];
-            }
-            $producto = new Producto($_POST['nombreProd'], $_POST['precio'], $_POST['color'], $_POST['talle'], CargarImagen(), $_POST['subcatSelect'], $_POST['prodestadoSelect']);
-            $producto->setStock($_POST['stockin']);
-            $producto->setDesc($_POST['descr']);
-            $producto->AddProducto();
-            unset($_FILES['image']);
-            header("Location: " . $_SERVER['PHP_SELF']);
-            echo '<script>cargartablaProds();</script>';
-        }
-    }
-    if (isset($_POST['agregarsubcat'])) {
-        if (isset($_POST['nombresubcat']) && isset($_POST['catSelect']) && isset($_POST['subestadoSelect'])) {
-            $Subcat = new SubCat($_POST['nombresubcat'], $_POST['subestadoSelect'], $_POST['catSelect']);
-            $Subcat->newSubCat();
-            header("Location: " . $_SERVER['PHP_SELF']);
-            echo '<script>cargarselectSubcats();</script>';
-        }
-    }
-    if (isset($_POST['agregarcat'])) {
-        if (isset($_POST['nombrecat']) && isset($_POST['catestadoSelect'])) {
-            $cat = new cat($_POST['nombrecat'], $_POST['catestadoSelect']);
-            $cat->newCat();
-            header("Location: " . $_SERVER['PHP_SELF']);
-            echo '<script>cargarselectCats();</script>';
-        }
-    }
-    if (isset($_POST['btnmodusr'])) {
-        if (isset($_POST['nominusr']) && isset($_POST['numin']) && isset($_POST['corrin'])) {
-            $usr = new usuario($_POST['cii'], $_POST['nominusr'], $_POST['corrin'], $_POST['numin']);
-            if (isset($_POST['tipoSelect'])) {
-                $usr->setTipo($_POST['tipoSelect']);
-            } else {
-                $usr->setTipo($_POST['typ']);
-            }
-            if (Usuario::modUsr($usr)) {
-                echo '<script>alert("Usuario modificado con exito");</script>';
-            } else {
-                echo '<script>alert("Error al modificar el usuario");</script>';
-            }
-            header("Location: " . $_SERVER['PHP_SELF']);
-        }
-    }
-    if (isset($_POST['btnmodProd'])) {
-        if (isset($_POST['nominp']) && isset($_POST['colin']) && isset($_POST['estSelect']) && isset($_POST['tallin'])) {
-            if (isset($_FILES['image2']) && $_FILES['image2']['error'] !== UPLOAD_ERR_NO_FILE) {
-                $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], CargarImagen(), $_POST['subcatIDmod'], $_POST['estSelect']);
-            } else {
-                $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], $_POST['oldpic'], $_POST['subcatIDmod'], $_POST['estSelect']);
-            }
-            $prod->setStock($_POST['stocking']);
-            $prod->setDesc($_POST['descrin']);
-            unset($_FILES['image2']);
-            $prod->setIDProducto($_POST['id']);
-            if (Producto::modProd($prod)) {
-                echo '<script>alert("Producto modificado con exito");</script>';
-            } else {
-                echo '<script>alert("Error al modificar el producto");</script>';
-            }
-            header("Location: " . $_SERVER['PHP_SELF']);
-        }
-    }
 
-    if (isset($_POST['eliminarcat'])) {
-        if (Cat::delCat($_POST['catselecte'])) {
-            echo '<script>alert("Categoría eliminada con exito");</script>';
+if (isset($_POST['agregar'])) {
+    if (isset($_POST['nombreProd']) && isset($_POST['precio']) && isset($_POST['color']) && isset($_POST['talle']) && isset($_POST['subcatSelect']) && isset($_POST['prodestadoSelect']) && isset($_POST['stockin'])) {
+        if ($_POST['stockin'] <= 1 || !isset($_POST['stockin'])) {
+            $stock = 1;
         } else {
-            echo '<script>alert("Error al eliminar categoría, elimine todas las subcategorías dependientes e intente nuevamente.");</script>';
+            $stock = $_POST['stockin'];
         }
+        $producto = new Producto($_POST['nombreProd'], $_POST['precio'], $_POST['color'], $_POST['talle'], CargarImagen(), $_POST['subcatSelect'], $_POST['prodestadoSelect']);
+        $producto->setStock($_POST['stockin']);
+        $producto->setDesc($_POST['descr']);
+        $producto->AddProducto();
+        unset($_FILES['image']);
+        header("Location: " . $_SERVER['PHP_SELF']);
+        echo '<script>cargartablaProds();</script>';
     }
-
-    if (isset($_POST['eliminarsubcat'])) {
-        if (SubCat::delSubcat($_POST['subcatselecte'])) {
-            echo '<script>alert("Subcategoría eliminada con exito");</script>';
+}
+if (isset($_POST['agregarsubcat'])) {
+    if (isset($_POST['nombresubcat']) && isset($_POST['catSelect']) && isset($_POST['subestadoSelect'])) {
+        $Subcat = new SubCat($_POST['nombresubcat'], $_POST['subestadoSelect'], $_POST['catSelect']);
+        $Subcat->newSubCat();
+        header("Location: " . $_SERVER['PHP_SELF']);
+        echo '<script>cargarselectSubcats();</script>';
+    }
+}
+if (isset($_POST['agregarcat'])) {
+    if (isset($_POST['nombrecat']) && isset($_POST['catestadoSelect'])) {
+        $cat = new cat($_POST['nombrecat'], $_POST['catestadoSelect']);
+        $cat->newCat();
+        header("Location: " . $_SERVER['PHP_SELF']);
+        echo '<script>cargarselectCats();</script>';
+    }
+}
+if (isset($_POST['btnmodusr'])) {
+    if (isset($_POST['nominusr']) && isset($_POST['numin']) && isset($_POST['corrin'])) {
+        $usr = new usuario($_POST['cii'], $_POST['nominusr'], $_POST['corrin'], $_POST['numin']);
+        if (isset($_POST['tipoSelect'])) {
+            $usr->setTipo($_POST['tipoSelect']);
         } else {
-            echo '<script>alert("Error al eliminar subcategoría.");</script>';
+            $usr->setTipo($_POST['typ']);
         }
+        if (Usuario::modUsr($usr)) {
+            echo '<script>alert("Usuario modificado con exito");</script>';
+        } else {
+            echo '<script>alert("Error al modificar el usuario");</script>';
+        }
+        header("Location: " . $_SERVER['PHP_SELF']);
     }
+}
+if (isset($_POST['btnmodProd'])) {
+    if (isset($_POST['nominp']) && isset($_POST['colin']) && isset($_POST['estSelect']) && isset($_POST['tallin'])) {
+        if (isset($_FILES['image2']) && $_FILES['image2']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], CargarImagen(), $_POST['subcatIDmod'], $_POST['estSelect']);
+        } else {
+            $prod = new Producto($_POST['nominp'], $_POST['numinp'], $_POST['colin'], $_POST['tallin'], $_POST['oldpic'], $_POST['subcatIDmod'], $_POST['estSelect']);
+        }
+        $prod->setStock($_POST['stocking']);
+        $prod->setDesc($_POST['descrin']);
+        unset($_FILES['image2']);
+        $prod->setIDProducto($_POST['id']);
+        if (Producto::modProd($prod)) {
+            echo '<script>alert("Producto modificado con exito");</script>';
+        } else {
+            echo '<script>alert("Error al modificar el producto");</script>';
+        }
+        header("Location: " . $_SERVER['PHP_SELF']);
+    }
+}
+if (isset($_POST['eliminarcat'])) {
+    if (Cat::delCat($_POST['catselecte'])) {
+        echo '<script>alert("Categoría eliminada con exito");</script>';
+    } else {
+        echo '<script>alert("Error al eliminar categoría, elimine todas las subcategorías dependientes e intente nuevamente.");</script>';
+    }
+}
+if (isset($_POST['eliminarsubcat'])) {
+    if (SubCat::delSubcat($_POST['subcatselecte'])) {
+        echo '<script>alert("Subcategoría eliminada con exito");</script>';
+    } else {
+        echo '<script>alert("Error al eliminar subcategoría.");</script>';
+    }
+}
+if (isset($_POST['btnmodven'])) {
+    if($_POST['pagoSelect']){
+        $f='Pago realizado.';
+        venta::modPago($_POST['idvent'],$f);
+    }
+    if($_POST['vestadoSelect']) {
+        $r='Entregado.';
+        venta::modEstado($_POST['idvent'], $r);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -209,11 +219,13 @@
     <center>
         <button class="btnblUsr" id="btntblUsr">OCULTAR USUARIOS</button>
         <button class="btntblProd" id="btntblProd">OCULTAR PRODUCTOS</button>
+        <button class="btntblSll" id="btntblSll">OCULTAR VENTAS</button>
     </center>
 
     <!--TABLAS USUARIO Y PRODUCTO -->
     <div id="tabUsr"></div>
     <div id="tabProd"></div>
+    <div id="tabSll"></div>
 
 
     <!--Modal USUARIO -->
@@ -252,7 +264,6 @@
             <form action="" method="post" enctype="multipart/form-data">
                 <span class="closep">x</span>
                 <img id="foto" src="">
-<<<<<<< Updated upstream
                 <label>Foto: </label><input type='hidden' id="fotoProd" name="oldpic"></label><br>
                 <label>Nombre: </label><label id="nombreProd"></label>
                 <input type="text" id="nominp" name="nominp"><br>
@@ -264,7 +275,6 @@
                 <input type="text" id="colin" name="colin"><br>
                 <label>Talle: </label><label id="talle"></label>
                 <input type="text" id="tallin" name="tallin"><br>
-<<<<<<< Updated upstream
                 <Label>Nueva Foto:</Label> <input type="file" name="image2"><br>
                 <label>Visibilidad: </label><label id="estado"></label>
                 <select id="estSelect" name="estSelect">
@@ -279,6 +289,26 @@
         </div>
     </div>
 
+    <!--Modal Venta -->
+    <div id="modalModSll" class="modal">
+        <div class="modal-content">
+            <form action="" method="post">
+                <span class="closev">x</span>
+                <label>Pago: </label><label id="estpago"></label><br>
+                <select class="pagoSelect" id="pagoSelect" name="pagoSelect">
+                    <option value="0">Pendiente</option>
+                    <option value="1">Pago realizado</option>
+                </select><br>
+                <label>Estado: </label><label id="estadov"></label>
+                <select class="vestadoSelect" id="vestadoSelect" name="vestadoSelect">
+                    <option value="0">Pendiente</option>
+                    <option value="1">Entregado</option>
+                </select><br>
+                <input type="hidden" id="idvent" name="idvent">
+                <input type="submit" name="btnmodven" value="Modificar">
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
@@ -291,7 +321,10 @@
         cargarselectCats();
         cargarselectSubcats();
         cargarTablaUsuarios();
+        cargarTablaProds();
+        cargarTablaVentas();
         modalUsr();
+        modalVen();
 
         function cargarselectSubcats() {
             fetch('../Logica/getCatSubcatIdNamelist.php?case=1')
@@ -352,7 +385,6 @@
 
         /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-        cargarTablaProds();
         var togglP = document.getElementById("btntblProd");
         var tdivP = document.getElementById("tabProd");
         togglP.addEventListener("click", function() {
@@ -374,6 +406,36 @@
                     tdivP.innerHTML = htmlString
                     tdivP.style.display = "block"
                     modalProd();
+                })
+                .catch(error => {
+                    console.error("Error al obtener la tabla:", error);
+                });
+        }
+
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+        var togglS = document.getElementById("btntblSll");
+        var tdivS = document.getElementById("tabSll");
+        togglS.addEventListener("click", function() {
+            if (tdivS.style.display === "none") {
+                cargarTablaVentas();
+                tdivS.style.display = "block";
+                togglS.innerHTML = "OCULTAR VENTAS";
+            } else {
+                tdivS.style.display = "none";
+                togglS.innerHTML = "MOSTRAR VENTAS";
+            }
+        });
+
+        function cargarTablaVentas() {
+            fetch("../Logica/tabSll.php")
+                .then(res => res.json()) // convierte la respuesta JSON
+                .then(htmlString => { // htmlString es un string plano con el contenido HTML
+                    tdivS.innerHTML = "";
+                    tdivS.innerHTML = htmlString;
+                    tdivS.style.display = "block";
+                    modalVen();
                 })
                 .catch(error => {
                     console.error("Error al obtener la tabla:", error);
@@ -450,9 +512,35 @@
                 modalp.style.display = "none";
             };
             window.onclick = function(event) {
-<<<<<<< Updated upstream
                 if (event.target == modalp) {
                     modalp.style.display = "none";
+                }
+            };
+
+        }
+
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        function modalVen() {
+            var modalv = document.getElementById("modalModSll");
+            var btnv = document.getElementById("btnmodSll");
+            var spanv = document.getElementsByClassName("closev")[0];
+            modalv.style.display = 'none';
+            document.querySelectorAll('.btnmodSll').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalv = document.getElementById("modalModSll");
+                    modalv.style.display = "block"; // Populate modal fields
+                    document.getElementById('estpago').innerHTML = this.dataset.pago;
+                    document.getElementById('estadov').innerHTML = this.dataset.estado;
+                    document.getElementById('idvent').value = this.dataset.idventa;
+                });
+            });
+            spanv.onclick = function() {
+                modalv.style.display = "none";
+            };
+            window.onclick = function(event) {
+                if (event.target == modalv) {
+                    modalv.style.display = "none";
                 }
             };
 

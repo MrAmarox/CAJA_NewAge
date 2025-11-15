@@ -11,6 +11,17 @@ echo '
 </div>';
 
 
+echo '
+<div class="sectiongaleria">
+
+<img class="imagenesgaleria" src="../Front/Img/carrusel1.jpeg"> 
+<img class="imagenesgaleria" src="../Front/Img/carrusel2.jpeg">
+<img class="imagenesgaleria" src="../Front/Img/carrusel3.jpeg">
+<img class="imagenesgaleria" src="../Front/Img/carrusel4.jpeg">
+<img class="imagenesgaleria" src="../Front/Img/carrusel5.jpeg">
+
+ 
+ </div>';
 
 echo '<main style="min-height: 0vh;"></main>';
 

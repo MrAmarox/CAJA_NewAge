@@ -95,10 +95,10 @@ function ofooter(){
                 </ul>
 
                 <ul class="textos-clink">
-                    <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/IndexMolsy.php" class="menu-icon">Inicio</a></li>
-                    <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/PanelUser.php" class="menu-icon">Cuenta</a></li>
+                    <li class="txtclink-elementos"><a href="IndexMolsy.php" class="menu-icon">Inicio</a></li>
+                    <li class="txtclink-elementos"><a href="PanelUser.php" class="menu-icon">Cuenta</a></li>
                     <li class="txtclink-elementos"><a href="" class="menu-icon">Contacto</a></li>
-                    <li class="txtclink-elementos"><a href="http://localhost/CAJA_NewAge/Front/Nosotros.php" class="menu-icon">Sobre Nosotros</a></li>
+                    <li class="txtclink-elementos"><a href="Nosotros.php" class="menu-icon">Sobre Nosotros</a></li>
                 </ul>
 
                 <p class="text">@2025 | Todos los derechos reservados</p>
